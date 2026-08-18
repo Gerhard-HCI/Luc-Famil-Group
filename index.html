@@ -228,6 +228,26 @@
     .disc-item-sub{font-size:11px;color:var(--ink-3);margin-top:2px;font-style:italic}
     .disc-arrow{font-size:16px;color:var(--gold);flex-shrink:0;opacity:.8}
 
+    /* DIET */
+    .diet-banner{background:linear-gradient(135deg,#7C1D3A 0%,#4A0F22 100%);border-radius:var(--radius);padding:22px 20px 18px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden}
+    .diet-banner h2{font-family:var(--font-serif);font-size:26px;font-weight:300;letter-spacing:.8px;margin-bottom:4px;position:relative}
+    .diet-banner p{font-size:12px;opacity:.7;position:relative;margin:0}
+    .diet-person-card{background:var(--white);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;box-shadow:var(--shadow);border:1px solid var(--border-lt)}
+    .diet-person-card.awaiting{background:var(--cream);border-style:dashed;border-color:var(--border)}
+    .diet-person-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+    .diet-person-name{font-family:var(--font-serif);font-size:20px;font-weight:500;color:var(--ink)}
+    .diet-tag{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:99px}
+    .diet-tag.clear{background:#D9EAD3;color:#1B5E20}
+    .diet-tag.await{background:#FFE0B2;color:#BF360C}
+    .diet-line{font-size:12.5px;color:var(--ink-2);line-height:1.55}
+    .diet-meta{font-size:11px;color:var(--ink-4);margin-top:6px}
+    .diet-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .diet-chip{display:inline-block;font-size:11.5px;font-weight:500;padding:5px 11px;border-radius:99px;background:var(--cream);color:var(--ink-2);border:1px solid var(--border-lt)}
+    .jp-card{background:#fff;border:1px solid var(--border-lt);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;box-shadow:var(--shadow)}
+    .jp-card-label{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;color:var(--ink-3)}
+    .jp-text{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif;font-size:15.5px;color:#0A1A2F;line-height:1.75}
+    .jp-en{font-size:11.5px;color:var(--ink-3);margin-top:8px;font-style:italic}
+
     /* EMERGENCY */
     .emergency-banner{background:var(--navy);border-radius:var(--radius);padding:18px 20px;color:#fff;margin-bottom:14px;text-align:center}
     .emergency-banner h2{font-family:var(--font-serif);font-size:22px;font-weight:300;letter-spacing:.5px;margin-bottom:4px}
@@ -285,6 +305,7 @@
     <button class="tab-btn" data-tab="art">Art Programme</button>
     <button class="tab-btn" data-tab="logistics">Logistics</button>
     <button class="tab-btn" data-tab="discover">Discover</button>
+    <button class="tab-btn" data-tab="diet">Diet</button>
     <button class="tab-btn" data-tab="utilities">Utilities</button>
     <button class="tab-btn" data-tab="emergency">Contacts &amp; Emergency</button>
   </nav>
@@ -295,6 +316,7 @@
   <div id="tab-art"       class="tab-panel"></div>
   <div id="tab-logistics" class="tab-panel"></div>
   <div id="tab-discover"  class="tab-panel"></div>
+  <div id="tab-diet"      class="tab-panel"></div>
   <div id="tab-utilities" class="tab-panel"></div>
   <div id="tab-emergency" class="tab-panel"></div>
 </div>
@@ -573,6 +595,24 @@ var DISCOVER = {
 var DISCOVER_CITIES = ['Tokyo','Takamatsu','The Islands','Kurashiki'];
 var DISCOVER_ACTIVE = 'Tokyo';
 
+/* ═══ DIET · questionnaire returns ═══ */
+var DIET = [
+  { name:'Elke Van der Straeten', status:'clear', tag:'No restrictions',
+    line:'No dietary preference, no seafood, meat or poultry restrictions, no nut, sesame or oil restrictions, and no additional ingredients to avoid. Gluten-free soy sauce is not required and minor cross-contamination is acceptable. Not taking GLP-1 or other appetite-affecting medication.',
+    chips:['No allergies','All seafood fine','Raw fish fine','Gluten OK','Nuts & sesame OK','Cross-contact OK'],
+    meta:'Questionnaire submitted 18 August 2026 · elke_vderstraeten@hotmail.com' },
+  { name:'Gwijde Versele', status:'clear', tag:'No restrictions',
+    line:'No dietary or allergy restrictions. Confirmed by Elke on his behalf when she returned her own questionnaire.',
+    chips:['No allergies','No restrictions'],
+    meta:'Confirmed 18 August 2026 · covered by Elke\u0027s submission' },
+  { name:'Luc Famil', status:'await', tag:'Questionnaire open',
+    line:'No questionnaire returned yet.',
+    chips:[], meta:'diet.happycamper.food' },
+  { name:'Kati Van Tuyckom', status:'await', tag:'Questionnaire open',
+    line:'No questionnaire returned yet.',
+    chips:[], meta:'diet.happycamper.food' }
+];
+
 /* ═══ HELPERS ═══ */
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function gm(q){return(q&&q.indexOf('http')===0)?q:'https://maps.google.com/?q='+encodeURIComponent(q||'Japan');}
@@ -835,6 +875,42 @@ function renderDiscover(){
   });
 }
 
+/* ═══ RENDER · DIET ═══ */
+function renderDiet(){
+  var clear=DIET.filter(function(p){return p.status==='clear';});
+  var awaiting=DIET.filter(function(p){return p.status==='await';});
+  var h='<div class="diet-banner"><h2>⚠ Dietary</h2><p>Shared with each restaurant and with Joni in advance · updated as questionnaires come in</p></div>';
+  h+='<div class="section-label">Returned · '+clear.length+' of '+DIET.length+' guests</div>';
+  clear.forEach(function(p){
+    h+='<div class="diet-person-card">'
+      +'<div class="diet-person-head"><div class="diet-person-name">'+esc(p.name)+'</div>'
+      +'<span class="diet-tag clear">'+esc(p.tag)+'</span></div>'
+      +'<div class="diet-line">'+esc(p.line)+'</div>'
+      +(p.chips.length?'<div class="diet-chips">'+p.chips.map(function(c){return '<span class="diet-chip">'+esc(c)+'</span>';}).join('')+'</div>':'')
+      +'<div class="diet-meta">'+esc(p.meta)+'</div>'
+      +'</div>';
+  });
+  if(awaiting.length){
+    h+='<div class="section-label">Still to come</div>';
+    awaiting.forEach(function(p){
+      h+='<div class="diet-person-card awaiting">'
+        +'<div class="diet-person-head"><div class="diet-person-name">'+esc(p.name)+'</div>'
+        +'<span class="diet-tag await">'+esc(p.tag)+'</span></div>'
+        +'<div class="diet-line">'+esc(p.line)+'</div>'
+        +'<div class="diet-meta">'+esc(p.meta)+'</div>'
+        +'</div>';
+    });
+  }
+  h+='<div class="section-label">Show the chef</div>'
+    +'<div class="jp-card">'
+    +'<div class="jp-card-label">Japanese · for the counter</div>'
+    +'<div class="jp-text">エルケ・ヴァン・デル・ストラーテン様とグワイデ・ヴェルセレ様は、食物アレルギーおよび食事制限はございません。生魚・甲殻類・小麦・ごま・ナッツ類も問題なくお召し上がりいただけます。</div>'
+    +'<div class="jp-en">Elke Van der Straeten and Gwijde Versele have no food allergies or dietary restrictions — raw fish, shellfish, gluten, sesame and nuts are all fine.</div>'
+    +'</div>'
+    +'<div class="disc-note">This card covers the two guests who have returned the questionnaire. It will be reissued for all four once Luc and Kati confirm.</div>';
+  document.getElementById('tab-diet').innerHTML=h;
+}
+
 /* ═══ RENDER · UTILITIES ═══ */
 function renderUtilities(){
   document.getElementById('tab-utilities').innerHTML=''
@@ -941,6 +1017,7 @@ function init(){
   renderArt();
   renderLogistics();
   renderDiscover();
+  renderDiet();
   renderUtilities();
   renderEmergency();
   tickClock();
