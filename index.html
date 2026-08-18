@@ -1,1 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0D2847">
+  <title>Famil · Versele — Japan 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:#0D2847; --navy-dk:#071B35; --navy-lt:#EEF4FF;
+      --gold:#B07C22; --gold-lt:#FBF5E6;
+      --sakura:#E8A4B2; --sakura-lt:#FDF2F5;
+      --cream:#FAF8F4; --ink:#0A1A2F; --ink-2:#233D5C; --ink-3:#5A7590; --ink-4:#90A8BE;
+      --border:#D8E4F0; --border-lt:#EBF2FA; --white:#FFFFFF;
+      --shadow:0 2px 12px rgba(13,40,71,.10),0 1px 3px rgba(13,40,71,.06);
+      --radius:18px; --radius-md:12px; --radius-sm:8px;
+      --font-serif:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
+      --font-sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;height:100%}
+    body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;margin:0;padding:0}
+    a{color:inherit;text-decoration:none}
+    button{font-family:var(--font-sans);cursor:pointer;-webkit-tap-highlight-color:transparent}
+    input{font-family:var(--font-sans)}
+    html,body{height:100%;margin:0;padding:0}
+
+    /* HEADER */
+    #app-header{position:fixed;top:0;left:0;right:0;z-index:9999;background-color:#0D2847;background-image:linear-gradient(160deg,#0F3160 0%,#0D2847 55%,#071B35 100%);border-bottom:1px solid rgba(255,255,255,.08)}
+    .hdr-top{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 4px}
+    .hdr-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+    .hdr-flag{font-size:17px;flex-shrink:0}
+    .hdr-dest{font-family:var(--font-serif);font-size:14px;font-weight:300;letter-spacing:.4px;color:#fff;white-space:nowrap}
+    .hdr-hc{font-size:8px;color:rgba(255,255,255,.40);letter-spacing:.8px;text-transform:uppercase;margin-top:1px}
+    .hdr-names{text-align:center;padding:0 14px 7px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .hdr-name{font-family:var(--font-serif);font-size:clamp(20px,4.6vw,32px);font-weight:300;letter-spacing:.4px;color:#fff;line-height:1.15}
+    .hdr-name2{font-size:clamp(9px,1.8vw,11px);color:rgba(255,255,255,.45);letter-spacing:1.4px;text-transform:uppercase;margin-top:3px}
+    .hdr-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+    #jst-clock{font-family:'SF Mono','Menlo',monospace;font-size:14px;font-weight:300;letter-spacing:1px;color:#fff;display:block;text-align:right;white-space:nowrap}
+    #trip-day-label{font-size:8.5px;color:rgba(255,255,255,.38);letter-spacing:.4px;margin-top:1px;display:block;text-align:right;white-space:nowrap}
+
+    /* TAB NAV */
+    .tab-nav{display:flex;border-top:1px solid rgba(255,255,255,.07);overflow-x:auto;scrollbar-width:none}
+    .tab-nav::-webkit-scrollbar{display:none}
+    .tab-btn{flex-shrink:0;background:none;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.78);font-size:11.5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:9px 13px 7px;transition:color .18s,border-color .18s;cursor:pointer;-webkit-tap-highlight-color:transparent;white-space:nowrap}
+    .tab-btn.active{color:var(--sakura);border-bottom-color:var(--sakura)}
+
+    /* MAIN */
+    #main-content{overflow-y:auto;-webkit-overflow-scrolling:touch;height:100vh;}
+    .tab-panel{display:none;padding:14px 14px 80px;animation:panelFade .22s ease both}
+    .tab-panel.active{display:block}
+    @keyframes panelFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+    /* BANNER */
+    .trip-banner{background:linear-gradient(135deg,#0D2847 0%,#0A2040 55%,#04111F 100%);border-radius:var(--radius);padding:22px 20px 20px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden}
+    .trip-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat}
+    .trip-banner-kana{font-family:var(--font-serif);font-size:11px;font-style:italic;opacity:.55;letter-spacing:1px;margin-bottom:4px;position:relative}
+    .trip-banner h2{font-family:var(--font-serif);font-size:28px;font-weight:300;letter-spacing:1px;margin-bottom:4px;position:relative}
+    .trip-banner .banner-dates{font-size:13px;opacity:.72;position:relative}
+    .banner-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;position:relative}
+    .banner-chip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 10px;font-size:11px}
+    .banner-chip.confirmed{background:rgba(217,234,211,.25);border-color:rgba(217,234,211,.5)}
+
+    .section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink-4);padding:8px 2px 6px}
+
+    /* LEGEND */
+    .booking-legend{display:flex;flex-wrap:wrap;gap:8px 14px;padding:10px 14px;background:var(--white);border-radius:var(--radius-md);margin-bottom:10px;border:1px solid var(--border-lt)}
+    .bl-item{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--ink-3);font-weight:500}
+    .bl-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+    .bl-dot.confirmed{background:#D9EAD3;border:1px solid rgba(27,94,32,.3)}
+    .bl-dot.requested{background:#00FFFF;border:1px solid rgba(0,77,86,.3)}
+    .bl-dot.self-booked{background:#F4CCCC;border:1px solid rgba(123,26,26,.3)}
+    .bl-dot.suggestion{background:#9FC5E8;border:1px solid rgba(13,60,110,.3)}
+    .bl-dot.pending{background:#ECEFF1;border:1px solid rgba(84,110,122,.35)}
+
+    /* DAY CARDS */
+    .day-card{background:var(--white);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--border-lt);animation:cardIn .28s ease both}
+    @keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .day-card.is-today{border-color:var(--navy);box-shadow:0 0 0 1.5px var(--navy),var(--shadow)}
+    .day-card.is-past{opacity:.58}
+    .day-header{display:flex;align-items:center;gap:12px;padding:15px 16px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+    .day-num{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;background:var(--border-lt);color:var(--ink-3)}
+    .day-card.is-today .day-num{background:var(--navy);color:#fff}
+    .day-header-info{flex:1;min-width:0}
+    .day-name{font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .day-theme{font-size:11.5px;color:var(--ink-3);font-family:var(--font-serif);font-style:italic;margin-top:1px}
+    .day-sub{font-size:11px;color:var(--ink-4);margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+    .day-city-badge{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:2px 7px;border-radius:5px;background:#EBF3FF;color:#1A5FAA}
+    .day-city-badge.setouchi{background:#F1EBE0;color:#7A5C1F}
+    .day-city-badge.transit{background:#EFEFEF;color:#6A6A6A}
+    .today-pill{font-size:10px;font-weight:700;background:var(--navy);color:#fff;padding:2px 8px;border-radius:20px}
+    .host-pill{font-size:10px;font-weight:600;background:rgba(176,124,34,.15);color:var(--gold);padding:2px 8px;border-radius:20px;border:1px solid rgba(176,124,34,.25)}
+    .day-chevron{color:var(--ink-4);font-size:14px;flex-shrink:0;transition:transform .25s cubic-bezier(.4,0,.2,1)}
+    .day-card.open .day-chevron{transform:rotate(180deg)}
+    .day-body{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.4,0,.2,1)}
+    .day-card.open .day-body{max-height:9000px}
+    .day-body-inner{padding:0 16px 16px}
+
+    .hotel-bar{display:flex;align-items:center;gap:10px;border-radius:var(--radius-md);padding:10px 13px;margin-bottom:12px;background:#EBF4FF;border-left:3px solid #0D2847}
+    .hb-name{font-size:12px;font-weight:600;color:#0D2847}
+    .hb-detail{font-size:11px;color:#1A3F6F;margin-top:1px}
+    .hb-link{margin-left:auto;font-size:11px;font-weight:500;flex-shrink:0;color:#0D2847}
+
+    .day-note-bar{background:var(--navy-lt);border-radius:var(--radius-md);border-left:3px solid #4A80C0;padding:10px 13px;font-size:12px;color:var(--ink-2);line-height:1.55;margin-bottom:12px}
+
+    .weather-widget{display:flex;align-items:center;gap:10px;background:var(--gold-lt);border-radius:var(--radius-md);border:1px solid rgba(176,124,34,.15);padding:10px 13px;margin-bottom:14px}
+    .wx-icon{font-size:26px}.wx-info{flex:1}.wx-temp{font-size:14px;font-weight:600}.wx-desc{font-size:11px;color:var(--ink-3);margin-top:2px}.wx-rain{font-size:12px;font-weight:500;color:#1D6FAD;flex-shrink:0}
+    .wx-loading{font-size:12px;color:var(--ink-4);animation:pulse 1.5s ease infinite}
+    @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+    /* TIMELINE */
+    .timeline{position:relative;padding-left:75px}
+    .stop-item{position:relative;margin-bottom:14px}
+    .stop-item::after{content:'';position:absolute;left:-16px;top:29px;bottom:-14px;width:2px;background:var(--border);z-index:1}
+    .stop-item:last-child::after{display:none}
+    .stop-time{position:absolute;left:-70px;top:11px;width:42px;text-align:right;font-size:10px;font-weight:600;color:var(--ink-4);line-height:1.4}
+    .stop-dot{position:absolute;left:-25px;top:9px;width:18px;height:18px;border-radius:50%;border:2.5px solid #ccc;background:#fff;z-index:2}
+    .stop-dot.t-restaurant{border-color:#8B1A1A;background:#F8EDED}
+    .stop-dot.t-activity{border-color:#6650CC;background:#EEE8FF}
+    .stop-dot.t-transport{border-color:#0D2847;background:#EEF4FF}
+    .stop-dot.t-hotel{border-color:#2E7D32;background:#E8F5E9}
+    .stop-dot.t-flight{border-color:#0277BD;background:#E1F5FE}
+    .stop-dot.t-ferry{border-color:#00838F;background:#E0F7FA}
+    .stop-dot.t-suggestion{border-color:#1565C0;background:#E3F2FD}
+    .stop-dot.t-pending{border-color:#607D8B;background:#ECEFF1}
+    .stop-card{background:var(--cream);border-radius:var(--radius-md);border:1px solid var(--border-lt);padding:11px 13px}
+    .stop-card.is-suggestion{background:#F0F7FF;border-color:rgba(21,101,192,.15)}
+    .stop-card.is-pending{background:#F5F5F5;border-color:rgba(96,125,139,.15)}
+    .stop-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+    .stop-title-wrap{flex:1;min-width:0}
+    .stop-icon{font-size:13px;margin-right:5px}
+    .stop-title{font-size:14px;font-weight:600;color:var(--ink);line-height:1.3}
+    .stop-subtitle{font-size:11px;color:var(--ink-3);margin-top:2px}
+
+    .stop-badge{font-size:9.5px;font-weight:600;padding:3px 9px;border-radius:5px;flex-shrink:0;white-space:nowrap;letter-spacing:.1px}
+    .stop-badge.confirmed  {background:#D9EAD3;color:#1B5E20;border:1px solid rgba(27,94,32,.18)}
+    .stop-badge.requested  {background:#00FFFF;color:#004D56;border:1px solid rgba(0,77,86,.18)}
+    .stop-badge.self-booked{background:#F4CCCC;color:#7B1A1A;border:1px solid rgba(123,26,26,.18)}
+    .stop-badge.suggestion {background:#9FC5E8;color:#0D3C6E;border:1px solid rgba(13,60,110,.18)}
+    .stop-badge.pending    {background:#ECEFF1;color:#546E7A;border:1px solid rgba(84,110,122,.2)}
+    .stop-badge.logistics  {background:#FFE0B2;color:#BF360C;border:1px solid rgba(191,54,12,.18)}
+
+    .stop-notes{font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-lt)}
+    .stop-alert{display:flex;align-items:flex-start;gap:6px;margin-top:8px;padding:7px 10px;background:#FFFBEB;border-radius:var(--radius-sm);border-left:3px solid #F59E0B;font-size:11px;color:#92400E;font-weight:500;line-height:1.4}
+    .map-actions{display:flex;gap:5px;margin-top:10px}
+    .map-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px 5px;border-radius:var(--radius-sm);font-size:11px;font-weight:500;min-height:34px;border:1px solid var(--border);background:var(--white);color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .map-btn:active{transform:scale(.96)}
+    .map-btn.map-disabled{color:var(--border);cursor:default;background:var(--border-lt);border-color:var(--border-lt);pointer-events:none;opacity:.4}
+    .map-btn.mp{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:600}
+
+    /* CARDS / LISTS */
+    .util-card{background:var(--white);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid var(--border-lt);margin-bottom:12px}
+    .util-card-title{font-family:var(--font-serif);font-size:18px;font-weight:400;color:var(--ink);margin-bottom:14px;letter-spacing:.3px}
+    .fx-row{display:flex;gap:8px;align-items:flex-end}
+    .fx-group{flex:1}
+    .fx-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--ink-4);margin-bottom:5px}
+    .fx-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:18px;font-weight:500;color:var(--ink);background:var(--cream);outline:none;-webkit-appearance:none}
+    .fx-input:focus{border-color:var(--navy)}
+    .fx-swap-btn{width:38px;height:38px;border-radius:50%;background:var(--navy-lt);border:none;color:var(--navy);font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:1px;cursor:pointer}
+    .fx-rate-note{font-size:11px;color:var(--ink-4);text-align:center;margin-top:10px;line-height:1.5}
+    .info-list{list-style:none}
+    .info-list li{display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-bottom:1px solid var(--border-lt);font-size:13px;line-height:1.55}
+    .info-list li:last-child{border-bottom:none;padding-bottom:0}
+    .info-emoji{font-size:17px;flex-shrink:0;margin-top:1px}
+    .info-text{color:var(--ink-2)}
+    .info-text strong{color:var(--ink);display:block;margin-bottom:1px}
+    .rule-item{padding:9px 0;border-bottom:1px solid var(--border-lt);display:flex;gap:10px;font-size:12.5px;line-height:1.5}
+    .rule-item:last-child{border-bottom:none}
+    .rule-icon{font-size:15px;flex-shrink:0;margin-top:1px}
+    .rule-text strong{color:var(--ink)}
+
+    /* ART PROGRAMME */
+    .art-banner{background:linear-gradient(135deg,#2A1E3F 0%,#150F24 100%);border-radius:var(--radius);padding:22px 20px 18px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden}
+    .art-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat}
+    .art-banner h2{font-family:var(--font-serif);font-size:26px;font-weight:300;letter-spacing:.8px;margin-bottom:4px;position:relative}
+    .art-banner p{font-size:12px;opacity:.7;position:relative;margin:0}
+    .thread-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border-lt);box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+    .thread-head{display:flex;align-items:baseline;gap:10px;padding:15px 18px 4px}
+    .thread-idx{font-family:var(--font-serif);font-size:20px;color:var(--gold);flex-shrink:0;line-height:1}
+    .thread-title{font-family:var(--font-serif);font-size:19px;font-weight:500;color:var(--ink);line-height:1.2}
+    .thread-where{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);padding:0 18px 8px 46px}
+    .thread-body{font-size:13px;color:var(--ink-2);line-height:1.6;padding:0 18px 12px 46px}
+    .thread-tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 18px 16px 46px}
+    .thread-tag{font-size:11px;padding:4px 10px;border-radius:99px;background:var(--cream);border:1px solid var(--border-lt);color:var(--ink-2)}
+    .host-bio{padding:16px 18px 14px;border-bottom:1px solid var(--border-lt)}
+    .host-bio:last-child{border-bottom:none}
+    .host-bio-name{font-family:var(--font-serif);font-size:18px;font-weight:500;color:var(--ink);letter-spacing:.2px}
+    .host-bio-meta{font-size:11px;color:var(--ink-3);font-style:italic;margin-top:2px;font-family:var(--font-serif);margin-bottom:8px}
+    .host-bio-text{font-size:13px;color:var(--ink-2);line-height:1.6;margin:0}
+
+    /* LOGISTICS TABLE */
+    .lg-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid var(--border-lt)}
+    .lg-row:last-child{border-bottom:none}
+    .lg-date{font-size:11px;font-weight:600;color:var(--ink-4);width:58px;flex-shrink:0;letter-spacing:.04em;padding-top:2px}
+    .lg-main{flex:1;min-width:0}
+    .lg-name{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.3}
+    .lg-note{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+    .lg-status{font-size:9.5px;font-weight:600;padding:3px 9px;border-radius:5px;flex-shrink:0;white-space:nowrap;align-self:center}
+    .lg-status.ok{background:#D9EAD3;color:#1B5E20;border:1px solid rgba(27,94,32,.18)}
+    .lg-status.todo{background:#FFE0B2;color:#BF360C;border:1px solid rgba(191,54,12,.18)}
+    .open-item{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--border-lt);font-size:13px;line-height:1.55;color:var(--ink-2)}
+    .open-item:last-child{border-bottom:none}
+    .open-item strong{color:var(--ink);display:block;margin-bottom:1px}
+    .open-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px}
+
+    /* DISCOVER */
+    .disc-banner{background:linear-gradient(135deg,#0D2847 0%,#0A2040 55%,#04111F 100%);border-radius:var(--radius);padding:22px 20px 18px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden}
+    .disc-banner h2{font-family:var(--font-serif);font-size:26px;font-weight:300;letter-spacing:.8px;margin-bottom:4px;position:relative}
+    .disc-banner p{font-size:12px;opacity:.65;position:relative;margin:0}
+    .disc-city-bar{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+    .disc-city-bar::-webkit-scrollbar{display:none}
+    .disc-city-pill{flex-shrink:0;background:var(--white);border:1px solid var(--border);color:var(--ink-3);padding:9px 16px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:.04em;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s,border-color .15s}
+    .disc-city-pill.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+    .disc-note{font-size:12px;color:var(--ink-3);font-style:italic;line-height:1.55;margin-bottom:10px;padding:8px 12px;background:var(--gold-lt);border-radius:8px;border-left:2px solid rgba(176,124,34,.4)}
+    .disc-card{background:var(--white);border:1px solid var(--border-lt);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow)}
+    .disc-card-head{padding:14px 18px 10px;border-bottom:1px solid var(--border-lt)}
+    .disc-card-head-title{font-family:var(--font-serif);font-size:18px;font-weight:500;color:var(--ink)}
+    .disc-card-body{padding:8px 12px 12px}
+    .disc-item{display:flex;align-items:center;gap:12px;padding:10px 10px;background:var(--cream);border-radius:10px;margin-bottom:6px;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .15s;border:1px solid var(--border-lt)}
+    .disc-item:last-child{margin-bottom:0}
+    .disc-item:active{background:var(--border-lt)}
+    .disc-item-info{flex:1;min-width:0}
+    .disc-item-name{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.25}
+    .disc-item-sub{font-size:11px;color:var(--ink-3);margin-top:2px;font-style:italic}
+    .disc-arrow{font-size:16px;color:var(--gold);flex-shrink:0;opacity:.8}
+
+    /* EMERGENCY */
+    .emergency-banner{background:var(--navy);border-radius:var(--radius);padding:18px 20px;color:#fff;margin-bottom:14px;text-align:center}
+    .emergency-banner h2{font-family:var(--font-serif);font-size:22px;font-weight:300;letter-spacing:.5px;margin-bottom:4px}
+    .emergency-banner p{font-size:12px;opacity:.75}
+    .contact-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border-lt);margin-bottom:12px}
+    .contact-row{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--border-lt);gap:10px}
+    .contact-row:last-child{border-bottom:none}
+    .contact-left{display:flex;align-items:center;gap:12px}
+    .contact-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+    .ci-r{background:#FFEBEE}.ci-b{background:#E3F2FD}.ci-n{background:var(--navy-lt)}.ci-o{background:#FFF3E0}
+    .contact-label{font-size:13px;font-weight:600;color:var(--ink)}
+    .contact-sub{font-size:11.5px;color:var(--ink-3);margin-top:1px}
+    .call-btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;white-space:nowrap;border:none;cursor:pointer}
+    .cn{background:var(--navy);color:#fff}.cr{background:#C62828;color:#fff}.cb{background:#0277BD;color:#fff}
+
+    #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(13,40,71,.92);color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;pointer-events:none;opacity:0;transition:all .22s cubic-bezier(.4,0,.2,1);z-index:999;white-space:nowrap;max-width:90vw}
+    #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    @media(min-width:700px){
+      .tab-nav{padding:0 30px}
+      .tab-btn{font-size:12.5px;padding:10px 18px}
+      .tab-panel{max-width:900px;margin-left:auto;margin-right:auto;padding:24px 32px 60px}
+    }
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+    @media(prefers-color-scheme:dark){
+      :root{--cream:#0E1824;--white:#141F2E;--border:#1E3248;--border-lt:#182840;--ink:#E8F2FF;--ink-2:#A8C0DC;--ink-3:#607A94;--ink-4:#3A5470;--navy-lt:#101E30;--gold-lt:#1A1508;--sakura-lt:#2A1A20}
+    }
+  </style>
+</head>
+<body>
+
+<header id="app-header">
+  <div class="hdr-top">
+    <div class="hdr-left">
+      <span class="hdr-flag">🗾</span>
+      <div>
+        <div class="hdr-dest">Tokyo · Setouchi · Kurashiki · 2026</div>
+        <div class="hdr-hc">Happy Camper</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <div>
+        <span id="jst-clock">--:--</span>
+        <span id="trip-day-label">Japan Standard Time</span>
+      </div>
+      <img id="hc-logo" alt="Happy Camper" src="data:image/png;base64,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" height="40" style="display:block;height:40px;width:auto;filter:drop-shadow(0 1px 4px rgba(0,0,0,.5));">
+    </div>
+  </div>
+  <div class="hdr-names">
+    <div class="hdr-name">Famil &amp; Versele</div>
+    <div class="hdr-name2">Private Travel &middot; Japan &middot; Four Guests</div>
+  </div>
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="itinerary">Itinerary</button>
+    <button class="tab-btn" data-tab="art">Art Programme</button>
+    <button class="tab-btn" data-tab="logistics">Logistics</button>
+    <button class="tab-btn" data-tab="discover">Discover</button>
+    <button class="tab-btn" data-tab="utilities">Utilities</button>
+    <button class="tab-btn" data-tab="emergency">Contacts &amp; Emergency</button>
+  </nav>
+</header>
+
+<div id="main-content">
+  <div id="tab-itinerary" class="tab-panel active"></div>
+  <div id="tab-art"       class="tab-panel"></div>
+  <div id="tab-logistics" class="tab-panel"></div>
+  <div id="tab-discover"  class="tab-panel"></div>
+  <div id="tab-utilities" class="tab-panel"></div>
+  <div id="tab-emergency" class="tab-panel"></div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ═══ CONFIG · Famil / Versele · 22–30 October 2026 ═══ */
+var FX_RATE = 185.90; // 1 EUR = 185.90 JPY · planning estimate
+
+var TRIP = {
+  startDate:'2026-10-22',
+  endDate:  '2026-10-30',
+  days:[
+    { date:'2026-10-22', dayNum:1, weekday:'Thursday, 22 October', theme:'Travel to Japan', city:'In transit', cityClass:'transit', hotel:null, hq:null, hosted:false,
+      notes:'Both parties leave Brussels on the same day by different routings, converging in Tokyo on the 23rd.',
+      stops:[
+        { time:'Day', type:'flight', badge:'Self-booked', badgeType:'self-booked', title:'Famil · Brussels → Warsaw → Tokyo', sub:'Luc Famil & Kati Van Tuyckom', loc:'Brussels Airport', addr:'Brussels Airport, Zaventem', q:'Brussels Airport', notes:'Outbound via Warsaw, landing at Tokyo Narita on the 23rd.', alert:null },
+        { time:'~13:00', type:'flight', badge:'Self-booked', badgeType:'self-booked', title:'Versele · Brussels → Hong Kong → Tokyo', sub:'Gwijde Versele & Elke Van der Straeten', loc:'Brussels Airport', addr:'Brussels Airport, Zaventem', q:'Brussels Airport', notes:'Departing Brussels around 13:00, via Hong Kong, landing at Tokyo Haneda on the 23rd.', alert:null }
+      ] },
+
+    { date:'2026-10-23', dayNum:2, weekday:'Friday, 23 October', theme:'Arrival in Tokyo', city:'Tokyo', cityClass:'', hotel:'Mitsui Garden Hotel Ginza-gochome', hq:'Mitsui Garden Hotel Ginza gochome Tokyo', hotelNote:'Night 1 of 3 · Booking.com · breakfast included', hosted:false,
+      notes:'Two arrivals at two different airports, then Ginza. No formal touring today — the day is kept clear for the international arrivals and settling in.',
+      stops:[
+        { time:'13:55', type:'flight', badge:'Arrival', badgeType:'self-booked', title:'Gwijde & Elke · CX548 into Haneda', sub:'Hong Kong → Tokyo Haneda · arrives 13:55', loc:'Tokyo Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo', notes:'Cathay Pacific CX548 lands at Haneda at 13:55 — the closer of the two airports, roughly 30–40 minutes into Ginza.', alert:null },
+        { time:'14:55', type:'flight', badge:'Arrival', badgeType:'self-booked', title:'Luc & Kati · into Narita', sub:'Warsaw → Tokyo Narita · arrives 14:55', loc:'Narita International Airport', addr:'Narita International Airport, Chiba', q:'Narita Airport Tokyo', notes:'Landing at Narita at 14:55. Allow around 90 minutes into central Tokyo by car depending on traffic.', alert:null },
+        { time:'Afternoon', type:'transport', badge:'Transfer', badgeType:'requested', title:'Airport transfers → Ginza', sub:'Narita and Haneda → Mitsui Garden Hotel', loc:'Mitsui Garden Hotel Ginza-gochome', addr:'Ginza, Chuo City, Tokyo', q:'Mitsui Garden Hotel Ginza gochome Tokyo', notes:'Separate transfers from each airport to Ginza. Draw a little yen on arrival — smaller ateliers and galleries later in the trip prefer cash.', alert:null },
+        { time:'Evening', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Ginza · kept flexible for arrival day', loc:'Ginza', addr:'Ginza, Chuo City, Tokyo', q:'Ginza Tokyo restaurants', notes:'Deliberately left open. Something close to the hotel and unhurried once everyone has landed.', alert:null }
+      ] },
+
+    { date:'2026-10-24', dayNum:3, weekday:'Saturday, 24 October', theme:'Contemporary craft, design & architecture', city:'Tokyo', cityClass:'', hotel:'Mitsui Garden Hotel Ginza-gochome', hq:'Mitsui Garden Hotel Ginza gochome Tokyo', hotelNote:'Night 2 of 3 · breakfast included', hosted:true,
+      notes:'The first full day with Joni, and the opening statement of the whole journey: traditional Japanese making — weaving, dyeing, joinery — carried forward into contemporary material, technology and design.',
+      stops:[
+        { time:'Morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'NUNO · Reiko Sudo', sub:'Textile design · traditional technique, new materials', loc:'NUNO, Tokyo', addr:'Roppongi, Minato City, Tokyo', q:'NUNO textile Roppongi Tokyo', notes:'The day starts with the work of Reiko Sudo and NUNO — Japanese weaving and dyeing traditions transformed through contemporary materials, industrial technique and design thinking. The clearest possible entry into the theme.', alert:null },
+        { time:'Midday', type:'activity', badge:'Programme', badgeType:'confirmed', title:'21_21 DESIGN SIGHT', sub:'Contemporary Japanese design · Tadao Ando', loc:'21_21 DESIGN SIGHT', addr:'Tokyo Midtown, Akasaka, Minato City, Tokyo', q:'21_21 Design Sight Tokyo', notes:'Contemporary Japanese design in a Tadao Ando building — the first of several Ando encounters that run right through to Naoshima.', alert:null },
+        { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Nezu Museum', sub:'Japanese & East Asian art · garden · Kengo Kuma', loc:'Nezu Museum', addr:'6-5-1 Minami-Aoyama, Minato City, Tokyo', q:'Nezu Museum Tokyo', notes:'Classical Japanese and East Asian art held inside a Kengo Kuma building, with one of the finest traditional gardens in central Tokyo. Old and new in a single site.', alert:null },
+        { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Aoyama & Omotesando', sub:'Architecture, fashion, galleries, ateliers', loc:'Omotesando', addr:'Omotesando, Shibuya City, Tokyo', q:'Omotesando Tokyo', notes:'One of the densest concentrations of contemporary architecture anywhere in Japan. Depending on timing, Joni can add further galleries, specialist ateliers and design stops.', alert:null },
+        { time:'Evening', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Tokyo', loc:'Tokyo', addr:'Tokyo', q:'Tokyo restaurants', notes:'Still open — to be set once the shape of the day is fixed.', alert:null }
+      ] },
+
+    { date:'2026-10-25', dayNum:4, weekday:'Sunday, 25 October', theme:'Shitamachi, old Tokyo & contemporary art', city:'Tokyo', cityClass:'', hotel:'Mitsui Garden Hotel Ginza-gochome', hq:'Mitsui Garden Hotel Ginza gochome Tokyo', hotelNote:'Night 3 of 3 · breakfast included', hosted:true,
+      notes:'From the polished Tokyo of Aoyama into the older downtown — Yanaka, Asakusa, Kappabashi — where craft is still a working trade rather than a museum subject.',
+      stops:[
+        { time:'Morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Asakura Museum of Sculpture', sub:'Yanaka · house, studio and garden of Chōso Asakura', loc:'Asakura Museum of Sculpture', addr:'7-18-10 Yanaka, Taito City, Tokyo', q:'Asakura Museum of Sculpture Yanaka Tokyo', notes:'The former home and atelier of the sculptor Chōso Asakura — architecture, sculpture, working studio and a compact Japanese garden held together in one building.', alert:null },
+        { time:'Late morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'SCAI The Bathhouse', sub:'Contemporary gallery in a converted sento', loc:'SCAI The Bathhouse', addr:'6-1-23 Yanaka, Taito City, Tokyo', q:'SCAI The Bathhouse Tokyo', notes:'A leading contemporary gallery inside a 200-year-old public bathhouse — the reuse idea that reappears at much larger scale on Inujima and Naoshima.', alert:null },
+        { time:'Midday', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Walking Yanaka', sub:'Preserved shitamachi streets', loc:'Yanaka', addr:'Yanaka, Taito City, Tokyo', q:'Yanaka Ginza Tokyo', notes:'One of the few Tokyo neighbourhoods to survive both the war and the bubble largely intact — temples, timber houses, small workshops.', alert:null },
+        { time:'Optional', type:'activity', badge:'Optional', badgeType:'suggestion', title:'Yoshiwara', sub:'Historic district · Nobuyoshi Araki connection', loc:'Yoshiwara', addr:'Senzoku, Taito City, Tokyo', q:'Yoshiwara Taito Tokyo', notes:'Included only if interest and timing allow — the historic Yoshiwara district and its association with the photographer Nobuyoshi Araki.', alert:null },
+        { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Asakusa', sub:'Traditional eastern Tokyo', loc:'Senso-ji, Asakusa', addr:'2-3-1 Asakusa, Taito City, Tokyo', q:'Sensoji Asakusa Tokyo', notes:'Traditional eastern Tokyo around Senso-ji, on the way to Kappabashi.', alert:null },
+        { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Kappabashi', sub:'Kitchenware & restaurant-supply district', loc:'Kappabashi Street', addr:'Matsugaya, Taito City, Tokyo', q:'Kappabashi Tokyo', notes:'Knives, ceramics, lacquer, moulds and tools — a living concentration of Japanese specialist manufacturing rather than a heritage display. Further architecture or gallery stops around Ueno, Asakusa or Ginza can be added on Joni\u0027s final routing.', alert:null },
+        { time:'Evening', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Tokyo', loc:'Tokyo', addr:'Tokyo', q:'Tokyo restaurants', notes:'Open — last Tokyo night before the move south.', alert:null }
+      ] },
+
+    { date:'2026-10-26', dayNum:5, weekday:'Monday, 26 October', theme:'Tokyo → Takamatsu → Inujima & Teshima', city:'Takamatsu', cityClass:'setouchi', hotel:'Royal Park Hotel Takamatsu', hq:'Royal Park Hotel Takamatsu', hotelNote:'Night 1 of 2 · Booking.com · breakfast included', hosted:true,
+      notes:'An early flight to Shikoku and straight onto the water. A private charter boat carries the group to two islands in one day — Inujima, an abandoned copper refinery reborn as art, and Teshima, where the work is set into farmland and coast.',
+      stops:[
+        { time:'09:20', type:'flight', badge:'Booked', badgeType:'self-booked', title:'JL477 · Haneda → Takamatsu', sub:'Japan Airlines · 09:20 → approx. 10:40', loc:'Tokyo Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo', notes:'Early departure from Haneda, arriving Takamatsu around 10:40. Joni travels with the group on the same day.', alert:'Early start — bags out the night before if forwarding' },
+        { time:'~10:50', type:'transport', badge:'Transfer', badgeType:'requested', title:'Taxi · Takamatsu Airport → ferry port', sub:'Direct to the harbour', loc:'Takamatsu Airport', addr:'Takamatsu Airport, Kagawa', q:'Takamatsu Airport', notes:'Straight from the airport to the port — no city stop, so the full afternoon stays on the islands.', alert:null },
+        { time:'Midday', type:'ferry', badge:'Chartered', badgeType:'requested', title:'Private charter boat · full day', sub:'Takamatsu → Inujima → Teshima → Takamatsu', loc:'Takamatsu Port', addr:'Takamatsu Port, Kagawa', q:'Takamatsu Port', notes:'The charter runs the whole day, which is what makes two islands possible — the public ferry timetable would not allow it.', alert:null },
+        { time:'Island 1', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Inujima', sub:'Seirensho refinery · Yanagi · SANAA house projects', loc:'Inujima', addr:'Inujima, Okayama', q:'Inujima Seirensho Art Museum', notes:'A former copper refinery, its ruins turned into a museum around the work of Yukinori Yanagi, plus the Art House Project buildings associated with Kazuyo Sejima and SANAA. The subject is the island itself as much as the art — industrial abandonment reversed.', alert:null },
+        { time:'Island 2', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Teshima', sub:'Teshima Art Museum · Rei Naito · Ryue Nishizawa', loc:'Teshima Art Museum', addr:'607 Karato, Teshima, Tonosho, Kagawa', q:'Teshima Art Museum', notes:'Rei Naito\u0027s water piece inside Ryue Nishizawa\u0027s concrete shell, open to the sky above the rice terraces. Tadanori Yokoo work and the Boltanski memorial installation are also on the island; art set directly into agricultural and coastal landscape.', alert:null },
+        { time:'19:30', type:'restaurant', badge:'Programme', badgeType:'requested', title:'Robata Yaki Kitano Sachi', sub:'Dinner · izakaya · 19:30 · Takamatsu', loc:'Robata Yaki Kitano Sachi, Takamatsu', addr:'Takamatsu, Kagawa', q:'Kitano Sachi Takamatsu', notes:'Joni\u0027s choice: an intimate izakaya run by an all-women cooperative — the right register after a long day on the water.', alert:'19:30 · four guests' }
+      ] },
+
+    { date:'2026-10-27', dayNum:6, weekday:'Tuesday, 27 October', theme:'Gardens, masters, craft & spiritual Japan', city:'Takamatsu', cityClass:'setouchi', hotel:'Royal Park Hotel Takamatsu', hq:'Royal Park Hotel Takamatsu', hotelNote:'Night 2 of 2 · breakfast included', hosted:true,
+      notes:'The intellectual centre of the trip. Noguchi and Nakashima in a single day — two makers who translated Japanese craft into an international modern language — framed by an Edo stroll garden and a pilgrimage temple.',
+      stops:[
+        { time:'Morning', type:'transport', badge:'Rental', badgeType:'requested', title:'Toyota Alphard · rental begins', sub:'27 → 30 October', loc:'Takamatsu', addr:'Takamatsu, Kagawa', q:'Takamatsu Station', notes:'The Alphard covers the group from here to Kurashiki and on to the 30th.', alert:null },
+        { time:'Morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Ritsurin Garden', sub:'Edo-period stroll garden', loc:'Ritsurin Garden', addr:'1-20-16 Ritsurincho, Takamatsu, Kagawa', q:'Ritsurin Garden Takamatsu', notes:'One of the great Edo stroll gardens — water, stone and framed views, and the compositional grammar that Noguchi and Nakashima both drew on.', alert:null },
+        { time:'Late morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Isamu Noguchi Garden Museum', sub:'House, atelier and stone circle · Mure', loc:'Isamu Noguchi Garden Museum Japan', addr:'3519 Mure, Mure-cho, Takamatsu, Kagawa', q:'Isamu Noguchi Garden Museum Japan Takamatsu', notes:'A central visit for the journey: sculpture, stone, craftsmanship, modernism, architecture and landscape held in the studio Noguchi worked in, largely as he left it.', alert:'Reservation-only museum — timed entry' },
+        { time:'Lunch', type:'restaurant', badge:'Programme', badgeType:'suggestion', title:'Yamadaya · udon & tempura', sub:'Lunch · in a roughly 600-year-old house', loc:'Yamadaya, Takamatsu', addr:'Mure, Takamatsu, Kagawa', q:'Yamadaya udon Takamatsu Mure', notes:'From Joni\u0027s original programme — Sanuki udon and tempura in a traditional house of roughly six centuries. Stays in the day subject to final timings.', alert:null },
+        { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'George Nakashima Memorial Gallery', sub:'Woodworking atelier · Sakura', loc:'George Nakashima Memorial Gallery', addr:'Takamatsu, Kagawa', q:'George Nakashima Memorial Gallery Takamatsu', notes:'Japanese woodworking, furniture, architecture and natural materials — Nakashima\u0027s synthesis of Japanese and American craft, paired deliberately with Noguchi earlier in the day.', alert:null },
+        { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Yakuri-ji', sub:'Temple No. 85 · Shikoku 88 Temple Pilgrimage', loc:'Yakuriji Temple', addr:'3416 Mure, Mure-cho, Takamatsu, Kagawa', q:'Yakuriji Temple Takamatsu', notes:'A much older layer beneath the modern programme — the 85th temple of Kūkai\u0027s Shikoku pilgrimage, on the mountain above Mure.', alert:null },
+        { time:'19:30', type:'restaurant', badge:'Programme', badgeType:'requested', title:'Nakagawa Sushi', sub:'Dinner · sushi · 19:30 · Takamatsu', loc:'Nakagawa Sushi, Takamatsu', addr:'Takamatsu, Kagawa', q:'Nakagawa Sushi Takamatsu', notes:'Seto Inland Sea fish, close to the hotel.', alert:'19:30 · four guests' }
+      ] },
+
+    { date:'2026-10-28', dayNum:7, weekday:'Wednesday, 28 October', theme:'Naoshima, then on to Kurashiki', city:'Kurashiki', cityClass:'setouchi', hotel:'YORUYA Kurashiki', hq:'YORUYA Kurashiki', hotelNote:'Night 1 · direct booking · breakfast included', hosted:true,
+      notes:'A full day on Naoshima — deliberately not an overnight — then across to Kurashiki in the late afternoon. Ando, Monet, Turrell, De Maria, Lee Ufan and Kusama in one island circuit.',
+      stops:[
+        { time:'08:10', type:'ferry', badge:'Booked', badgeType:'requested', title:'Ferry · Takamatsu → Naoshima', sub:'08:10 departure', loc:'Takamatsu Port', addr:'Takamatsu Port, Kagawa', q:'Takamatsu Port', notes:'The 08:10 crossing, with the Alphard continuing to be used either side of the water.', alert:'08:10 sailing — be at the port early' },
+        { time:'Morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Chichu Art Museum', sub:'Tadao Ando · Monet, Turrell, De Maria', loc:'Chichu Art Museum', addr:'3449-1 Naoshima, Kagawa', q:'Chichu Art Museum Naoshima', notes:'Built into the hillside and lit almost entirely by daylight — Monet water lilies, James Turrell and Walter De Maria in Ando concrete. Timed entry; photography is not permitted inside.', alert:'Timed entry · no photography inside' },
+        { time:'Midday', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Lee Ufan Museum', sub:'Lee Ufan · Tadao Ando', loc:'Lee Ufan Museum', addr:'1390 Azakuraura, Naoshima, Kagawa', q:'Lee Ufan Museum Naoshima', notes:'Particularly pointed immediately before Korea: Lee Ufan sits between the Korean and Japanese art worlds, and this museum is the hinge between the two halves of the journey.', alert:null },
+        { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Benesse House Museum', sub:'Contemporary art · Tadao Ando', loc:'Benesse House Museum', addr:'Gotanji, Naoshima, Kagawa', q:'Benesse House Museum Naoshima', notes:'The founding building of the Benesse Art Site — museum and hotel in one, art sited indoors and out along the coast.', alert:null },
+        { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Valley Gallery & Naoshima New Museum', sub:'Yayoi Kusama · the island\u0027s newest space', loc:'Valley Gallery, Naoshima', addr:'Naoshima, Kagawa', q:'Valley Gallery Naoshima', notes:'Kusama at Valley Gallery, plus the new museum included in Joni\u0027s latest Naoshima routing.', alert:null },
+        { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Honmura · Art House Project', sub:'Village houses as installations', loc:'Art House Project Honmura', addr:'Honmura, Naoshima, Kagawa', q:'Art House Project Honmura Naoshima', notes:'Traditional village houses converted into permanent installations — the quietest and most domestic part of the island, and the best last stop before the boat.', alert:null },
+        { time:'Evening', type:'transport', badge:'Transfer', badgeType:'requested', title:'Naoshima → Kurashiki', sub:'Ferry and Alphard · late afternoon / evening', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki Okayama', notes:'Across to the mainland and on to Kurashiki for two nights at YORUYA.', alert:null },
+        { time:'Dinner', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Kurashiki', loc:'Kurashiki Bikan district', addr:'Kurashiki, Okayama', q:'Kurashiki Bikan restaurants', notes:'Open — likely something short-walking distance from YORUYA after a long island day.', alert:null }
+      ] },
+
+    { date:'2026-10-29', dayNum:8, weekday:'Thursday, 29 October', theme:'Historic architecture, craft & the Ohara', city:'Kurashiki', cityClass:'setouchi', hotel:'YORUYA Kurashiki', hq:'YORUYA Kurashiki', hotelNote:'Night 2 · to be added to the booking', hosted:true,
+      notes:'A full day in Kurashiki with Joni — which is exactly why the group stays put rather than moving to an airport town tonight. Canals, kura warehouses, and the museum that first brought Western art to Japan.',
+      stops:[
+        { time:'Morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Bikan Historical District', sub:'Canals · merchant houses · white kura warehouses', loc:'Kurashiki Bikan Historical Quarter', addr:'Chuo, Kurashiki, Okayama', q:'Kurashiki Bikan Historical Quarter', notes:'Willow-lined canals, preserved merchant-town architecture, and the craft and design shops that still work out of the old warehouses.', alert:null },
+        { time:'Midday', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Ohara Museum of Art', sub:'Japan\u0027s first museum of Western art', loc:'Ohara Museum of Art', addr:'1-1-15 Chuo, Kurashiki, Okayama', q:'Ohara Museum of Art Kurashiki', notes:'Founded in 1930 and historically significant as the first Western-art museum in Japan — the counterweight to everything the trip has looked at from the Japanese side.', alert:null },
+        { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Masayoshi Izumi · outdoor stone work', sub:'Master stonemason · Noguchi collaborator', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki Bikan Historical Quarter', notes:'An outdoor stone installation by Masayoshi Izumi, Isamu Noguchi\u0027s longtime collaborator in Mure — the cleanest way to close the circle opened at the Noguchi museum two days earlier.', alert:null },
+        { time:'Dinner', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Kurashiki', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki restaurants', notes:'Open — last dinner in Japan before Korea.', alert:null }
+      ] },
+
+    { date:'2026-10-30', dayNum:9, weekday:'Friday, 30 October', theme:'Kurashiki → Busan', city:'Busan', cityClass:'', hotel:'Signiel Busan', hq:'Signiel Busan', hotelNote:'Korea programme begins', hosted:false,
+      notes:'Breakfast at YORUYA, then across to Korea. Two routings are on the table; the Fukuoka option is cleaner if the schedules line up, because it avoids entering through Seoul and then travelling back south.',
+      stops:[
+        { time:'Morning', type:'hotel', badge:'Checkout', badgeType:'logistics', title:'Breakfast & check-out · YORUYA', sub:'Alphard rental ends today', loc:'YORUYA Kurashiki', addr:'Kurashiki, Okayama', q:'YORUYA Kurashiki', notes:'The vehicle rental closes on the 30th, dropped at whichever departure point the final routing uses.', alert:null },
+        { time:'Option 2', type:'transport', badge:'Preferred', badgeType:'suggestion', title:'Via Fukuoka · Shinkansen + FUK → PUS', sub:'Kurashiki → Okayama → Hakata → Fukuoka Airport → Busan', loc:'Okayama Station', addr:'Okayama Station, Okayama', q:'Okayama Station', notes:'Shinkansen from Okayama to Hakata, transfer to Fukuoka Airport — unusually close to the city — and a direct short flight to Busan. Probably the cleaner routing if the timings connect.', alert:'Preferred if schedules connect' },
+        { time:'Option 1', type:'transport', badge:'Alternative', badgeType:'suggestion', title:'Via Seoul Incheon', sub:'Okayama Airport → ICN → Busan by air or KTX', loc:'Okayama Airport', addr:'Okayama Airport, Okayama', q:'Okayama Airport', notes:'Fly Okayama to Incheon, then continue south. By rail: AREX to Seoul Station, about 45–60 minutes, then KTX to Busan, about 2 hr 20–40. Allow roughly 3½–4 hours from ICN to Busan all-in.', alert:null },
+        { time:'Flight', type:'flight', badge:'To book', badgeType:'pending', title:'Final cross-strait flight', sub:'Selected once the 30 October schedules are fixed', loc:'', addr:'', q:'', notes:'Held open until the routing decision is made. The Hakata–Busan Queen Beetle ferry no longer operates, so air is the practical crossing.', alert:null },
+        { time:'~19:21', type:'hotel', badge:'Korea', badgeType:'logistics', title:'Busan · Signiel Busan', sub:'Korea programme begins', loc:'Signiel Busan', addr:'Haeundae, Busan', q:'Signiel Busan', notes:'The wider Groeninghe group arrives in Busan at around 19:21 — worth aiming to land ahead of that.', alert:null }
+      ] }
+    ]
+};
+
+/* ═══ ART PROGRAMME · Joni Waka ═══ */
+var ART_THREADS = [
+  { title:'Craft, reinvented', where:'Tokyo · 24 October',
+    body:'The journey opens with the argument it will spend nine days testing: that Japanese traditional making is not a preserved artefact but a live technology. Reiko Sudo and NUNO take centuries-old weaving and dyeing and run them through industrial processes and new fibres; 21_21 and the Nezu set contemporary design and classical art inside Ando and Kuma buildings.',
+    tags:['NUNO / Reiko Sudo','21_21 DESIGN SIGHT','Nezu Museum','Aoyama · Omotesando'] },
+  { title:'The working city',  where:'Tokyo · 25 October',
+    body:'Downhill into shitamachi, where the same traditions are still a trade. A sculptor\u0027s house and atelier in Yanaka, a contemporary gallery inside a former bathhouse, and Kappabashi — knives, moulds, ceramics — as a functioning concentration of specialist manufacture rather than a heritage display.',
+    tags:['Asakura Museum','SCAI The Bathhouse','Yanaka','Kappabashi'] },
+  { title:'Two masters',       where:'Takamatsu · 27 October',
+    body:'The conceptual centre. Noguchi and Nakashima are paired on purpose: two makers who took Japanese stone and Japanese wood and turned them into an international modern language. Ritsurin sets the compositional grammar beforehand; Yakuri-ji puts a much older religious layer underneath it.',
+    tags:['Ritsurin Garden','Isamu Noguchi','George Nakashima','Yakuri-ji'] },
+  { title:'Islands remade',    where:'Inujima · Teshima · Naoshima · 26 & 28 October',
+    body:'Three islands, three kinds of reuse. Inujima is a ruined copper refinery reoccupied by Yanagi and SANAA; Teshima sets Naito and Nishizawa into farmland and coast, with Boltanski\u0027s memorial nearby; Naoshima is the fully realised version — Ando, Monet, Turrell, De Maria, Kusama, and village houses turned into permanent installations.',
+    tags:['Inujima Seirensho','Teshima Art Museum','Chichu','Benesse House','Art House Project'] },
+  { title:'The bridge to Korea', where:'Naoshima · 28 October',
+    body:'Lee Ufan is placed late deliberately. His museum sits between the Korean and Japanese art worlds, and the group walks through it two days before crossing to Busan — the pivot from the Japanese half of the journey to the Korean one.',
+    tags:['Lee Ufan Museum','Tadao Ando'] },
+  { title:'Closing the circle', where:'Kurashiki · 29 October',
+    body:'Kurashiki ends the Setouchi journey where preservation and collecting meet: canals and white kura warehouses, the Ohara as Japan\u0027s first Western-art museum, and an outdoor stone work by Masayoshi Izumi — Noguchi\u0027s longtime collaborator — which ties the last day back to the second.',
+    tags:['Bikan district','Ohara Museum','Masayoshi Izumi'] }
+];
+
+/* ═══ LOGISTICS ═══ */
+var HOTELS = [
+  { d:'23 Oct', name:'Mitsui Garden Hotel Ginza-gochome', note:'Tokyo · Booking.com · breakfast', st:'Booked', ok:true, q:'Mitsui Garden Hotel Ginza gochome Tokyo' },
+  { d:'24 Oct', name:'Mitsui Garden Hotel Ginza-gochome', note:'Tokyo · breakfast', st:'Booked', ok:true, q:'Mitsui Garden Hotel Ginza gochome Tokyo' },
+  { d:'25 Oct', name:'Mitsui Garden Hotel Ginza-gochome', note:'Tokyo · breakfast', st:'Booked', ok:true, q:'Mitsui Garden Hotel Ginza gochome Tokyo' },
+  { d:'26 Oct', name:'Royal Park Hotel Takamatsu', note:'Takamatsu · Booking.com · breakfast', st:'Booked', ok:true, q:'Royal Park Hotel Takamatsu' },
+  { d:'27 Oct', name:'Royal Park Hotel Takamatsu', note:'Takamatsu · breakfast', st:'Booked', ok:true, q:'Royal Park Hotel Takamatsu' },
+  { d:'28 Oct', name:'YORUYA Kurashiki', note:'Kurashiki · direct booking · breakfast', st:'Booked', ok:true, q:'YORUYA Kurashiki' },
+  { d:'29 Oct', name:'YORUYA Kurashiki', note:'Kurashiki · second night for the full Joni day', st:'To book', ok:false, q:'YORUYA Kurashiki' },
+  { d:'30 Oct', name:'Signiel Busan', note:'Busan · Korea programme', st:'Korea', ok:true, q:'Signiel Busan' }
+];
+var TRANSPORT = [
+  ['23 Oct','Airport transfers','Narita and Haneda into Ginza'],
+  ['26 Oct','JL477 · HND → Takamatsu','09:20, arriving approx. 10:40'],
+  ['26 Oct','Taxi · airport → ferry port','Straight to the harbour on arrival'],
+  ['26 Oct','Private charter boat','Full day · Inujima and Teshima'],
+  ['27–30 Oct','Rental Toyota Alphard','Takamatsu through to the 30th'],
+  ['28 Oct','Ferry · Takamatsu → Naoshima','08:10 sailing'],
+  ['28 Oct','Naoshima → Kurashiki','Late afternoon / evening'],
+  ['30 Oct','Kurashiki → Busan','Via Fukuoka (preferred) or via Seoul Incheon']
+];
+var OPEN_ITEMS = [
+  ['YORUYA · night of 29 October','The one accommodation amendment still outstanding. Staying put replaces the earlier idea of relocating to an airport town, because the 29th is now a full day in Kurashiki with Joni.'],
+  ['30 October routing','Fukuoka or Incheon. The Fukuoka option is preferred if the Shinkansen and FUK–PUS timings connect; the final flight is booked once the schedules are confirmed.'],
+  ['Korea entry','K-ETA requirements depend on each traveller\u0027s nationality — worth confirming for all four guests well before departure.'],
+  ['Timed-entry museums','Chichu and the Noguchi Garden Museum both work on reserved, timed admission. These set the shape of the 27th and 28th and should be held early.']
+];
+
+/* ═══ DISCOVER ═══ */
+var DISCOVER = {
+  Tokyo:[
+    { cat:'Art & Architecture', items:[
+      ['Nezu Museum','Nezu Museum Tokyo','Kengo Kuma building; Asian art and a superb garden'],
+      ['21_21 DESIGN SIGHT','21_21 Design Sight Tokyo','Tadao Ando; design exhibitions in Tokyo Midtown'],
+      ['SCAI The Bathhouse','SCAI The Bathhouse Tokyo','Contemporary gallery in a converted sento'],
+      ['Asakura Museum of Sculpture','Asakura Museum of Sculpture Yanaka Tokyo','Sculptor\u0027s house, atelier and garden'],
+      ['National Art Center Tokyo','National Art Center Tokyo','Kisho Kurokawa\u0027s glass wave in Roppongi'],
+      ['Mori Art Museum','Mori Art Museum Tokyo','Contemporary shows on the 53rd floor'],
+      ['Japan Folk Crafts Museum','Japan Folk Crafts Museum Tokyo','Mingei-kan — Yanagi Sōetsu\u0027s founding collection'],
+      ['Tokyo National Museum','Tokyo National Museum Ueno','The national collection, in Ueno Park']
+    ]},
+    { cat:'Craft & Shopping', items:[
+      ['Kappabashi','Kappabashi Tokyo','Knives, ceramics, moulds, restaurant supply'],
+      ['NUNO','NUNO textile Roppongi Tokyo','Reiko Sudo\u0027s textiles, sold by the metre'],
+      ['Ginza Six & Wako','Ginza Six Tokyo','Ginza flagships and the landmark clock'],
+      ['Daikanyama T-Site','Daikanyama Tsutaya','Design-led bookshop and lifestyle complex'],
+      ['Yanaka Ginza','Yanaka Ginza Tokyo','Small shops along a preserved shitamachi street'],
+      ['Omotesando architecture walk','Omotesando Tokyo','Ando, SANAA, Herzog & de Meuron in a few blocks'],
+      ['Bingoya','Bingoya Tokyo folk craft','Multi-floor folk-craft shop, Shinjuku'],
+      ['Isetan Shinjuku','Isetan Shinjuku','Flagship department store and depachika']
+    ]},
+    { cat:'Food & Drink', items:[
+      ['Ginza sushi counters','Sushi Ginza Tokyo','Edomae, walking distance from the hotel'],
+      ['Tsukiji Outer Market','Tsukiji Outer Market','Knives, dried goods, breakfast stalls'],
+      ['Soba','Soba Kanda Matsuya Tokyo','Handmade soba in the old city'],
+      ['Yakitori','Yakitori Tokyo','From alley counters to refined rooms'],
+      ['Unagi','Unagi Nodaiwa Tokyo','Long-established eel specialists'],
+      ['Kissaten coffee','kissaten Ginza Tokyo','Old-school coffee houses, Ginza and Yanaka'],
+      ['Depachika','Isetan depachika','Basement food halls worth an hour'],
+      ['Cocktail bars','Bar High Five Ginza','Ginza\u0027s quiet, precise bar culture']
+    ]}
+  ],
+  Takamatsu:[
+    { cat:'Art & Gardens', items:[
+      ['Isamu Noguchi Garden Museum','Isamu Noguchi Garden Museum Japan Takamatsu','Studio, stone circle and house at Mure'],
+      ['George Nakashima Memorial Gallery','George Nakashima Memorial Gallery Takamatsu','Woodworking atelier and furniture'],
+      ['Ritsurin Garden','Ritsurin Garden Takamatsu','One of Japan\u0027s great Edo stroll gardens'],
+      ['Yakuri-ji','Yakuriji Temple Takamatsu','Temple 85 of the Shikoku pilgrimage'],
+      ['Shikoku Mura','Shikoku Mura Takamatsu','Open-air museum of relocated vernacular buildings'],
+      ['Marugame Genichiro-Inokuma Museum','Marugame Inokuma Museum','Taniguchi building at Marugame station']
+    ]},
+    { cat:'Craft & Shopping', items:[
+      ['Sanuki lacquer (kinma, zonsei)','Kagawa lacquerware Takamatsu','Kagawa\u0027s distinctive carved and layered urushi'],
+      ['Sanuki noren & textiles','Takamatsu craft shop','Local dyeing and cloth work'],
+      ['Kitahama Alley','Kitahama Alley Takamatsu','Warehouses by the harbour turned shops and cafés'],
+      ['Marugamemachi arcade','Marugamemachi Takamatsu','The long covered shopping street downtown'],
+      ['Isamu Noguchi museum shop','Isamu Noguchi Garden Museum Japan Takamatsu','Akari lanterns and publications'],
+      ['Aji stone quarries','Mure Takamatsu stone','The granite district Noguchi and Izumi worked in']
+    ]},
+    { cat:'Food & Drink', items:[
+      ['Sanuki udon','Sanuki udon Takamatsu','The reason people come to Kagawa'],
+      ['Yamadaya','Yamadaya udon Takamatsu Mure','Udon and tempura in a very old house, near Mure'],
+      ['Honetsuki-dori','honetsuki dori Takamatsu','Peppery bone-in grilled chicken, a Kagawa staple'],
+      ['Seto Inland Sea fish','sushi Takamatsu','Hamachi, sawara and olive-fed local fish'],
+      ['Robata izakaya','Kitano Sachi Takamatsu','Charcoal-grilled, casual, late'],
+      ['Wasanbon sweets','wasanbon Takamatsu','Fine Shikoku sugar, pressed into shapes']
+    ]}
+  ],
+  'The Islands':[
+    { cat:'Naoshima', items:[
+      ['Chichu Art Museum','Chichu Art Museum Naoshima','Ando underground; Monet, Turrell, De Maria'],
+      ['Lee Ufan Museum','Lee Ufan Museum Naoshima','Stone, steel and empty space'],
+      ['Benesse House Museum','Benesse House Museum Naoshima','The original museum-and-hotel'],
+      ['Art House Project','Art House Project Honmura Naoshima','Village houses as permanent installations'],
+      ['Valley Gallery','Valley Gallery Naoshima','Kusama in an Ando pavilion'],
+      ['Yellow Pumpkin','Naoshima Yellow Pumpkin','The pier sculpture everyone photographs']
+    ]},
+    { cat:'Teshima & Inujima', items:[
+      ['Teshima Art Museum','Teshima Art Museum','Rei Naito and Ryue Nishizawa above the rice terraces'],
+      ['Les Archives du Cœur','Teshima Les Archives du Coeur','Boltanski\u0027s recorded heartbeats by the shore'],
+      ['Teshima Yokoo House','Teshima Yokoo House','Tadanori Yokoo in a converted island house'],
+      ['Inujima Seirensho Art Museum','Inujima Seirensho Art Museum','Yukinori Yanagi inside a copper-refinery ruin'],
+      ['Inujima Art House Project','Inujima Art House Project','SANAA-associated pavilions through the village'],
+      ['Teshima rice terraces','Teshima Karato','Restored farmland that the art is set into']
+    ]},
+    { cat:'Practical', items:[
+      ['Takamatsu Port','Takamatsu Port','The mainland hub for all the island sailings'],
+      ['Uno Port','Uno Port Tamano','The Okayama-side gateway to Naoshima'],
+      ['Island cycling','Naoshima bicycle rental','Electric bikes for the Honmura–Benesse stretch'],
+      ['Monday closures','Benesse Art Site Naoshima','Many island museums close Mondays — check before travelling'],
+      ['Timed entry','Chichu Art Museum Naoshima','Chichu and several others require advance reservation'],
+      ['Photography rules','Chichu Art Museum Naoshima','No photography inside most of the island museums']
+    ]}
+  ],
+  Kurashiki:[
+    { cat:'Art & Architecture', items:[
+      ['Ohara Museum of Art','Ohara Museum of Art Kurashiki','Japan\u0027s first Western-art museum, founded 1930'],
+      ['Bikan Historical Quarter','Kurashiki Bikan Historical Quarter','Canals, willows and white-walled kura'],
+      ['Kurashiki Museum of Folk Craft','Kurashiki Museum of Folkcraft','Mingei collection inside converted warehouses'],
+      ['Ohashi House','Ohashi House Kurashiki','Preserved merchant residence, 18th century'],
+      ['Achi Shrine','Achi Shrine Kurashiki','Hillside shrine with a view over the quarter'],
+      ['Kojima denim district','Kojima Jeans Street Kurashiki','Japan\u0027s denim heartland, south of the city']
+    ]},
+    { cat:'Craft & Shopping', items:[
+      ['Kurashiki hanakura & craft shops','Kurashiki Bikan craft shops','Textiles, paper, ceramics in the old warehouses'],
+      ['Kurashiki canvas (Baistone)','Kurashiki canvas bag shop','Heavy woven canvas bags, a local industry'],
+      ['Bizen ware','Bizen pottery Okayama','Unglazed stoneware from nearby Imbe'],
+      ['Ivy Square','Kurashiki Ivy Square','A former mill turned hotel, shops and galleries'],
+      ['Kurashiki igusa goods','Kurashiki igusa rush craft','Rush-grass mats and household craft'],
+      ['Denim workshops, Kojima','Kojima Jeans Street Kurashiki','Selvedge makers open to visitors']
+    ]},
+    { cat:'Food & Drink', items:[
+      ['Mamakari','mamakari Kurashiki','Vinegared sardine, the local signature'],
+      ['Okayama barazushi','barazushi Okayama','Scattered sushi, celebratory and colourful'],
+      ['Kurashiki canal cafés','Kurashiki Bikan cafe','Coffee in converted machiya and kura'],
+      ['Okayama fruit','Okayama fruit parlour','Peaches and muscat, in season'],
+      ['Local sake','Kurashiki sake brewery','Okayama breweries in and around the quarter'],
+      ['Setouchi seafood','Kurashiki seafood restaurant','Inland-sea fish, close to the hotel']
+    ]}
+  ]
+};
+var DISCOVER_CITIES = ['Tokyo','Takamatsu','The Islands','Kurashiki'];
+var DISCOVER_ACTIVE = 'Tokyo';
+
+/* ═══ HELPERS ═══ */
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function gm(q){return(q&&q.indexOf('http')===0)?q:'https://maps.google.com/?q='+encodeURIComponent(q||'Japan');}
+function nav(q){return(q&&q.indexOf('http')===0)?q:'https://maps.google.com/maps?daddr='+encodeURIComponent(q||'Japan')+'&dirflg=d';}
+var toastTm;
+function showToast(msg){var el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTm);toastTm=setTimeout(function(){el.classList.remove('show');},2200);}
+window.copyAddr=function(di,si){
+  var stop=TRIP.days[di].stops[si];
+  var txt=(stop.addr&&stop.addr.length>8)?stop.addr:stop.loc;
+  if(!txt)return;
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(function(){showToast('Address copied');});}
+  else{var ta=document.createElement('textarea');ta.value=txt;ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showToast('Address copied');}
+};
+
+/* ═══ CLOCK ═══ */
+function jst(){return new Date(Date.now()+9*3600000);}
+function isoToday(){return jst().toISOString().slice(0,10);}
+function tickClock(){
+  var d=jst();
+  document.getElementById('jst-clock').textContent=String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0');
+  var today=d.toISOString().slice(0,10),found=null;
+  for(var i=0;i<TRIP.days.length;i++){if(TRIP.days[i].date===today){found=TRIP.days[i];break;}}
+  var lbl=document.getElementById('trip-day-label');
+  if(found)lbl.textContent='Day '+found.dayNum+' of 9 · '+found.city;
+  else if(today<TRIP.startDate){var ms=new Date(TRIP.startDate)-new Date(today);var d2=Math.ceil(ms/86400000);lbl.textContent=d2===1?'Departure tomorrow':d2+'d to departure';}
+  else if(today>TRIP.endDate)lbl.textContent='Japan leg complete';
+  else lbl.textContent='Japan Standard Time';
+}
+
+/* ═══ TABS ═══ */
+document.querySelector('.tab-nav').addEventListener('click',function(e){
+  var btn=e.target.closest('.tab-btn');if(!btn)return;
+  var name=btn.getAttribute('data-tab');
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tab')===name);});
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.toggle('active',p.id==='tab-'+name);});
+  document.getElementById('main-content').scrollTo({top:0,behavior:'smooth'});
+});
+window.toggleDay=function(num){var c=document.getElementById('day-'+num);if(c)c.classList.toggle('open');};
+var ICONS={flight:'✈️',transport:'🚄',ferry:'⛴️',hotel:'🏨',restaurant:'🍽️',activity:'🎨'};
+
+/* ═══ RENDER · STOP ═══ */
+function renderStop(stop,di,si){
+  var isSuggestion=stop.badgeType==='suggestion'||stop.badgeType==='pending';
+  var hasLoc=!!(stop.q||stop.loc);
+  var icon=ICONS[stop.type]||'📍';
+  var badge=stop.badge?'<span class="stop-badge '+stop.badgeType+'">'+esc(stop.badge)+'</span>':'';
+  var dotClass=isSuggestion?'t-suggestion':('t-'+(stop.type||'activity'));
+  var cardClass=stop.badgeType==='suggestion'?' is-suggestion':(stop.badgeType==='pending'?' is-pending':'');
+  var mapHTML=hasLoc
+    ?'<a href="'+gm(stop.q)+'" target="_blank" rel="noopener" class="map-btn mp">📍 Maps</a>'
+      +'<a href="'+nav(stop.q)+'" target="_blank" rel="noopener" class="map-btn">🧭 Nav</a>'
+      +'<button class="map-btn" onclick="copyAddr('+di+','+si+')">⎘ Copy</button>'
+    :'<span class="map-btn map-disabled">📍</span><span class="map-btn map-disabled">🧭</span><span class="map-btn map-disabled">⎘</span>';
+  return '<div class="stop-item">'
+    +'<div class="stop-time">'+(stop.time?stop.time.replace('~',''):'')+'</div>'
+    +'<div class="stop-dot '+dotClass+'"></div>'
+    +'<div class="stop-card'+cardClass+'"><div class="stop-top">'
+    +'<div class="stop-title-wrap">'
+    +'<div class="stop-title"><span class="stop-icon">'+icon+'</span>'+esc(stop.title)+'</div>'
+    +(stop.sub?'<div class="stop-subtitle">'+esc(stop.sub)+'</div>':'')
+    +'</div>'+badge+'</div>'
+    +(stop.notes?'<div class="stop-notes">'+esc(stop.notes)+'</div>':'')
+    +(stop.alert?'<div class="stop-alert">⚠ '+esc(stop.alert)+'</div>':'')
+    +'<div class="map-actions">'+mapHTML+'</div>'
+    +'</div></div>';
+}
+
+/* ═══ RENDER · ITINERARY ═══ */
+function renderItinerary(){
+  var today=isoToday();
+  var html='<div class="trip-banner">'
+    +'<div class="trip-banner-kana">A Private Art Journey · Happy Camper Ltd.</div>'
+    +'<h2>Japan</h2>'
+    +'<div class="banner-dates">22 – 30 October 2026 · 4 Guests · Tokyo · Setouchi · Kurashiki · onward to Busan</div>'
+    +'<div class="banner-chips">'
+    +'<span class="banner-chip">🧵 NUNO · Reiko Sudo</span>'
+    +'<span class="banner-chip">🏛 21_21 · Nezu</span>'
+    +'<span class="banner-chip">⛴ Inujima &amp; Teshima charter</span>'
+    +'<span class="banner-chip">🪨 Isamu Noguchi</span>'
+    +'<span class="banner-chip">🪵 George Nakashima</span>'
+    +'<span class="banner-chip">🎨 Chichu Art Museum</span>'
+    +'<span class="banner-chip">◻️ Lee Ufan</span>'
+    +'<span class="banner-chip">🖼 Ohara Museum</span>'
+    +'</div></div>'
+    +'<div class="booking-legend">'
+    +'<span class="bl-item"><span class="bl-dot confirmed"></span>In the programme</span>'
+    +'<span class="bl-item"><span class="bl-dot requested"></span>Being arranged</span>'
+    +'<span class="bl-item"><span class="bl-dot self-booked"></span>Self-booked</span>'
+    +'<span class="bl-item"><span class="bl-dot suggestion"></span>Option / suggestion</span>'
+    +'<span class="bl-item"><span class="bl-dot pending"></span>Open</span>'
+    +'</div>'
+    +'<div class="section-label">Guests · Luc Famil · Kati Van Tuyckom · Gwijde Versele · Elke Van der Straeten</div>'
+    +'<div class="section-label">Daily Itinerary</div>';
+  TRIP.days.forEach(function(day,idx){
+    var isToday=day.date===today;
+    var isPast=day.date<today;
+    var isOpen=isToday||(today<TRIP.startDate&&idx===0);
+    var stopCount=day.stops.length;
+    var cityCls='day-city-badge'+(day.cityClass?' '+day.cityClass:'');
+    html+='<div class="day-card'+(isToday?' is-today':'')+(isPast?' is-past':'')+(isOpen?' open':'')+'" id="day-'+day.dayNum+'" style="animation-delay:'+(idx*.04).toFixed(2)+'s">'
+      +'<div class="day-header" onclick="toggleDay('+day.dayNum+')">'
+      +'<div class="day-num">D'+day.dayNum+'</div>'
+      +'<div class="day-header-info">'
+      +'<div class="day-name">'+esc(day.weekday)+'</div>'
+      +(day.theme?'<div class="day-theme">'+esc(day.theme)+'</div>':'')
+      +'<div class="day-sub"><span class="'+cityCls+'">'+esc(day.city)+'</span>'
+      +(isToday?'<span class="today-pill">TODAY</span>':'')
+      +(day.hosted?'<span class="host-pill">With Joni</span>':'')
+      +'<span>'+stopCount+' stops</span>'
+      +'</div></div><span class="day-chevron">▾</span>'
+      +'</div>'
+      +'<div class="day-body"><div class="day-body-inner">';
+    if(day.hotel){
+      html+='<div class="hotel-bar">'
+        +'<div style="font-size:15px">🏨</div>'
+        +'<div style="flex:1"><div class="hb-name">'+esc(day.hotel)+'</div>'
+        +'<div class="hb-detail">'+esc(day.city)+(day.hotelNote?' · '+esc(day.hotelNote):'')+'</div></div>'
+        +(day.hq?'<a href="'+gm(day.hq)+'" target="_blank" rel="noopener" class="hb-link">📍 Map</a>':'')
+        +'</div>';
+    }
+    if(day.notes)html+='<div class="day-note-bar">'+esc(day.notes)+'</div>';
+    html+='<div class="weather-widget" id="wx-'+day.date+'"><span class="wx-loading">Loading weather…</span></div>'
+      +'<div class="timeline">';
+    day.stops.forEach(function(s,si){html+=renderStop(s,idx,si);});
+    html+='</div></div></div></div>';
+  });
+  document.getElementById('tab-itinerary').innerHTML=html;
+  loadWeather();
+}
+
+/* ═══ WEATHER · Open-Meteo ═══ */
+function wmo(c){
+  if(c===0)return{i:'☀️',d:'Clear'};
+  if(c<=2)return{i:'⛅',d:'Partly cloudy'};
+  if(c===3)return{i:'☁️',d:'Overcast'};
+  if(c>=45&&c<=48)return{i:'🌫️',d:'Foggy'};
+  if(c>=51&&c<=67)return{i:'🌧️',d:'Rain'};
+  if(c>=80&&c<=82)return{i:'🌦️',d:'Showers'};
+  if(c>=95)return{i:'⛈️',d:'Thunderstorm'};
+  return{i:'🌤️',d:'Mixed'};
+}
+function loadWeather(){
+  var COORD={'Tokyo':[35.6762,139.6503],'Takamatsu':[34.3428,134.0466],'Kurashiki':[34.5850,133.7720],'Busan':[35.1796,129.0756]};
+  var cities={};
+  TRIP.days.forEach(function(d){if(COORD[d.city])cities[d.city]=COORD[d.city];});
+  var names=Object.keys(cities);
+  var reqs=names.map(function(c){
+    var ll=cities[c];
+    var u='https://api.open-meteo.com/v1/forecast?latitude='+ll[0]+'&longitude='+ll[1]+'&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia%2FTokyo&forecast_days=16';
+    return fetch(u).then(function(r){return r.json();}).then(function(j){return {city:c,daily:j.daily};});
+  });
+  function fallback(day){
+    var el=document.getElementById('wx-'+day.date);
+    if(!el)return;
+    el.innerHTML='<span class="wx-icon">🍁</span><div class="wx-info"><div class="wx-temp" style="font-size:13px">'+esc(day.city)+' · late October</div>'
+      +'<div class="wx-desc">Forecast appears closer to the day · autumn, roughly 13–22°C</div></div>';
+  }
+  Promise.all(reqs).then(function(results){
+    var byCity={};results.forEach(function(r){byCity[r.city]=r.daily;});
+    TRIP.days.forEach(function(day){
+      var src=byCity[day.city];
+      var el=document.getElementById('wx-'+day.date);
+      if(!el)return;
+      var idx=src&&src.time?src.time.indexOf(day.date):-1;
+      if(!src||idx===-1){fallback(day);return;}
+      var e=wmo(src.weathercode[idx]);
+      var hi=Math.round(src.temperature_2m_max[idx]);
+      var lo=Math.round(src.temperature_2m_min[idx]);
+      var rain=src.precipitation_probability_max[idx]||0;
+      el.innerHTML='<span class="wx-icon">'+e.i+'</span>'
+        +'<div class="wx-info"><div class="wx-temp">'+hi+'° / '+lo+'°C · '+e.d+'</div>'
+        +'<div class="wx-desc">'+esc(day.city)+' · late autumn</div></div>'
+        +'<div class="wx-rain">💧 '+rain+'%</div>';
+    });
+  }).catch(function(){TRIP.days.forEach(fallback);});
+}
+
+/* ═══ RENDER · ART PROGRAMME ═══ */
+function renderArt(){
+  var h='<div class="art-banner"><h2>The Art Programme</h2><p>Curated by Joni Waka · Mingei and traditional making, through to contemporary art</p></div>';
+  h+='<div class="util-card" style="padding:0">'
+    +'<div class="host-bio">'
+    +'<div class="host-bio-name">Joni Waka</div>'
+    +'<div class="host-bio-meta">Curator · art and cultural programme</div>'
+    +'<p class="host-bio-text">Joni shapes and leads the cultural programme, travelling with the group from Tokyo on the 24th through to Kurashiki on the 29th. The through-line he has built runs from Japanese craft traditions — textile, wood, stone, ceramics — into contemporary art, architecture, design and fashion, and ends with Lee Ufan as the bridge into the Korean half of the journey. Where timings allow, he adds further galleries, ateliers and architecture along the way.</p>'
+    +'</div></div>';
+  h+='<div class="section-label">The through-line</div>';
+  ART_THREADS.forEach(function(t,i){
+    h+='<div class="thread-card">'
+      +'<div class="thread-head"><span class="thread-idx">'+(i+1)+'</span><span class="thread-title">'+esc(t.title)+'</span></div>'
+      +'<div class="thread-where">'+esc(t.where)+'</div>'
+      +'<div class="thread-body">'+esc(t.body)+'</div>'
+      +'<div class="thread-tags">'+t.tags.map(function(x){return '<span class="thread-tag">'+esc(x)+'</span>';}).join('')+'</div>'
+      +'</div>';
+  });
+  h+='<div class="disc-note">Several of the museums on this programme work on timed, reserved entry and do not allow photography inside — Chichu and the Noguchi Garden Museum in particular. Both are held in advance.</div>';
+  document.getElementById('tab-art').innerHTML=h;
+}
+
+/* ═══ RENDER · LOGISTICS ═══ */
+function renderLogistics(){
+  var h='<div class="trip-banner"><div class="trip-banner-kana">Where you sleep, and how you move</div><h2>Logistics</h2>'
+    +'<div class="banner-dates">Eight nights · four guests · Tokyo → Takamatsu → Kurashiki → Busan</div></div>';
+  h+='<div class="section-label">Hotels</div><div class="util-card">';
+  HOTELS.forEach(function(x){
+    h+='<div class="lg-row"><div class="lg-date">'+esc(x.d)+'</div>'
+      +'<div class="lg-main"><div class="lg-name">'+esc(x.name)+'</div><div class="lg-note">'+esc(x.note)+'</div></div>'
+      +'<span class="lg-status '+(x.ok?'ok':'todo')+'">'+esc(x.st)+'</span></div>';
+  });
+  h+='</div>';
+  h+='<div class="section-label">Transport</div><div class="util-card">';
+  TRANSPORT.forEach(function(x){
+    h+='<div class="lg-row"><div class="lg-date">'+esc(x[0])+'</div>'
+      +'<div class="lg-main"><div class="lg-name">'+esc(x[1])+'</div><div class="lg-note">'+esc(x[2])+'</div></div></div>';
+  });
+  h+='</div>';
+  h+='<div class="section-label">Still open</div><div class="util-card">';
+  OPEN_ITEMS.forEach(function(x){
+    h+='<div class="open-item"><span class="open-dot"></span><div><strong>'+esc(x[0])+'</strong>'+esc(x[1])+'</div></div>';
+  });
+  h+='</div>';
+  h+='<div class="section-label">The core Setouchi sequence</div><div class="util-card"><ul class="info-list">'
+    +'<li><span class="info-emoji">✈️</span><div class="info-text"><strong>26 Oct</strong>Tokyo → Takamatsu → Inujima + Teshima by charter → Kitano Sachi → Royal Park</div></li>'
+    +'<li><span class="info-emoji">🪨</span><div class="info-text"><strong>27 Oct</strong>Ritsurin + Noguchi + Nakashima + Yakuri-ji → Nakagawa Sushi → Royal Park</div></li>'
+    +'<li><span class="info-emoji">⛴️</span><div class="info-text"><strong>28 Oct</strong>Naoshima, full day → YORUYA Kurashiki</div></li>'
+    +'<li><span class="info-emoji">🖼</span><div class="info-text"><strong>29 Oct</strong>Full-day Kurashiki with Joni, including the Ohara → YORUYA</div></li>'
+    +'<li><span class="info-emoji">🇰🇷</span><div class="info-text"><strong>30 Oct</strong>Kurashiki → Busan, via Fukuoka or Incheon</div></li>'
+    +'</ul></div>';
+  document.getElementById('tab-logistics').innerHTML=h;
+}
+
+/* ═══ RENDER · DISCOVER ═══ */
+function renderDiscover(){
+  var el=document.getElementById('tab-discover');
+  var city=DISCOVER_ACTIVE;
+  var sections=DISCOVER[city]||[];
+  var h='<div class="disc-banner"><h2>🗾 Discover '+esc(city)+'</h2><p>Art &amp; architecture · craft &amp; shopping · food &amp; drink</p></div>';
+  h+='<div class="disc-city-bar" role="tablist" aria-label="Select area">';
+  DISCOVER_CITIES.forEach(function(c){
+    h+='<button class="disc-city-pill'+(c===city?' active':'')+'" data-disc-city="'+esc(c)+'">'+esc(c)+'</button>';
+  });
+  h+='</div>';
+  h+='<div class="disc-note">Beyond the fixed programme — things worth an hour if the day runs early, or on the arrival afternoon in Tokyo.</div>';
+  sections.forEach(function(section){
+    h+='<div class="disc-card"><div class="disc-card-head"><div class="disc-card-head-title">'+esc(section.cat)+'</div></div><div class="disc-card-body">';
+    section.items.forEach(function(item){
+      var subHtml=item[2]?'<div class="disc-item-sub">'+esc(item[2])+'</div>':'';
+      h+='<a class="disc-item" href="'+gm(item[1])+'" target="_blank" rel="noopener">'
+        +'<div class="disc-item-info"><div class="disc-item-name">'+esc(item[0])+'</div>'+subHtml+'</div>'
+        +'<div class="disc-arrow">→</div></a>';
+    });
+    h+='</div></div>';
+  });
+  el.innerHTML=h;
+  el.querySelectorAll('[data-disc-city]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var c=btn.getAttribute('data-disc-city');
+      if(c&&DISCOVER[c]){DISCOVER_ACTIVE=c;renderDiscover();document.getElementById('main-content').scrollTo({top:0,behavior:'smooth'});}
+    });
+  });
+}
+
+/* ═══ RENDER · UTILITIES ═══ */
+function renderUtilities(){
+  document.getElementById('tab-utilities').innerHTML=''
+    +'<div class="section-label">Currency Converter</div>'
+    +'<div class="util-card"><div class="util-card-title">JPY ↔ EUR</div>'
+    +'<div class="fx-row">'
+    +'<div class="fx-group"><div class="fx-label">🇯🇵 Japanese Yen</div><input class="fx-input" id="fx-jpy" type="text" inputmode="numeric" value="10.000"></div>'
+    +'<button class="fx-swap-btn" id="fx-swap" aria-label="Swap">⇋</button>'
+    +'<div class="fx-group"><div class="fx-label">🇪🇺 Euro</div><input class="fx-input" id="fx-eur" type="text" inputmode="decimal"></div>'
+    +'</div><div class="fx-rate-note">Rate: 1 EUR = '+new Intl.NumberFormat('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2}).format(FX_RATE)+' JPY · planning estimate</div></div>'
+    +'<div class="section-label">Quick Reference</div>'
+    +'<div class="util-card"><ul class="info-list">'
+    +'<li><span class="info-emoji">💴</span><div class="info-text"><strong>Carry some cash</strong>Island museums, small ateliers, taxis and the charter boat are easier with yen. ATMs at 7-Eleven and Japan Post take foreign cards.</div></li>'
+    +'<li><span class="info-emoji">🍁</span><div class="info-text"><strong>Late October</strong>One of the best weeks of the year — dry, clear and roughly 13–22°C. The Setouchi islands are exposed and windier on the water; bring a layer for the charter.</div></li>'
+    +'<li><span class="info-emoji">👟</span><div class="info-text"><strong>Walking</strong>Yanaka, the islands and Kurashiki are all done on foot, much of it on stone and gravel. Comfortable shoes matter more than anything else you pack.</div></li>'
+    +'<li><span class="info-emoji">🧳</span><div class="info-text"><strong>Luggage forwarding</strong>Takuhaibin can send the main bags Tokyo → Takamatsu, or ahead to Kurashiki, so only overnight bags travel on the 26th. Easily added.</div></li>'
+    +'<li><span class="info-emoji">📱</span><div class="info-text"><strong>Suica in the phone wallet</strong>Wallet → + → Suica. Covers JR, subway, buses and IC readers nationwide.</div></li>'
+    +'<li><span class="info-emoji">🛂</span><div class="info-text"><strong>Korea on the 30th</strong>K-ETA requirements depend on nationality — confirm for all four passports before departure, not at the airport.</div></li>'
+    +'<li><span class="info-emoji">⏰</span><div class="info-text"><strong>JST = UTC+9</strong>Seven hours ahead of Brussels in late October. No daylight saving in Japan.</div></li>'
+    +'<li><span class="info-emoji">🔌</span><div class="info-text"><strong>100V · Type A sockets</strong>European plugs need an adapter; most laptop and phone chargers handle the voltage.</div></li>'
+    +'<li><span class="info-emoji">📡</span><div class="info-text"><strong>eSIM</strong>Activate before landing — Airalo, HolaFly or Ubigi all work well.</div></li>'
+    +'</ul></div>'
+    +'<div class="section-label">In the Museums</div>'
+    +'<div class="util-card"><div class="util-card-title">📸 Photography &amp; timed entry</div>'
+    +'<div class="rule-item"><span class="rule-icon">•</span><div class="rule-text"><strong>Chichu, Lee Ufan and Teshima</strong> do not allow photography inside. Phones stay away; the guards are firm and it is part of how the buildings work.</div></div>'
+    +'<div class="rule-item"><span class="rule-icon">•</span><div class="rule-text"><strong>Timed admission</strong> applies at Chichu and the Noguchi Garden Museum. Arriving late means losing the slot.</div></div>'
+    +'<div class="rule-item"><span class="rule-icon">•</span><div class="rule-text"><strong>Many island museums close on Mondays</strong> — the routing is already built around this.</div></div>'
+    +'<div class="rule-item"><span class="rule-icon">•</span><div class="rule-text"><strong>Bags and coats</strong> often go into lockers before entry. Travel light on museum days.</div></div>'
+    +'</div>'
+    +'<div class="util-card"><div class="util-card-title">⛴️ On the water</div>'
+    +'<div class="rule-item"><span class="rule-icon">•</span><div class="rule-text"><strong>The 26th runs on a private charter</strong> — it is what makes Inujima and Teshima possible in one day, so the schedule holds firm.</div></div>'
+    +'<div class="rule-item"><span class="rule-icon">•</span><div class="rule-text"><strong>The 08:10 Naoshima ferry</strong> on the 28th is a public sailing. Be at Takamatsu Port with time in hand.</div></div>'
+    +'<div class="rule-item"><span class="rule-icon">•</span><div class="rule-text"><strong>The inland sea is calm but breezy.</strong> A windproof layer is worth having on deck even in fine weather.</div></div>'
+    +'</div>'
+    +'<div class="disc-note" style="text-align:center">Craft, carried forward — from Reiko Sudo\u0027s looms to Noguchi\u0027s stone yard and an island of refinery ruins.<br><span style="color:var(--gold)">Unlocking Japan, one thoughtful moment at a time.</span></div>';
+
+  var jEl=document.getElementById('fx-jpy'),uEl=document.getElementById('fx-eur');
+  var grp=new Intl.NumberFormat('de-DE',{maximumFractionDigits:0});
+  function groupInt(d){return d===''?'':grp.format(parseInt(d,10));}
+  function toEnd(el){try{var n=el.value.length;el.setSelectionRange(n,n);}catch(e){}}
+  function fmtJPY(n){return isNaN(n)?'':grp.format(Math.round(n));}
+  function fmtEUR(n){return isNaN(n)?'':new Intl.NumberFormat('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n);}
+  function onJPY(){
+    var d=jEl.value.replace(/[^0-9]/g,'');
+    jEl.value=groupInt(d);toEnd(jEl);
+    uEl.value=d===''?'':fmtEUR(parseInt(d,10)/FX_RATE);
+  }
+  function onEUR(){
+    var m=uEl.value.replace(/\./g,'').match(/^(\d*)(,?)(\d{0,2})/);
+    var ip=m?m[1]:'',cm=m&&m[2]?',':'',dp=m?m[3]:'';
+    uEl.value=groupInt(ip)+cm+dp;toEnd(uEl);
+    var v=(ip===''&&dp==='')?NaN:parseFloat((ip||'0')+'.'+(dp||'0'));
+    jEl.value=isNaN(v)?'':fmtJPY(v*FX_RATE);
+  }
+  jEl.addEventListener('input',onJPY);
+  uEl.addEventListener('input',onEUR);
+  document.getElementById('fx-swap').addEventListener('click',function(){
+    var jv=parseInt(jEl.value.replace(/[^0-9]/g,'')||'',10);
+    var em=uEl.value.replace(/\./g,'').match(/^(\d*),?(\d{0,2})/);
+    var ev=em?parseFloat((em[1]||'0')+'.'+(em[2]||'0')):NaN;
+    jEl.value=isNaN(ev)?'':fmtJPY(ev*FX_RATE);
+    uEl.value=isNaN(jv)?'':fmtEUR(jv/FX_RATE);
+  });
+  onJPY();
+}
+
+/* ═══ RENDER · CONTACTS & EMERGENCY ═══ */
+function renderEmergency(){
+  document.getElementById('tab-emergency').innerHTML=''
+    +'<div class="emergency-banner"><h2>Contacts &amp; Emergency</h2><p>Your trip team · Japan emergency services · medical · embassy</p></div>'
+    +'<div class="section-label">Happy Camper · Your Hosts</div>'
+    +'<div class="contact-card">'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">🏯</div><div><div class="contact-label">Gerhard Huber</div><div class="contact-sub">Happy Camper · WhatsApp</div></div></div><a href="tel:+818069892107" class="call-btn cn">📞 Call</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">✉️</div><div><div class="contact-label">hello@happycamper.food</div><div class="contact-sub">Tokyo · Kyoto · London</div></div></div><a href="mailto:hello@happycamper.food" class="call-btn cn">✉ Email</a></div>'
+    +'</div>'
+    +'<div class="util-card"><ul class="info-list">'
+    +'<li><span class="info-emoji">🎨</span><div class="info-text"><strong>Joni Waka · art programme</strong>Joni travels with the group from 24 to 29 October and leads each cultural day. His day-of contact details are shared with the group before the Tokyo programme begins.</div></li>'
+    +'<li><span class="info-emoji">🚐</span><div class="info-text"><strong>Drivers, charter and guides</strong>The charter skipper on the 26th and the Alphard arrangements from the 27th are confirmed leg by leg; contacts appear here as each is fixed.</div></li>'
+    +'</ul></div>'
+    +'<div class="section-label">Emergency Numbers · Japan</div>'
+    +'<div class="contact-card">'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-r">🚨</div><div><div class="contact-label">Police</div><div class="contact-sub">Nationwide</div></div></div><a href="tel:110" class="call-btn cr">📞 110</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-r">🚑</div><div><div class="contact-label">Ambulance &amp; Fire</div><div class="contact-sub">Medical emergencies · nationwide</div></div></div><a href="tel:119" class="call-btn cr">📞 119</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-r">⚓</div><div><div class="contact-label">Coast Guard</div><div class="contact-sub">At sea — relevant on the island days</div></div></div><a href="tel:118" class="call-btn cr">📞 118</a></div>'
+    +'</div>'
+    +'<div class="section-label">Medical — English-friendly</div>'
+    +'<div class="contact-card">'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">St. Luke\u0027s International Hospital</div><div class="contact-sub">Tsukiji, Tokyo · English staff</div></div></div><a href="tel:+81335415151" class="call-btn cb">📞 Call</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">Tokyo Midtown Clinic</div><div class="contact-sub">Roppongi · English support</div></div></div><a href="tel:+81354137912" class="call-btn cb">📞 Call</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">Kagawa University Hospital</div><div class="contact-sub">Near Takamatsu · regional referral hospital</div></div></div><a href="https://maps.google.com/?q=Kagawa+University+Hospital" target="_blank" rel="noopener" class="call-btn cn">📍 Map</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">Kurashiki Central Hospital</div><div class="contact-sub">Kurashiki · large general hospital</div></div></div><a href="https://maps.google.com/?q=Kurashiki+Central+Hospital" target="_blank" rel="noopener" class="call-btn cn">📍 Map</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">Okayama University Hospital</div><div class="contact-sub">Okayama · nearest major centre to the islands</div></div></div><a href="https://maps.google.com/?q=Okayama+University+Hospital" target="_blank" rel="noopener" class="call-btn cn">📍 Map</a></div>'
+    +'</div>'
+    +'<div class="section-label">Embassies</div>'
+    +'<div class="contact-card">'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-o">🇧🇪</div><div><div class="contact-label">Belgian Embassy · Tokyo</div><div class="contact-sub">Nibancho, Chiyoda-ku</div></div></div><a href="https://maps.google.com/?q=Embassy+of+Belgium+Tokyo" target="_blank" rel="noopener" class="call-btn cn">📍 Map</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-o">🇧🇪</div><div><div class="contact-label">Belgian Embassy · Seoul</div><div class="contact-sub">For the Korea leg from 30 October</div></div></div><a href="https://maps.google.com/?q=Embassy+of+Belgium+Seoul" target="_blank" rel="noopener" class="call-btn cn">📍 Map</a></div>'
+    +'</div>'
+    +'<div class="util-card"><ul class="info-list"><li><span class="info-emoji">ℹ️</span><div class="info-text"><strong>In an emergency</strong>Dial 119 for an ambulance or 110 for police first — operators can route English support. Then call Happy Camper, at any hour.</div></li></ul></div>';
+}
+
+function init(){
+  renderItinerary();
+  renderArt();
+  renderLogistics();
+  renderDiscover();
+  renderUtilities();
+  renderEmergency();
+  tickClock();
+  setInterval(tickClock,1000);
+}
+function fixHeaderOffset(){
+  try{
+    var h=document.getElementById('app-header');
+    var m=document.getElementById('main-content');
+    if(h&&m){var hh=h.offsetHeight;m.style.paddingTop=hh+'px';m.style.boxSizing='border-box';}
+  }catch(e){}
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',function(){try{init();}catch(e){console.error(e);} try{fixHeaderOffset();}catch(e){}});
+}else{
+  try{init();}catch(e){console.error('Init error:',e.message,e.stack);}
+  try{fixHeaderOffset();}catch(e){}
+}
+window.addEventListener('unhandledrejection',function(e){e.preventDefault();});
+window.addEventListener('resize',fixHeaderOffset);
+
+}());
+</script>
+
+</body>
+</html>
 
