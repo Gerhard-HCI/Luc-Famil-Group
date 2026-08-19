@@ -246,6 +246,7 @@
     .jp-card{background:#fff;border:1px solid var(--border-lt);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;box-shadow:var(--shadow)}
     .jp-card-label{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;color:var(--ink-3)}
     .jp-text{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif;font-size:15.5px;color:#0A1A2F;line-height:1.75}
+    .jp-text strong{color:#7B1A1A;font-weight:700}
     .jp-en{font-size:11.5px;color:var(--ink-3);margin-top:8px;font-style:italic}
 
     /* EMERGENCY */
@@ -605,9 +606,10 @@ var DIET = [
     line:'No dietary or allergy restrictions. Confirmed by Elke on his behalf when she returned her own questionnaire.',
     chips:['No allergies','No restrictions'],
     meta:'Confirmed 18 August 2026 · covered by Elke\u0027s submission' },
-  { name:'Luc Famil', status:'await', tag:'Questionnaire open',
-    line:'No questionnaire returned yet.',
-    chips:[], meta:'diet.happycamper.food' },
+  { name:'Luc Famil', status:'clear', tag:'Preference only',
+    line:'No allergies. Not a fan of organ meats — with one exception: calf\u0027s liver is welcome. A preference rather than a restriction, so it matters most for kaiseki and izakaya courses where offal can appear unannounced.',
+    chips:['No allergies','Avoid organ meats','Calf\u0027s liver welcome'],
+    meta:'Confirmed directly · 19 August 2026' },
   { name:'Kati Van Tuyckom', status:'await', tag:'Questionnaire open',
     line:'No questionnaire returned yet.',
     chips:[], meta:'diet.happycamper.food' }
@@ -904,10 +906,10 @@ function renderDiet(){
   h+='<div class="section-label">Show the chef</div>'
     +'<div class="jp-card">'
     +'<div class="jp-card-label">Japanese · for the counter</div>'
-    +'<div class="jp-text">エルケ・ヴァン・デル・ストラーテン様とグワイデ・ヴェルセレ様は、食物アレルギーおよび食事制限はございません。生魚・甲殻類・小麦・ごま・ナッツ類も問題なくお召し上がりいただけます。</div>'
-    +'<div class="jp-en">Elke Van der Straeten and Gwijde Versele have no food allergies or dietary restrictions — raw fish, shellfish, gluten, sesame and nuts are all fine.</div>'
+    +'<div class="jp-text">お客様に食物アレルギーはございません。生魚・甲殻類・小麦・ごま・ナッツ類も問題なくお召し上がりいただけます。<br>ただし一名様（ルック・ファミル様）は<strong>内臓（ホルモン・モツ）料理</strong>をお好みではありません。<strong>仔牛のレバー</strong>のみは大丈夫でございます。</div>'
+    +'<div class="jp-en">No food allergies in the party — raw fish, shellfish, gluten, sesame and nuts are all fine. One guest (Luc Famil) prefers to avoid organ meats; calf\u0027s liver is the exception and is welcome.</div>'
     +'</div>'
-    +'<div class="disc-note">This card covers the two guests who have returned the questionnaire. It will be reissued for all four once Luc and Kati confirm.</div>';
+    +'<div class="disc-note">This card covers the three guests who have confirmed. It will be reissued once Kati returns hers.</div>';
   document.getElementById('tab-diet').innerHTML=h;
 }
 
