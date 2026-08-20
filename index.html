@@ -610,9 +610,10 @@ var DIET = [
     line:'No allergies. Not a fan of organ meats — with one exception: calf\u0027s liver is welcome. A preference rather than a restriction, so it matters most for kaiseki and izakaya courses where offal can appear unannounced.',
     chips:['No allergies','Avoid organ meats','Calf\u0027s liver welcome'],
     meta:'Confirmed directly · 19 August 2026' },
-  { name:'Kati Van Tuyckom', status:'await', tag:'Questionnaire open',
-    line:'No questionnaire returned yet.',
-    chips:[], meta:'diet.happycamper.food' }
+  { name:'Kati Van Tuyckom', status:'clear', tag:'Preferences · portions',
+    line:'No allergies and no meat, gluten, nut or sesame restrictions; minor cross-contamination is acceptable. Avoids organ meats and sea urchin, and lists sea eel (anago) as a personal dislike. Currently taking Rybelsus, a GLP-1 medication, and prefers reduced portions — no nausea or sensitivity to rich food reported.',
+    chips:['No allergies','No organ meats','No sea urchin (uni)','No sea eel (anago)','Reduced portions','Cross-contact OK'],
+    meta:'Questionnaire submitted 18 August 2026 · Vatka-kvt@outlook.com' }
 ];
 
 /* ═══ HELPERS ═══ */
@@ -906,10 +907,10 @@ function renderDiet(){
   h+='<div class="section-label">Show the chef</div>'
     +'<div class="jp-card">'
     +'<div class="jp-card-label">Japanese · for the counter</div>'
-    +'<div class="jp-text">お客様に食物アレルギーはございません。生魚・甲殻類・小麦・ごま・ナッツ類も問題なくお召し上がりいただけます。<br>ただし一名様（ルック・ファミル様）は<strong>内臓（ホルモン・モツ）料理</strong>をお好みではありません。<strong>仔牛のレバー</strong>のみは大丈夫でございます。</div>'
-    +'<div class="jp-en">No food allergies in the party — raw fish, shellfish, gluten, sesame and nuts are all fine. One guest (Luc Famil) prefers to avoid organ meats; calf\u0027s liver is the exception and is welcome.</div>'
+    +'<div class="jp-text">4名様とも食物アレルギーはございません。生魚・甲殻類・小麦・ごま・ナッツ類も問題なくお召し上がりいただけます。<br>ただし、<strong>内臓（ホルモン・モツ）料理</strong>はお二方がお好みではありません。<strong>仔牛のレバー</strong>のみは大丈夫でございます。<br>お一方は<strong>雲丹（ウニ）</strong>と<strong>穴子</strong>を召し上がりません。代わりの一品をご用意いただけますと幸いです。<br>また同じお客様は服薬の関係で食事量が少なめです。<strong>少なめのポーション</strong>でお願いできますと幸いです（体調の問題はございません）。</div>'
+    +'<div class="jp-en">No food allergies in the party — raw fish, shellfish, gluten, sesame and nuts are all fine. Two guests prefer to avoid organ meats (calf\u0027s liver is the exception and is welcome). One guest does not eat sea urchin or sea eel, and — because of medication — eats smaller quantities, so reduced portions are appreciated. No nausea or sensitivity to rich food.</div>'
     +'</div>'
-    +'<div class="disc-note">This card covers the three guests who have confirmed. It will be reissued once Kati returns hers.</div>';
+    +'<div class="disc-note">All four guests have now returned the questionnaire. No allergies anywhere in the party — these are preferences and portion sizing, but uni, anago and offal all appear unannounced in kaiseki and at sushi counters, so each kitchen is briefed in advance.</div>';
   document.getElementById('tab-diet').innerHTML=h;
 }
 
