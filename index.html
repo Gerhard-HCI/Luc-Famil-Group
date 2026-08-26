@@ -329,7 +329,7 @@
 'use strict';
 
 /* ═══ CONFIG · Famil / Versele · 22–30 October 2026 ═══ */
-var FX_RATE = 185.90; // 1 EUR = 185.90 JPY · planning estimate
+var FX_RATE = 178.15; // 1 EUR = 178.15 JPY · rate from the working budget
 
 var TRIP = {
   startDate:'2026-10-22',
@@ -388,7 +388,7 @@ var TRIP = {
     { date:'2026-10-27', dayNum:6, weekday:'Tuesday, 27 October', theme:'Gardens, masters, craft & spiritual Japan', city:'Takamatsu', cityClass:'setouchi', hotel:'Royal Park Hotel Takamatsu', hq:'Royal Park Hotel Takamatsu', hotelNote:'Night 2 of 2 · breakfast included', hosted:true,
       notes:'The intellectual centre of the trip. Noguchi and Nakashima in a single day — two makers who translated Japanese craft into an international modern language — framed by an Edo stroll garden and a pilgrimage temple.',
       stops:[
-        { time:'Morning', type:'transport', badge:'Rental', badgeType:'requested', title:'Toyota Alphard · rental begins', sub:'27 → 30 October', loc:'Takamatsu', addr:'Takamatsu, Kagawa', q:'Takamatsu Station', notes:'The Alphard covers the group from here to Kurashiki and on to the 30th.', alert:null },
+        { time:'Morning', type:'transport', badge:'Car', badgeType:'requested', title:'Private car · from today', sub:'27 → 30 October', loc:'Takamatsu', addr:'Takamatsu, Kagawa', q:'Takamatsu Station', notes:'A car covers the group from here through Naoshima and Kurashiki and on to the 30th.', alert:null },
         { time:'Morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Ritsurin Garden', sub:'Edo-period stroll garden', loc:'Ritsurin Garden', addr:'1-20-16 Ritsurincho, Takamatsu, Kagawa', q:'Ritsurin Garden Takamatsu', notes:'One of the great Edo stroll gardens — water, stone and framed views, and the compositional grammar that Noguchi and Nakashima both drew on.', alert:null },
         { time:'Late morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Isamu Noguchi Garden Museum', sub:'House, atelier and stone circle · Mure', loc:'Isamu Noguchi Garden Museum Japan', addr:'3519 Mure, Mure-cho, Takamatsu, Kagawa', q:'Isamu Noguchi Garden Museum Japan Takamatsu', notes:'A central visit for the journey: sculpture, stone, craftsmanship, modernism, architecture and landscape held in the studio Noguchi worked in, largely as he left it.', alert:'Reservation-only museum — timed entry' },
         { time:'Lunch', type:'restaurant', badge:'Programme', badgeType:'suggestion', title:'Yamadaya · udon & tempura', sub:'Lunch · in a roughly 600-year-old house', loc:'Yamadaya, Takamatsu', addr:'Mure, Takamatsu, Kagawa', q:'Yamadaya udon Takamatsu Mure', notes:'From Joni\u0027s original programme — Sanuki udon and tempura in a traditional house of roughly six centuries. Stays in the day subject to final timings.', alert:null },
@@ -400,13 +400,13 @@ var TRIP = {
     { date:'2026-10-28', dayNum:7, weekday:'Wednesday, 28 October', theme:'Naoshima, then on to Kurashiki', city:'Kurashiki', cityClass:'setouchi', hotel:'YORUYA Kurashiki', hq:'YORUYA Kurashiki', hotelNote:'Night 1 · direct booking · 2 rooms · breakfast included', hosted:true,
       notes:'A full day on Naoshima — deliberately not an overnight — then across to Kurashiki in the late afternoon. Ando, Monet, Turrell, De Maria, Lee Ufan and Kusama in one island circuit.',
       stops:[
-        { time:'08:10', type:'ferry', badge:'Booked', badgeType:'requested', title:'Ferry · Takamatsu → Naoshima', sub:'08:10 departure', loc:'Takamatsu Port', addr:'Takamatsu Port, Kagawa', q:'Takamatsu Port', notes:'The 08:10 crossing, with the Alphard continuing to be used either side of the water.', alert:'08:10 sailing — be at the port early' },
+        { time:'08:10', type:'ferry', badge:'Booked', badgeType:'requested', title:'Ferry · Takamatsu → Naoshima', sub:'08:10 departure', loc:'Takamatsu Port', addr:'Takamatsu Port, Kagawa', q:'Takamatsu Port', notes:'The 08:10 crossing, with the car continuing to be used either side of the water.', alert:'08:10 sailing — be at the port early' },
         { time:'Morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Chichu Art Museum', sub:'Tadao Ando · Monet, Turrell, De Maria', loc:'Chichu Art Museum', addr:'3449-1 Naoshima, Kagawa', q:'Chichu Art Museum Naoshima', notes:'Built into the hillside and lit almost entirely by daylight — Monet water lilies, James Turrell and Walter De Maria in Ando concrete. Timed entry; photography is not permitted inside.', alert:'Timed entry · no photography inside' },
         { time:'Midday', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Lee Ufan Museum', sub:'Lee Ufan · Tadao Ando', loc:'Lee Ufan Museum', addr:'1390 Azakuraura, Naoshima, Kagawa', q:'Lee Ufan Museum Naoshima', notes:'Particularly pointed immediately before Korea: Lee Ufan sits between the Korean and Japanese art worlds, and this museum is the hinge between the two halves of the journey.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Benesse House Museum', sub:'Contemporary art · Tadao Ando', loc:'Benesse House Museum', addr:'Gotanji, Naoshima, Kagawa', q:'Benesse House Museum Naoshima', notes:'The founding building of the Benesse Art Site — museum and hotel in one, art sited indoors and out along the coast.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Valley Gallery & Naoshima New Museum', sub:'Yayoi Kusama · the island\u0027s newest space', loc:'Valley Gallery, Naoshima', addr:'Naoshima, Kagawa', q:'Valley Gallery Naoshima', notes:'Kusama at Valley Gallery, plus the new museum included in Joni\u0027s latest Naoshima routing.', alert:null },
         { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Honmura · Art House Project', sub:'Village houses as installations', loc:'Art House Project Honmura', addr:'Honmura, Naoshima, Kagawa', q:'Art House Project Honmura Naoshima', notes:'Traditional village houses converted into permanent installations — the quietest and most domestic part of the island, and the best last stop before the boat.', alert:null },
-        { time:'Evening', type:'transport', badge:'Transfer', badgeType:'requested', title:'Naoshima → Kurashiki', sub:'Ferry and Alphard · late afternoon / evening', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki Okayama', notes:'Across to the mainland and on to Kurashiki for two nights at YORUYA.', alert:null },
+        { time:'Evening', type:'transport', badge:'Transfer', badgeType:'requested', title:'Naoshima → Kurashiki', sub:'Ferry and car · late afternoon / evening', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki Okayama', notes:'Across to the mainland and on to Kurashiki for two nights at YORUYA.', alert:null },
         { time:'Dinner', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Kurashiki', loc:'Kurashiki Bikan district', addr:'Kurashiki, Okayama', q:'Kurashiki Bikan restaurants', notes:'Open — likely something short-walking distance from YORUYA after a long island day.', alert:null }
       ] },
 
@@ -844,8 +844,8 @@ function renderLogistics(){
   });
   h+='</div>';
   h+='<div class="section-label">The core Setouchi sequence</div><div class="util-card"><ul class="info-list">'
-    +'<li><span class="info-emoji">✈️</span><div class="info-text"><strong>26 Oct</strong>Tokyo → Takamatsu → Inujima + Teshima by charter → Kitano Sachi → Royal Park</div></li>'
-    +'<li><span class="info-emoji">🪨</span><div class="info-text"><strong>27 Oct</strong>Ritsurin + Noguchi + Nakashima + Yakuri-ji → Nakagawa Sushi → Royal Park</div></li>'
+    +'<li><span class="info-emoji">✈️</span><div class="info-text"><strong>26 Oct</strong>Tokyo → Takamatsu → Inujima + Teshima by charter → Sushi Nakagawa → Royal Park</div></li>'
+    +'<li><span class="info-emoji">🪨</span><div class="info-text"><strong>27 Oct</strong>Ritsurin + Noguchi + Nakashima + Yakuri-ji → Ryobo 18:00 → Royal Park</div></li>'
     +'<li><span class="info-emoji">⛴️</span><div class="info-text"><strong>28 Oct</strong>Naoshima, full day → YORUYA Kurashiki</div></li>'
     +'<li><span class="info-emoji">🖼</span><div class="info-text"><strong>29 Oct</strong>Full-day Kurashiki with Joni, including the Ohara → YORUYA</div></li>'
     +'<li><span class="info-emoji">🇰🇷</span><div class="info-text"><strong>30 Oct</strong>Kurashiki → Busan, via Fukuoka or Incheon</div></li>'
@@ -929,7 +929,7 @@ function renderUtilities(){
     +'<div class="fx-group"><div class="fx-label">🇯🇵 Japanese Yen</div><input class="fx-input" id="fx-jpy" type="text" inputmode="numeric" value="10.000"></div>'
     +'<button class="fx-swap-btn" id="fx-swap" aria-label="Swap">⇋</button>'
     +'<div class="fx-group"><div class="fx-label">🇪🇺 Euro</div><input class="fx-input" id="fx-eur" type="text" inputmode="decimal"></div>'
-    +'</div><div class="fx-rate-note">Rate: 1 EUR = '+new Intl.NumberFormat('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2}).format(FX_RATE)+' JPY · planning estimate</div></div>'
+    +'</div><div class="fx-rate-note">Rate: 1 EUR = '+new Intl.NumberFormat('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2}).format(FX_RATE)+' JPY · rate used in the working budget</div></div>'
     +'<div class="section-label">Quick Reference</div>'
     +'<div class="util-card"><ul class="info-list">'
     +'<li><span class="info-emoji">💴</span><div class="info-text"><strong>Carry some cash</strong>Island museums, small ateliers, taxis and the charter boat are easier with yen. ATMs at 7-Eleven and Japan Post take foreign cards.</div></li>'
