@@ -336,19 +336,20 @@ var TRIP = {
   endDate:  '2026-10-30',
   days:[
     { date:'2026-10-22', dayNum:1, weekday:'Thursday, 22 October', theme:'Travel to Japan', city:'In transit', cityClass:'transit', hotel:null, hq:null, hosted:false,
-      notes:'Both parties leave Brussels on the same day by different routings, converging in Tokyo on the 23rd.',
+      notes:'Both parties leave Brussels on the same day by different routings, converging in Tokyo on the 23rd. Luc and Kati connect through Warsaw on LOT; Gwijde and Elke go east via Hong Kong.',
       stops:[
-        { time:'Day', type:'flight', badge:'Self-booked', badgeType:'self-booked', title:'Famil · Brussels → Warsaw → Tokyo', sub:'Luc Famil & Kati Van Tuyckom', loc:'Brussels Airport', addr:'Brussels Airport, Zaventem', q:'Brussels Airport', notes:'Outbound via Warsaw, landing at Tokyo Narita on the 23rd.', alert:null },
-        { time:'~13:00', type:'flight', badge:'Self-booked', badgeType:'self-booked', title:'Versele · Brussels → Hong Kong → Tokyo', sub:'Gwijde Versele & Elke Van der Straeten', loc:'Brussels Airport', addr:'Brussels Airport, Zaventem', q:'Brussels Airport', notes:'Departing Brussels around 13:00, via Hong Kong, landing at Tokyo Haneda on the 23rd.', alert:null }
+        { time:'10:15', type:'flight', badge:'Booked', badgeType:'self-booked', title:'LO236 · Brussels → Warsaw', sub:'Luc & Kati · BRU 10:15 → WAW 12:20 · 2h 05m', loc:'Brussels Airport', addr:'Brussels Airport, Zaventem', q:'Brussels Airport', notes:'First leg to Warsaw Chopin, landing 12:20 with a comfortable 2h 20m connection before the long-haul.', alert:null },
+        { time:'~13:00', type:'flight', badge:'Self-booked', badgeType:'self-booked', title:'Versele · Brussels → Hong Kong', sub:'Gwijde & Elke · departing around 13:00', loc:'Brussels Airport', addr:'Brussels Airport, Zaventem', q:'Brussels Airport', notes:'Outbound via Hong Kong, connecting to CX548 into Haneda on the 23rd.', alert:null },
+        { time:'14:40', type:'flight', badge:'Booked', badgeType:'self-booked', title:'LO1079 · Warsaw → Tokyo Narita', sub:'Luc & Kati · WAW 14:40 → NRT 10:15 (+1) · 12h 35m', loc:'Warsaw Chopin Airport', addr:'Warsaw Chopin Airport, Warsaw', q:'Warsaw Chopin Airport', notes:'The long-haul leg, arriving Narita mid-morning on the 23rd.', alert:null }
       ] },
 
     { date:'2026-10-23', dayNum:2, weekday:'Friday, 23 October', theme:'Arrival in Tokyo', city:'Tokyo', cityClass:'', hotel:'Mitsui Garden Hotel Ginza-gochome', hq:'Mitsui Garden Hotel Ginza gochome Tokyo', hotelNote:'Night 1 of 3 · Booking.com · breakfast included', hosted:false,
-      notes:'Two arrivals at two different airports, then Ginza. No formal touring today — the day is kept clear for the international arrivals and settling in.',
+      notes:'Two arrivals at two different airports, roughly three and a half hours apart. Luc and Kati land first at Narita, Gwijde and Elke at Haneda in the early afternoon. No formal touring today — the day is kept clear for the arrivals and settling in.',
       stops:[
+        { time:'10:15', type:'flight', badge:'Arrival', badgeType:'self-booked', title:'Luc & Kati · LO1079 into Narita', sub:'Warsaw → Tokyo Narita · arrives 10:15', loc:'Narita International Airport', addr:'Narita International Airport, Chiba', q:'Narita Airport Tokyo', notes:'LOT 1079 lands mid-morning at Narita Terminal 1. Allow around 90 minutes into central Tokyo by car, so Ginza by early afternoon — rooms may not be ready before 15:00, but bags can be left.', alert:null },
         { time:'13:55', type:'flight', badge:'Arrival', badgeType:'self-booked', title:'Gwijde & Elke · CX548 into Haneda', sub:'Hong Kong → Tokyo Haneda · arrives 13:55', loc:'Tokyo Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo', notes:'Cathay Pacific CX548 lands at Haneda at 13:55 — the closer of the two airports, roughly 30–40 minutes into Ginza.', alert:null },
-        { time:'14:55', type:'flight', badge:'Arrival', badgeType:'self-booked', title:'Luc & Kati · into Narita', sub:'Warsaw → Tokyo Narita · arrives 14:55', loc:'Narita International Airport', addr:'Narita International Airport, Chiba', q:'Narita Airport Tokyo', notes:'Landing at Narita at 14:55. Allow around 90 minutes into central Tokyo by car depending on traffic.', alert:null },
         { time:'Afternoon', type:'transport', badge:'Transfer', badgeType:'requested', title:'Airport transfers → Ginza', sub:'Narita and Haneda → Mitsui Garden Hotel', loc:'Mitsui Garden Hotel Ginza-gochome', addr:'Ginza, Chuo City, Tokyo', q:'Mitsui Garden Hotel Ginza gochome Tokyo', notes:'Separate transfers from each airport to Ginza. Draw a little yen on arrival — smaller ateliers and galleries later in the trip prefer cash.', alert:null },
-        { time:'Evening', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Ginza · kept flexible for arrival day', loc:'Ginza', addr:'Ginza, Chuo City, Tokyo', q:'Ginza Tokyo restaurants', notes:'Deliberately left open. Something close to the hotel and unhurried once everyone has landed.', alert:null }
+        { time:'20:30', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Yakiniku Nakahara', sub:'Dinner · yakiniku · 20:30 · four guests', loc:'Yakiniku Nakahara, Tokyo', addr:'Tokyo', q:'Sumibiyakiniku Nakahara Tokyo', notes:'Confirmed for four at 20:30. A late seating, which suits the arrival day — everyone is down by mid-afternoon with time to rest first.', alert:'Confirmed · 20:30 · 4 pax' }
       ] },
 
     { date:'2026-10-24', dayNum:3, weekday:'Saturday, 24 October', theme:'Contemporary craft, design & architecture', city:'Tokyo', cityClass:'', hotel:'Mitsui Garden Hotel Ginza-gochome', hq:'Mitsui Garden Hotel Ginza gochome Tokyo', hotelNote:'Night 2 of 3 · breakfast included', hosted:true,
@@ -358,7 +359,7 @@ var TRIP = {
         { time:'Midday', type:'activity', badge:'Programme', badgeType:'confirmed', title:'21_21 DESIGN SIGHT', sub:'Contemporary Japanese design · Tadao Ando', loc:'21_21 DESIGN SIGHT', addr:'Tokyo Midtown, Akasaka, Minato City, Tokyo', q:'21_21 Design Sight Tokyo', notes:'Contemporary Japanese design in a Tadao Ando building — the first of several Ando encounters that run right through to Naoshima.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Nezu Museum', sub:'Japanese & East Asian art · garden · Kengo Kuma', loc:'Nezu Museum', addr:'6-5-1 Minami-Aoyama, Minato City, Tokyo', q:'Nezu Museum Tokyo', notes:'Classical Japanese and East Asian art held inside a Kengo Kuma building, with one of the finest traditional gardens in central Tokyo. Old and new in a single site.', alert:null },
         { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Aoyama & Omotesando', sub:'Architecture, fashion, galleries, ateliers', loc:'Omotesando', addr:'Omotesando, Shibuya City, Tokyo', q:'Omotesando Tokyo', notes:'One of the densest concentrations of contemporary architecture anywhere in Japan. Depending on timing, Joni can add further galleries, specialist ateliers and design stops.', alert:null },
-        { time:'Evening', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Tokyo', loc:'Tokyo', addr:'Tokyo', q:'Tokyo restaurants', notes:'Still open — to be set once the shape of the day is fixed.', alert:null }
+        { time:'Evening', type:'restaurant', badge:'Suggestion', badgeType:'suggestion', title:'Sushi Nakano', sub:'Dinner · sushi · Tokyo', loc:'Sushi Nakano, Tokyo', addr:'Tokyo', q:'Sushi Nakano Tokyo', notes:'Pencilled onto the canvas as a suggestion — to be requested once the shape of the day is fixed.', alert:null }
       ] },
 
     { date:'2026-10-25', dayNum:4, weekday:'Sunday, 25 October', theme:'Shitamachi, old Tokyo & contemporary art', city:'Tokyo', cityClass:'', hotel:'Mitsui Garden Hotel Ginza-gochome', hq:'Mitsui Garden Hotel Ginza gochome Tokyo', hotelNote:'Night 3 of 3 · breakfast included', hosted:true,
@@ -370,7 +371,7 @@ var TRIP = {
         { time:'Optional', type:'activity', badge:'Optional', badgeType:'suggestion', title:'Yoshiwara', sub:'Historic district · Nobuyoshi Araki connection', loc:'Yoshiwara', addr:'Senzoku, Taito City, Tokyo', q:'Yoshiwara Taito Tokyo', notes:'Included only if interest and timing allow — the historic Yoshiwara district and its association with the photographer Nobuyoshi Araki.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Asakusa', sub:'Traditional eastern Tokyo', loc:'Senso-ji, Asakusa', addr:'2-3-1 Asakusa, Taito City, Tokyo', q:'Sensoji Asakusa Tokyo', notes:'Traditional eastern Tokyo around Senso-ji, on the way to Kappabashi.', alert:null },
         { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Kappabashi', sub:'Kitchenware & restaurant-supply district', loc:'Kappabashi Street', addr:'Matsugaya, Taito City, Tokyo', q:'Kappabashi Tokyo', notes:'Knives, ceramics, lacquer, moulds and tools — a living concentration of Japanese specialist manufacturing rather than a heritage display. Further architecture or gallery stops around Ueno, Asakusa or Ginza can be added on Joni\u0027s final routing.', alert:null },
-        { time:'Evening', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Tokyo', loc:'Tokyo', addr:'Tokyo', q:'Tokyo restaurants', notes:'Open — last Tokyo night before the move south.', alert:null }
+        { time:'Evening', type:'restaurant', badge:'Suggestion', badgeType:'suggestion', title:'Kaiseki Guchokuni', sub:'Dinner · kaiseki · Tokyo', loc:'Guchokuni, Tokyo', addr:'Tokyo', q:'Guchokuni Tokyo', notes:'A suggestion on the canvas for the last Tokyo night, to be requested.', alert:null }
       ] },
 
     { date:'2026-10-26', dayNum:5, weekday:'Monday, 26 October', theme:'Tokyo → Takamatsu → Inujima & Teshima', city:'Takamatsu', cityClass:'setouchi', hotel:'Royal Park Hotel Takamatsu', hq:'Royal Park Hotel Takamatsu', hotelNote:'Night 1 of 2 · Booking.com · breakfast included', hosted:true,
@@ -381,7 +382,7 @@ var TRIP = {
         { time:'Midday', type:'ferry', badge:'Chartered', badgeType:'requested', title:'Private charter boat · full day', sub:'Takamatsu → Inujima → Teshima → Takamatsu', loc:'Takamatsu Port', addr:'Takamatsu Port, Kagawa', q:'Takamatsu Port', notes:'The charter runs the whole day, which is what makes two islands possible — the public ferry timetable would not allow it.', alert:null },
         { time:'Island 1', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Inujima', sub:'Seirensho refinery · Yanagi · SANAA house projects', loc:'Inujima', addr:'Inujima, Okayama', q:'Inujima Seirensho Art Museum', notes:'A former copper refinery, its ruins turned into a museum around the work of Yukinori Yanagi, plus the Art House Project buildings associated with Kazuyo Sejima and SANAA. The subject is the island itself as much as the art — industrial abandonment reversed.', alert:null },
         { time:'Island 2', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Teshima', sub:'Teshima Art Museum · Rei Naito · Ryue Nishizawa', loc:'Teshima Art Museum', addr:'607 Karato, Teshima, Tonosho, Kagawa', q:'Teshima Art Museum', notes:'Rei Naito\u0027s water piece inside Ryue Nishizawa\u0027s concrete shell, open to the sky above the rice terraces. Tadanori Yokoo work and the Boltanski memorial installation are also on the island; art set directly into agricultural and coastal landscape.', alert:null },
-        { time:'19:30', type:'restaurant', badge:'Programme', badgeType:'requested', title:'Robata Yaki Kitano Sachi', sub:'Dinner · izakaya · 19:30 · Takamatsu', loc:'Robata Yaki Kitano Sachi, Takamatsu', addr:'Takamatsu, Kagawa', q:'Kitano Sachi Takamatsu', notes:'Joni\u0027s choice: an intimate izakaya run by an all-women cooperative — the right register after a long day on the water.', alert:'19:30 · four guests' }
+        { time:'Evening', type:'restaurant', badge:'Suggestion', badgeType:'suggestion', title:'Sushi Nakagawa', sub:'Dinner · sushi · Takamatsu', loc:'Sushi Nakagawa, Takamatsu', addr:'Takamatsu, Kagawa', q:'Nakagawa Sushi Takamatsu', notes:'Now the canvas choice for the island evening, replacing Robata Yaki Kitano Sachi. A suggestion at this stage — to be requested.', alert:null }
       ] },
 
     { date:'2026-10-27', dayNum:6, weekday:'Tuesday, 27 October', theme:'Gardens, masters, craft & spiritual Japan', city:'Takamatsu', cityClass:'setouchi', hotel:'Royal Park Hotel Takamatsu', hq:'Royal Park Hotel Takamatsu', hotelNote:'Night 2 of 2 · breakfast included', hosted:true,
@@ -393,7 +394,7 @@ var TRIP = {
         { time:'Lunch', type:'restaurant', badge:'Programme', badgeType:'suggestion', title:'Yamadaya · udon & tempura', sub:'Lunch · in a roughly 600-year-old house', loc:'Yamadaya, Takamatsu', addr:'Mure, Takamatsu, Kagawa', q:'Yamadaya udon Takamatsu Mure', notes:'From Joni\u0027s original programme — Sanuki udon and tempura in a traditional house of roughly six centuries. Stays in the day subject to final timings.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'George Nakashima Memorial Gallery', sub:'Woodworking atelier · Sakura', loc:'George Nakashima Memorial Gallery', addr:'Takamatsu, Kagawa', q:'George Nakashima Memorial Gallery Takamatsu', notes:'Japanese woodworking, furniture, architecture and natural materials — Nakashima\u0027s synthesis of Japanese and American craft, paired deliberately with Noguchi earlier in the day.', alert:null },
         { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Yakuri-ji', sub:'Temple No. 85 · Shikoku 88 Temple Pilgrimage', loc:'Yakuriji Temple', addr:'3416 Mure, Mure-cho, Takamatsu, Kagawa', q:'Yakuriji Temple Takamatsu', notes:'A much older layer beneath the modern programme — the 85th temple of Kūkai\u0027s Shikoku pilgrimage, on the mountain above Mure.', alert:null },
-        { time:'19:30', type:'restaurant', badge:'Programme', badgeType:'requested', title:'Nakagawa Sushi', sub:'Dinner · sushi · 19:30 · Takamatsu', loc:'Nakagawa Sushi, Takamatsu', addr:'Takamatsu, Kagawa', q:'Nakagawa Sushi Takamatsu', notes:'Seto Inland Sea fish, close to the hotel.', alert:'19:30 · four guests' }
+        { time:'18:00', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Ryobo · 両忘', sub:'Dinner · 18:00 · four guests · Takamatsu', loc:'Ryobo, Takamatsu', addr:'Takamatsu, Kagawa', q:'両忘 高松', notes:'Confirmed for four at 18:00 — a six-seat counter with a single nightly seating, so the timing is fixed rather than flexible.', alert:'Confirmed · 18:00 · 4 pax · early seating' }
       ] },
 
     { date:'2026-10-28', dayNum:7, weekday:'Wednesday, 28 October', theme:'Naoshima, then on to Kurashiki', city:'Kurashiki', cityClass:'setouchi', hotel:'YORUYA Kurashiki', hq:'YORUYA Kurashiki', hotelNote:'Night 1 · direct booking · 2 rooms · breakfast included', hosted:true,
@@ -418,14 +419,15 @@ var TRIP = {
         { time:'Dinner', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Kurashiki', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki restaurants', notes:'Open — last dinner in Japan before Korea.', alert:null }
       ] },
 
-    { date:'2026-10-30', dayNum:9, weekday:'Friday, 30 October', theme:'Kurashiki → Busan', city:'Busan', cityClass:'', hotel:'Signiel Busan', hq:'Signiel Busan', hotelNote:'Korea programme begins', hosted:false,
-      notes:'Breakfast at YORUYA, then across to Korea. Two routings are on the table; the Fukuoka option is cleaner if the schedules line up, because it avoids entering through Seoul and then travelling back south.',
+    { date:'2026-10-30', dayNum:9, weekday:'Friday, 30 October', theme:'Kurashiki → Busan', city:'Busan', cityClass:'', hotel:'Signiel Busan', hq:'Signiel Busan', hotelNote:'Korea programme begins', hosted:true,
+      notes:'Breakfast at YORUYA, then across to Korea by way of Fukuoka — the canvas now fixes this routing, so the Incheon alternative is off the table. Joni travels with the group to Fukuoka and returns to Tokyo separately.',
       stops:[
-        { time:'Morning', type:'hotel', badge:'Checkout', badgeType:'logistics', title:'Breakfast & check-out · YORUYA', sub:'Alphard rental ends today', loc:'YORUYA Kurashiki', addr:'Kurashiki, Okayama', q:'YORUYA Kurashiki', notes:'The vehicle rental closes on the 30th, dropped at whichever departure point the final routing uses.', alert:null },
-        { time:'Option 2', type:'transport', badge:'Preferred', badgeType:'suggestion', title:'Via Fukuoka · Shinkansen + FUK → PUS', sub:'Kurashiki → Okayama → Hakata → Fukuoka Airport → Busan', loc:'Okayama Station', addr:'Okayama Station, Okayama', q:'Okayama Station', notes:'Shinkansen from Okayama to Hakata, transfer to Fukuoka Airport — unusually close to the city — and a direct short flight to Busan. Probably the cleaner routing if the timings connect.', alert:'Preferred if schedules connect' },
-        { time:'Option 1', type:'transport', badge:'Alternative', badgeType:'suggestion', title:'Via Seoul Incheon', sub:'Okayama Airport → ICN → Busan by air or KTX', loc:'Okayama Airport', addr:'Okayama Airport, Okayama', q:'Okayama Airport', notes:'Fly Okayama to Incheon, then continue south. By rail: AREX to Seoul Station, about 45–60 minutes, then KTX to Busan, about 2 hr 20–40. Allow roughly 3½–4 hours from ICN to Busan all-in.', alert:null },
-        { time:'Flight', type:'flight', badge:'To book', badgeType:'pending', title:'Final cross-strait flight', sub:'Selected once the 30 October schedules are fixed', loc:'', addr:'', q:'', notes:'Held open until the routing decision is made. The Hakata–Busan Queen Beetle ferry no longer operates, so air is the practical crossing.', alert:null },
-        { time:'~19:21', type:'hotel', badge:'Korea', badgeType:'logistics', title:'Busan · Signiel Busan', sub:'Korea programme begins', loc:'Signiel Busan', addr:'Haeundae, Busan', q:'Signiel Busan', notes:'The wider Groeninghe group arrives in Busan at around 19:21 — worth aiming to land ahead of that.', alert:null }
+        { time:'Morning', type:'hotel', badge:'Checkout', badgeType:'logistics', title:'Breakfast & check-out · YORUYA', sub:'Kurashiki', loc:'YORUYA Kurashiki', addr:'Kurashiki, Okayama', q:'YORUYA Kurashiki', notes:'Onward transport from here runs to Okayama for the Shinkansen.', alert:null },
+        { time:'Daytime', type:'transport', badge:'Confirmed routing', badgeType:'requested', title:'Shinkansen · Okayama → Hakata', sub:'Kurashiki → Okayama → Fukuoka', loc:'Okayama Station', addr:'Okayama Station, Okayama', q:'Okayama Station', notes:'The chosen routing. It avoids entering Korea through Seoul and then travelling back south.', alert:null },
+        { time:'Then', type:'transport', badge:'Transfer', badgeType:'requested', title:'Hakata → Fukuoka Airport', sub:'Short transfer to FUK', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'Fukuoka Airport sits unusually close to the city — only a few minutes from Hakata.', alert:null },
+        { time:'Flight', type:'flight', badge:'To book', badgeType:'pending', title:'Fukuoka → Busan', sub:'Direct flight · to be selected', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'The short cross-strait hop, booked once the Shinkansen timings are locked. The Hakata–Busan Queen Beetle ferry no longer operates, so air is the practical crossing.', alert:null },
+        { time:'~19:21', type:'hotel', badge:'Korea', badgeType:'logistics', title:'Busan · Signiel Busan', sub:'Korea programme begins', loc:'Signiel Busan', addr:'Haeundae, Busan', q:'Signiel Busan', notes:'The wider Groeninghe group arrives in Busan at around 19:21 — worth aiming to land ahead of that.', alert:null },
+        { time:'Evening', type:'restaurant', badge:'Suggestion', badgeType:'suggestion', title:'Dinner in Busan', sub:'Korea programme', loc:'Busan', addr:'Busan', q:'Busan restaurants', notes:'On the canvas as the first Korean dinner, still to be set.', alert:null }
       ] }
     ]
 };
@@ -464,17 +466,22 @@ var HOTELS = [
   { d:'30 Oct', name:'Signiel Busan', note:'Busan · Korea programme', st:'Korea', ok:true, q:'Signiel Busan' }
 ];
 var TRANSPORT = [
-  ['23 Oct','Airport transfers','Narita and Haneda into Ginza'],
+  ['22 Oct','LO236 · Brussels → Warsaw','10:15 → 12:20 · Luc & Kati'],
+  ['22 Oct','LO1079 · Warsaw → Narita','14:40 → 10:15 (+1) · Luc & Kati'],
+  ['23 Oct','Airport pick-ups','Narita and Haneda into Ginza · two separate cars'],
+  ['24–25 Oct','Private limo · 10 hours','Full guided days in Tokyo with Joni'],
   ['26 Oct','JL477 · HND → Takamatsu','09:20, arriving approx. 10:40'],
   ['26 Oct','Taxi · airport → ferry port','Straight to the harbour on arrival'],
-  ['26 Oct','Private charter boat','Full day · Inujima and Teshima'],
-  ['27–30 Oct','Rental Toyota Alphard','Takamatsu through to the 30th'],
+  ['26 Oct','Private charter boat · luxury','Full day · Inujima and Teshima'],
+  ['27–30 Oct','Private car','Takamatsu, Naoshima, Kurashiki and on to Fukuoka'],
   ['28 Oct','Ferry · Takamatsu → Naoshima','08:10 sailing'],
   ['28 Oct','Naoshima → Kurashiki','Late afternoon / evening'],
-  ['30 Oct','Kurashiki → Busan','Via Fukuoka (preferred) or via Seoul Incheon']
+  ['30 Oct','Shinkansen · Okayama → Hakata','Then transfer to Fukuoka Airport'],
+  ['30 Oct','Fukuoka → Busan','Direct flight · to be booked']
 ];
 var OPEN_ITEMS = [
-  ['30 October routing','Fukuoka or Incheon. The Fukuoka option is preferred if the Shinkansen and FUK–PUS timings connect; the final flight is booked once the schedules are confirmed.'],
+  ['Fukuoka → Busan flight','The routing is settled — Shinkansen to Hakata, then FUK to Busan. Only the flight itself is still to be selected and booked.'],
+  ['Dinners on the 28th and 29th','Both Kurashiki evenings are still open on the canvas. Worth establishing first whether YORUYA includes dinner in the room rate before booking anything outside.'],
   ['Korea entry','K-ETA requirements depend on each traveller\u0027s nationality — worth confirming for all four guests well before departure.'],
   ['Timed-entry museums','Chichu and the Noguchi Garden Museum both work on reserved, timed admission. These set the shape of the 27th and 28th and should be held early.']
 ];
@@ -799,7 +806,7 @@ function renderArt(){
     +'<div class="host-bio">'
     +'<div class="host-bio-name">Joni Waka</div>'
     +'<div class="host-bio-meta">Curator · art and cultural programme</div>'
-    +'<p class="host-bio-text">Joni shapes and leads the cultural programme, travelling with the group from Tokyo on the 24th through to Kurashiki on the 29th. The through-line he has built runs from Japanese craft traditions — textile, wood, stone, ceramics — into contemporary art, architecture, design and fashion, and ends with Lee Ufan as the bridge into the Korean half of the journey. Where timings allow, he adds further galleries, ateliers and architecture along the way.</p>'
+    +'<p class="host-bio-text">Joni shapes and leads the cultural programme, travelling with the group from Tokyo on the 24th through to the crossing to Korea on the 30th. The through-line he has built runs from Japanese craft traditions — textile, wood, stone, ceramics — into contemporary art, architecture, design and fashion, and ends with Lee Ufan as the bridge into the Korean half of the journey. Where timings allow, he adds further galleries, ateliers and architecture along the way.</p>'
     +'</div></div>';
   h+='<div class="section-label">The through-line</div>';
   ART_THREADS.forEach(function(t,i){
@@ -989,8 +996,8 @@ function renderEmergency(){
     +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">✉️</div><div><div class="contact-label">hello@happycamper.food</div><div class="contact-sub">Tokyo · Kyoto · London</div></div></div><a href="mailto:hello@happycamper.food" class="call-btn cn">✉ Email</a></div>'
     +'</div>'
     +'<div class="util-card"><ul class="info-list">'
-    +'<li><span class="info-emoji">🎨</span><div class="info-text"><strong>Joni Waka · art programme</strong>Joni travels with the group from 24 to 29 October and leads each cultural day. His day-of contact details are shared with the group before the Tokyo programme begins.</div></li>'
-    +'<li><span class="info-emoji">🚐</span><div class="info-text"><strong>Drivers, charter and guides</strong>The charter skipper on the 26th and the Alphard arrangements from the 27th are confirmed leg by leg; contacts appear here as each is fixed.</div></li>'
+    +'<li><span class="info-emoji">🎨</span><div class="info-text"><strong>Joni Waka · art programme</strong>Joni travels with the group from 24 to 30 October, leading each cultural day and continuing as far as Fukuoka before returning to Tokyo separately. His day-of contact details are shared with the group before the Tokyo programme begins.</div></li>'
+    +'<li><span class="info-emoji">🚐</span><div class="info-text"><strong>Drivers, charter and guides</strong>The chartered boat on the 26th, the Tokyo limo days and Joni\u0027s car from the 27th are confirmed leg by leg; contacts appear here as each is fixed.</div></li>'
     +'</ul></div>'
     +'<div class="section-label">Emergency Numbers · Japan</div>'
     +'<div class="contact-card">'
