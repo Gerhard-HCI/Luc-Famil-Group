@@ -329,7 +329,7 @@
 'use strict';
 
 /* ═══ CONFIG · Famil / Versele · 22–30 October 2026 ═══ */
-var FX_RATE = 178.20; // 1 EUR = 178.2048 JPY · rate from the working budget
+var FX_RATE = 171.97; // 1 EUR = 171.97 JPY · rate from the working budget
 
 var TRIP = {
   startDate:'2026-10-22',
@@ -360,7 +360,7 @@ var TRIP = {
         { time:'Midday', type:'activity', badge:'Programme', badgeType:'confirmed', title:'21_21 DESIGN SIGHT', sub:'Contemporary Japanese design · Tadao Ando', loc:'21_21 DESIGN SIGHT', addr:'Tokyo Midtown, Akasaka, Minato City, Tokyo', q:'21_21 Design Sight Tokyo', notes:'Contemporary Japanese design in a Tadao Ando building — the first of several Ando encounters that run right through to Naoshima.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Nezu Museum', sub:'Japanese & East Asian art · garden · Kengo Kuma', loc:'Nezu Museum', addr:'6-5-1 Minami-Aoyama, Minato City, Tokyo', q:'Nezu Museum Tokyo', notes:'Classical Japanese and East Asian art held inside a Kengo Kuma building, with one of the finest traditional gardens in central Tokyo. Old and new in a single site.', alert:null },
         { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Aoyama & Omotesando', sub:'Architecture, fashion, galleries, ateliers', loc:'Omotesando', addr:'Omotesando, Shibuya City, Tokyo', q:'Omotesando Tokyo', notes:'One of the densest concentrations of contemporary architecture anywhere in Japan. Depending on timing, Joni can add further galleries, specialist ateliers and design stops.', alert:null },
-        { time:'Evening', type:'restaurant', badge:'Suggestion', badgeType:'suggestion', title:'Sushi Nakano', sub:'Dinner · sushi · Tokyo', loc:'Sushi Nakano, Tokyo', addr:'Tokyo', q:'Sushi Nakano Tokyo', notes:'Pencilled onto the canvas as a suggestion — to be requested once the shape of the day is fixed.', alert:null }
+        { time:'20:30', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Kaiseki Guchokuni', sub:'Dinner · kaiseki · 20:30 · four guests', loc:'Guchokuni, Tokyo', addr:'Tokyo', q:'Guchokuni Tokyo', notes:'Confirmed for four at 20:30, after the day of textile, design and architecture. A late seating, so the guided day can run its full length.', alert:'Confirmed · 20:30 · 4 pax' }
       ] },
 
     { date:'2026-10-25', dayNum:4, weekday:'Sunday, 25 October', theme:'Shitamachi, old Tokyo & contemporary art', city:'Tokyo', cityClass:'', hotel:'Mitsui Garden Hotel Ginza-gochome', hq:'Mitsui Garden Hotel Ginza gochome Tokyo', hotelNote:'Night 3 of 3 · breakfast included', hosted:true,
@@ -373,7 +373,7 @@ var TRIP = {
         { time:'Optional', type:'activity', badge:'Optional', badgeType:'suggestion', title:'Yoshiwara', sub:'Historic district · Nobuyoshi Araki connection', loc:'Yoshiwara', addr:'Senzoku, Taito City, Tokyo', q:'Yoshiwara Taito Tokyo', notes:'Included only if interest and timing allow — the historic Yoshiwara district and its association with the photographer Nobuyoshi Araki.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Asakusa', sub:'Traditional eastern Tokyo', loc:'Senso-ji, Asakusa', addr:'2-3-1 Asakusa, Taito City, Tokyo', q:'Sensoji Asakusa Tokyo', notes:'Traditional eastern Tokyo around Senso-ji, on the way to Kappabashi.', alert:null },
         { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Kappabashi', sub:'Kitchenware & restaurant-supply district', loc:'Kappabashi Street', addr:'Matsugaya, Taito City, Tokyo', q:'Kappabashi Tokyo', notes:'Knives, ceramics, lacquer, moulds and tools — a living concentration of Japanese specialist manufacturing rather than a heritage display. Further architecture or gallery stops around Ueno, Asakusa or Ginza can be added on Joni\u0027s final routing.', alert:null },
-        { time:'Evening', type:'restaurant', badge:'Suggestion', badgeType:'suggestion', title:'Kaiseki Guchokuni', sub:'Dinner · kaiseki · Tokyo', loc:'Guchokuni, Tokyo', addr:'Tokyo', q:'Guchokuni Tokyo', notes:'A suggestion on the canvas for the last Tokyo night, to be requested.', alert:null }
+        { time:'20:00', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Sushi Nakano', sub:'Dinner · sushi · 20:00 · four guests', loc:'Sushi Nakano, Tokyo', addr:'Tokyo', q:'Sushi Nakano Tokyo', notes:'Confirmed for four at 20:00 — the last Tokyo dinner, and an early enough finish to matter before the 05:45 departure the next morning.', alert:'Confirmed · 20:00 · 4 pax · early start next day' }
       ] },
 
     { date:'2026-10-26', dayNum:5, weekday:'Monday, 26 October', theme:'Tokyo → Takamatsu → Inujima & Teshima', city:'Takamatsu', cityClass:'setouchi', hotel:'Royal Park Hotel Takamatsu', hq:'Royal Park Hotel Takamatsu', hotelNote:'Night 1 of 2 · Booking.com · breakfast included', hosted:true,
@@ -709,6 +709,7 @@ function renderItinerary(){
     +'<span class="banner-chip">🎨 Chichu Art Museum</span>'
     +'<span class="banner-chip">◻️ Lee Ufan</span>'
     +'<span class="banner-chip">🖼 Ohara Museum</span>'
+    +'<span class="banner-chip confirmed">🍽 4 dinners confirmed</span>'
     +'</div></div>'
     +'<div class="booking-legend">'
     +'<span class="bl-item"><span class="bl-dot confirmed"></span>In the programme</span>'
