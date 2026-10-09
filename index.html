@@ -249,6 +249,23 @@
     .jp-text strong{color:#7B1A1A;font-weight:700}
     .jp-en{font-size:11.5px;color:var(--ink-3);margin-top:8px;font-style:italic}
 
+    /* EDITOR'S REFERENCE CARDS */
+    .disc-ref{background:linear-gradient(180deg,#0D2847 0%,#142647 100%);color:#f3eee0;border-radius:var(--radius);padding:22px 20px 20px;margin-bottom:14px;position:relative;overflow:hidden;border:1px solid rgba(176,124,34,.2)}
+    .disc-ref::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(176,124,34,.2) 0%,transparent 70%);pointer-events:none}
+    .disc-ref.coffee{background:linear-gradient(180deg,#1a0f2e 0%,#2d1b47 100%);border-color:rgba(176,124,34,.15)}
+    .disc-ref-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px;position:relative}
+    .disc-ref-label::before{content:'';width:16px;height:1px;background:var(--gold)}
+    .disc-ref-title{font-family:var(--font-serif);font-size:26px;font-weight:300;letter-spacing:-.01em;margin:0 0 4px;color:#f3eee0;position:relative}
+    .disc-ref-by{font-family:var(--font-serif);font-style:italic;font-size:15px;color:var(--gold);margin-bottom:14px;position:relative}
+    .disc-ref-by .copy{font-size:11px;font-style:normal;letter-spacing:.06em;opacity:.7;margin-right:4px;font-family:var(--font-sans)}
+    .disc-ref-p{font-size:13px;line-height:1.6;color:rgba(243,238,224,.78);margin:0 0 16px;position:relative}
+    .disc-ref-cta{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#0D2847;padding:10px 18px;border-radius:99px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-decoration:none;position:relative}
+    .disc-ref-cta:active{opacity:.85}
+    .disc-ref-ig{display:inline-flex;align-items:center;gap:5px;padding:9px 14px;border-radius:99px;font-size:11.5px;font-weight:600;letter-spacing:.05em;color:#f3eee0;border:1px solid rgba(244,229,191,.3);text-decoration:none;margin-top:2px}
+    .disc-ref-ig:active{background:rgba(255,255,255,.1)}
+    .disc-ref-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .disc-ref-tip{margin-top:14px;font-size:12.5px;color:rgba(243,238,224,.55);font-style:italic;font-family:var(--font-serif);line-height:1.55;position:relative;padding-left:12px;border-left:1px solid rgba(176,124,34,.3)}
+
     /* EMERGENCY */
     .emergency-banner{background:var(--navy);border-radius:var(--radius);padding:18px 20px;color:#fff;margin-bottom:14px;text-align:center}
     .emergency-banner h2{font-family:var(--font-serif);font-size:22px;font-weight:300;letter-spacing:.5px;margin-bottom:4px}
@@ -869,6 +886,27 @@ function renderDiscover(){
     h+='<button class="disc-city-pill'+(c===city?' active':'')+'" data-disc-city="'+esc(c)+'">'+esc(c)+'</button>';
   });
   h+='</div>';
+  h+='<div class="disc-ref">'
+    +'<div class="disc-ref-label">Editor\u0027s Reference</div>'
+    +'<div class="disc-ref-title">The Ultimate Shopping List</div>'
+    +'<div class="disc-ref-by"><span class="copy">©</span>John Scherrer</div>'
+    +'<p class="disc-ref-p">An extraordinary, hand-built Google Map of Japan\u0027s most considered shops — vintage, design, denim, ceramics, kitchenware, craft. The single best on-the-ground reference for serious shopping in Tokyo, Kyoto and beyond.</p>'
+    +'<div class="disc-ref-row">'
+    +'<a class="disc-ref-cta" href="https://maps.app.goo.gl/y5dzkZR4L56yY3po8?g_st=i" target="_blank" rel="noopener">Open the Map →</a>'
+    +'<a class="disc-ref-ig" href="https://www.instagram.com/bigtime_makin_it_nice" target="_blank" rel="noopener">📷 @bigtime_makin_it_nice</a>'
+    +'</div>'
+    +'<div class="disc-ref-tip">Most powerful when used alongside your live location — open the map and look for nearby pins wherever the afternoon ends up. Particularly strong on Kappabashi and the Kurashiki craft shops.</div>'
+    +'</div>';
+  h+='<div class="disc-ref coffee">'
+    +'<div class="disc-ref-label">Editor\u0027s Reference</div>'
+    +'<div class="disc-ref-title">The Ultimate Coffee List</div>'
+    +'<div class="disc-ref-by"><span class="copy">©</span>Alex Rivera</div>'
+    +'<p class="disc-ref-p">A global map of Alex\u0027s favourite coffee shops — speciality roasters, neighbourhood kissaten, and hidden gems across the world, including an excellent selection throughout Japan.</p>'
+    +'<div class="disc-ref-tip" style="margin-bottom:14px">Open the map with your live location enabled and filter to what\u0027s nearby — the best way to find a great cup wherever the day takes you.</div>'
+    +'<div class="disc-ref-row">'
+    +'<a class="disc-ref-cta" href="https://maps.app.goo.gl/YxU9bZiQoawn7oqy9?g_st=i" target="_blank" rel="noopener">Open the Map →</a>'
+    +'<a class="disc-ref-ig" href="https://www.instagram.com/alexrivio" target="_blank" rel="noopener">📷 @alexrivio</a>'
+    +'</div></div>';
   h+='<div class="disc-note">Beyond the fixed programme — things worth an hour if the day runs early, or on the arrival afternoon in Tokyo.</div>';
   sections.forEach(function(section){
     h+='<div class="disc-card"><div class="disc-card-head"><div class="disc-card-head-title">'+esc(section.cat)+'</div></div><div class="disc-card-body">';
