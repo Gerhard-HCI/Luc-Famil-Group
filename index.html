@@ -329,7 +329,7 @@
 'use strict';
 
 /* ═══ CONFIG · Famil / Versele · 22–30 October 2026 ═══ */
-var FX_RATE = 171.97; // 1 EUR = 171.97 JPY · rate from the working budget
+var FX_RATE = 177.55; // 1 EUR ≈ 177.55 JPY · derived from the canvas rate (158 JPY/USD)
 
 var TRIP = {
   startDate:'2026-10-22',
@@ -373,7 +373,7 @@ var TRIP = {
         { time:'Optional', type:'activity', badge:'Optional', badgeType:'suggestion', title:'Yoshiwara', sub:'Historic district · Nobuyoshi Araki connection', loc:'Yoshiwara', addr:'Senzoku, Taito City, Tokyo', q:'Yoshiwara Taito Tokyo', notes:'Included only if interest and timing allow — the historic Yoshiwara district and its association with the photographer Nobuyoshi Araki.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Asakusa', sub:'Traditional eastern Tokyo', loc:'Senso-ji, Asakusa', addr:'2-3-1 Asakusa, Taito City, Tokyo', q:'Sensoji Asakusa Tokyo', notes:'Traditional eastern Tokyo around Senso-ji, on the way to Kappabashi.', alert:null },
         { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Kappabashi', sub:'Kitchenware & restaurant-supply district', loc:'Kappabashi Street', addr:'Matsugaya, Taito City, Tokyo', q:'Kappabashi Tokyo', notes:'Knives, ceramics, lacquer, moulds and tools — a living concentration of Japanese specialist manufacturing rather than a heritage display. Further architecture or gallery stops around Ueno, Asakusa or Ginza can be added on Joni\u0027s final routing.', alert:null },
-        { time:'20:00', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Sushi Nakano', sub:'Dinner · sushi · 20:00 · four guests', loc:'Sushi Nakano, Tokyo', addr:'Tokyo', q:'Sushi Nakano Tokyo', notes:'Confirmed for four at 20:00 — the last Tokyo dinner, and an early enough finish to matter before the 05:45 departure the next morning.', alert:'Confirmed · 20:00 · 4 pax · early start next day' }
+        { time:'20:30', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Sushi Nakano', sub:'Dinner · sushi · 20:30 · four guests', loc:'Sushi Nakano, Tokyo', addr:'Tokyo', q:'Sushi Nakano Tokyo', notes:'Confirmed for four at 20:30 — the last Tokyo dinner, and a late one given the 05:45 car the next morning.', alert:'Confirmed · 20:30 · 4 pax · 05:45 departure next day' }
       ] },
 
     { date:'2026-10-26', dayNum:5, weekday:'Monday, 26 October', theme:'Tokyo → Takamatsu → Inujima & Teshima', city:'Takamatsu', cityClass:'setouchi', hotel:'Royal Park Hotel Takamatsu', hq:'Royal Park Hotel Takamatsu', hotelNote:'Night 1 of 2 · Booking.com · breakfast included', hosted:true,
@@ -385,7 +385,7 @@ var TRIP = {
         { time:'~10:00', type:'ferry', badge:'Confirmed', badgeType:'confirmed', title:'Private charter boat · full day', sub:'Takamatsu → Inujima → Teshima → Takamatsu', loc:'Takamatsu Port', addr:'Takamatsu Port, Kagawa', q:'Takamatsu Port', notes:'Confirmed for the 26th. The charter runs the whole day, which is what makes two islands possible — the public ferry timetable would not allow it, and it is the reason the flight moved earlier.', alert:'Confirmed · full-day charter' },
         { time:'Island 1', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Inujima', sub:'Seirensho refinery · Yanagi · SANAA house projects', loc:'Inujima', addr:'Inujima, Okayama', q:'Inujima Seirensho Art Museum', notes:'A former copper refinery, its ruins turned into a museum around the work of Yukinori Yanagi, plus the Art House Project buildings associated with Kazuyo Sejima and SANAA. The subject is the island itself as much as the art — industrial abandonment reversed.', alert:null },
         { time:'Island 2', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Teshima', sub:'Teshima Art Museum · Rei Naito · Ryue Nishizawa', loc:'Teshima Art Museum', addr:'607 Karato, Teshima, Tonosho, Kagawa', q:'Teshima Art Museum', notes:'Rei Naito\u0027s water piece inside Ryue Nishizawa\u0027s concrete shell, open to the sky above the rice terraces. Tadanori Yokoo work and the Boltanski memorial installation are also on the island; art set directly into agricultural and coastal landscape.', alert:null },
-        { time:'Evening', type:'restaurant', badge:'Suggestion', badgeType:'suggestion', title:'Sushi Nakagawa', sub:'Dinner · sushi · Takamatsu', loc:'Sushi Nakagawa, Takamatsu', addr:'Takamatsu, Kagawa', q:'Nakagawa Sushi Takamatsu', notes:'Now the canvas choice for the island evening, replacing Robata Yaki Kitano Sachi. A suggestion at this stage — to be requested.', alert:null }
+        { time:'Evening', type:'restaurant', badge:'Requested', badgeType:'requested', title:'Kita no Sachi Robata · 北の幸 炉ばた', sub:'Dinner · robata izakaya · four guests · Takamatsu', loc:'Kita no Sachi, Takamatsu', addr:'Takamatsu, Kagawa', q:'北の幸 炉ばた 高松', notes:'Back on the canvas for the island evening, replacing Sushi Nakagawa. Joni\u0027s original choice — an intimate izakaya run by an all-women cooperative, charcoal-grilled and unhurried, which is the right register after a long day on the water.', alert:'4 pax · time to be set' }
       ] },
 
     { date:'2026-10-27', dayNum:6, weekday:'Tuesday, 27 October', theme:'Gardens, masters, craft & spiritual Japan', city:'Takamatsu', cityClass:'setouchi', hotel:'Royal Park Hotel Takamatsu', hq:'Royal Park Hotel Takamatsu', hotelNote:'Night 2 of 2 · breakfast included', hosted:true,
@@ -430,7 +430,7 @@ var TRIP = {
         { time:'Then', type:'transport', badge:'Transfer', badgeType:'requested', title:'Hakata → Fukuoka Airport', sub:'Short transfer to FUK', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'Fukuoka Airport sits unusually close to the city — only a few minutes from Hakata.', alert:null },
         { time:'Flight', type:'flight', badge:'To book', badgeType:'pending', title:'Fukuoka → Busan', sub:'Direct flight · to be selected', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'The short cross-strait hop, booked once the Shinkansen timings are locked. The Hakata–Busan Queen Beetle ferry no longer operates, so air is the practical crossing.', alert:null },
         { time:'~19:21', type:'hotel', badge:'Korea', badgeType:'logistics', title:'Busan · Signiel Busan', sub:'Korea programme begins', loc:'Signiel Busan', addr:'Haeundae, Busan', q:'Signiel Busan', notes:'The wider Groeninghe group arrives in Busan at around 19:21 — worth aiming to land ahead of that.', alert:null },
-        { time:'Evening', type:'restaurant', badge:'Suggestion', badgeType:'suggestion', title:'Dinner in Busan', sub:'Korea programme', loc:'Busan', addr:'Busan', q:'Busan restaurants', notes:'On the canvas as the first Korean dinner, still to be set.', alert:null }
+        { time:'19:00', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Born & Bred', sub:'Dinner · 19:00 · four guests · Busan', loc:'Born & Bred, Busan', addr:'Busan', q:'Born and Bred Busan', notes:'The first Korean dinner, now named and timed on the canvas — 19:00 for four. A tight connection with the 19:21 arrival of the wider Groeninghe group, so worth confirming the table can flex.', alert:'Confirmed · 19:00 · 4 pax' }
       ] }
     ]
 };
@@ -709,7 +709,7 @@ function renderItinerary(){
     +'<span class="banner-chip">🎨 Chichu Art Museum</span>'
     +'<span class="banner-chip">◻️ Lee Ufan</span>'
     +'<span class="banner-chip">🖼 Ohara Museum</span>'
-    +'<span class="banner-chip confirmed">🍽 4 dinners confirmed</span>'
+    +'<span class="banner-chip confirmed">🍽 5 dinners confirmed</span>'
     +'</div></div>'
     +'<div class="booking-legend">'
     +'<span class="bl-item"><span class="bl-dot confirmed"></span>In the programme</span>'
@@ -849,7 +849,7 @@ function renderLogistics(){
   });
   h+='</div>';
   h+='<div class="section-label">The core Setouchi sequence</div><div class="util-card"><ul class="info-list">'
-    +'<li><span class="info-emoji">✈️</span><div class="info-text"><strong>26 Oct</strong>Tokyo → Takamatsu → Inujima + Teshima by charter → Sushi Nakagawa → Royal Park</div></li>'
+    +'<li><span class="info-emoji">✈️</span><div class="info-text"><strong>26 Oct</strong>Tokyo → Takamatsu → Inujima + Teshima by charter → Kita no Sachi → Royal Park</div></li>'
     +'<li><span class="info-emoji">🪨</span><div class="info-text"><strong>27 Oct</strong>Ritsurin + Noguchi + Nakashima + Yakuri-ji → Ryobo 18:00 → Royal Park</div></li>'
     +'<li><span class="info-emoji">⛴️</span><div class="info-text"><strong>28 Oct</strong>Naoshima, full day → YORUYA Kurashiki</div></li>'
     +'<li><span class="info-emoji">🖼</span><div class="info-text"><strong>29 Oct</strong>Full-day Kurashiki with Joni, including the Ohara → YORUYA</div></li>'
