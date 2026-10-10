@@ -76,6 +76,7 @@
     .bl-dot.self-booked{background:#F4CCCC;border:1px solid rgba(123,26,26,.3)}
     .bl-dot.suggestion{background:#9FC5E8;border:1px solid rgba(13,60,110,.3)}
     .bl-dot.pending{background:#ECEFF1;border:1px solid rgba(84,110,122,.35)}
+    .bl-dot.walkin{background:#FFF2CC;border:1px solid rgba(122,91,0,.3)}
 
     /* DAY CARDS */
     .day-card{background:var(--white);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--border-lt);animation:cardIn .28s ease both}
@@ -127,6 +128,7 @@
     .stop-dot.t-ferry{border-color:#00838F;background:#E0F7FA}
     .stop-dot.t-suggestion{border-color:#1565C0;background:#E3F2FD}
     .stop-dot.t-pending{border-color:#607D8B;background:#ECEFF1}
+    .stop-dot.t-walkin{border-color:#B08A00;background:#FFF8E1}
     .stop-card{background:var(--cream);border-radius:var(--radius-md);border:1px solid var(--border-lt);padding:11px 13px}
     .stop-card.is-suggestion{background:#F0F7FF;border-color:rgba(21,101,192,.15)}
     .stop-card.is-pending{background:#F5F5F5;border-color:rgba(96,125,139,.15)}
@@ -143,6 +145,7 @@
     .stop-badge.suggestion {background:#9FC5E8;color:#0D3C6E;border:1px solid rgba(13,60,110,.18)}
     .stop-badge.pending    {background:#ECEFF1;color:#546E7A;border:1px solid rgba(84,110,122,.2)}
     .stop-badge.logistics  {background:#FFE0B2;color:#BF360C;border:1px solid rgba(191,54,12,.18)}
+    .stop-badge.walkin     {background:#FFF2CC;color:#7A5B00;border:1px solid rgba(122,91,0,.2)}
 
     .stop-notes{font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-lt)}
     .stop-alert{display:flex;align-items:flex-start;gap:6px;margin-top:8px;padding:7px 10px;background:#FFFBEB;border-radius:var(--radius-sm);border-left:3px solid #F59E0B;font-size:11px;color:#92400E;font-weight:500;line-height:1.4}
@@ -346,7 +349,7 @@
 'use strict';
 
 /* ═══ CONFIG · Famil / Versele · 22–30 October 2026 ═══ */
-var FX_RATE = 177.55; // 1 EUR ≈ 177.55 JPY · derived from the canvas rate (158 JPY/USD)
+var FX_RATE = 178.65; // 1 EUR ≈ 178.65 JPY · derived from the canvas rate (159 JPY/USD)
 
 var TRIP = {
   startDate:'2026-10-22',
@@ -402,7 +405,7 @@ var TRIP = {
         { time:'~10:00', type:'ferry', badge:'Confirmed', badgeType:'confirmed', title:'Private charter boat · full day', sub:'Takamatsu → Inujima → Teshima → Takamatsu', loc:'Takamatsu Port', addr:'Takamatsu Port, Kagawa', q:'Takamatsu Port', notes:'Confirmed for the 26th. The charter runs the whole day, which is what makes two islands possible — the public ferry timetable would not allow it, and it is the reason the flight moved earlier.', alert:'Confirmed · full-day charter' },
         { time:'Island 1', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Inujima', sub:'Seirensho refinery · Yanagi · SANAA house projects', loc:'Inujima', addr:'Inujima, Okayama', q:'Inujima Seirensho Art Museum', notes:'A former copper refinery, its ruins turned into a museum around the work of Yukinori Yanagi, plus the Art House Project buildings associated with Kazuyo Sejima and SANAA. The subject is the island itself as much as the art — industrial abandonment reversed.', alert:null },
         { time:'Island 2', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Teshima', sub:'Teshima Art Museum · Rei Naito · Ryue Nishizawa', loc:'Teshima Art Museum', addr:'607 Karato, Teshima, Tonosho, Kagawa', q:'Teshima Art Museum', notes:'Rei Naito\u0027s water piece inside Ryue Nishizawa\u0027s concrete shell, open to the sky above the rice terraces. Tadanori Yokoo work and the Boltanski memorial installation are also on the island; art set directly into agricultural and coastal landscape.', alert:null },
-        { time:'Evening', type:'restaurant', badge:'Requested', badgeType:'requested', title:'Kita no Sachi Robata · 北の幸 炉ばた', sub:'Dinner · robata izakaya · four guests · Takamatsu', loc:'Kita no Sachi, Takamatsu', addr:'Takamatsu, Kagawa', q:'北の幸 炉ばた 高松', notes:'Back on the canvas for the island evening, replacing Sushi Nakagawa. Joni\u0027s original choice — an intimate izakaya run by an all-women cooperative, charcoal-grilled and unhurried, which is the right register after a long day on the water.', alert:'4 pax · time to be set' }
+        { time:'Evening', type:'restaurant', badge:'Walk-in only', badgeType:'walkin', title:'Kita no Sachi Robata · 北の幸 炉ばた', sub:'Dinner · robata izakaya · four guests · Takamatsu', loc:'Kita no Sachi, Takamatsu', addr:'Takamatsu, Kagawa', q:'北の幸 炉ばた 高松', notes:'Joni\u0027s choice for the island evening — an intimate izakaya run by an all-women cooperative, charcoal-grilled and unhurried. It takes no reservations, so the table is found on the night; worth arriving early after the charter returns.', alert:'No reservations — walk-in only' }
       ] },
 
     { date:'2026-10-27', dayNum:6, weekday:'Tuesday, 27 October', theme:'Gardens, masters, craft & spiritual Japan', city:'Takamatsu', cityClass:'setouchi', hotel:'Royal Park Hotel Takamatsu', hq:'Royal Park Hotel Takamatsu', hotelNote:'Night 2 of 2 · breakfast included', hosted:true,
@@ -427,7 +430,7 @@ var TRIP = {
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Valley Gallery & Naoshima New Museum', sub:'Yayoi Kusama · the island\u0027s newest space', loc:'Valley Gallery, Naoshima', addr:'Naoshima, Kagawa', q:'Valley Gallery Naoshima', notes:'Kusama at Valley Gallery, plus the new museum included in Joni\u0027s latest Naoshima routing.', alert:null },
         { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Honmura · Art House Project', sub:'Village houses as installations', loc:'Art House Project Honmura', addr:'Honmura, Naoshima, Kagawa', q:'Art House Project Honmura Naoshima', notes:'Traditional village houses converted into permanent installations — the quietest and most domestic part of the island, and the best last stop before the boat.', alert:null },
         { time:'Evening', type:'transport', badge:'Transfer', badgeType:'requested', title:'Naoshima → Kurashiki', sub:'Ferry and car · late afternoon / evening', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki Okayama', notes:'Across to the mainland and on to Kurashiki for two nights at YORUYA.', alert:null },
-        { time:'Dinner', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Kurashiki', loc:'Kurashiki Bikan district', addr:'Kurashiki, Okayama', q:'Kurashiki Bikan restaurants', notes:'Open — likely something short-walking distance from YORUYA after a long island day.', alert:null }
+        { time:'19:00', type:'restaurant', badge:'Requested', badgeType:'requested', title:'Kurashiki Ichie · 一会', sub:'Dinner · 19:00 · four guests · Kurashiki', loc:'Kurashiki Ichie', addr:'Kurashiki, Okayama', q:'倉敷 一会', notes:'Requested for four at 19:00, awaiting the restaurant. A manageable hour after the ferry back from Naoshima and the drive across to the mainland.', alert:'Requested · awaiting confirmation' }
       ] },
 
     { date:'2026-10-29', dayNum:8, weekday:'Thursday, 29 October', theme:'Historic architecture, craft & the Ohara', city:'Kurashiki', cityClass:'setouchi', hotel:'YORUYA Kurashiki', hq:'YORUYA Kurashiki', hotelNote:'Night 2 · confirmed · 2 rooms · breakfast included', hosted:true,
@@ -436,17 +439,17 @@ var TRIP = {
         { time:'Morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Bikan Historical District', sub:'Canals · merchant houses · white kura warehouses', loc:'Kurashiki Bikan Historical Quarter', addr:'Chuo, Kurashiki, Okayama', q:'Kurashiki Bikan Historical Quarter', notes:'Willow-lined canals, preserved merchant-town architecture, and the craft and design shops that still work out of the old warehouses.', alert:null },
         { time:'Midday', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Ohara Museum of Art', sub:'Japan\u0027s first museum of Western art', loc:'Ohara Museum of Art', addr:'1-1-15 Chuo, Kurashiki, Okayama', q:'Ohara Museum of Art Kurashiki', notes:'Founded in 1930 and historically significant as the first Western-art museum in Japan — the counterweight to everything the trip has looked at from the Japanese side.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Masayoshi Izumi · outdoor stone work', sub:'Master stonemason · Noguchi collaborator', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki Bikan Historical Quarter', notes:'An outdoor stone installation by Masayoshi Izumi, Isamu Noguchi\u0027s longtime collaborator in Mure — the cleanest way to close the circle opened at the Noguchi museum two days earlier.', alert:null },
-        { time:'Dinner', type:'restaurant', badge:'Open', badgeType:'pending', title:'Dinner · to be determined', sub:'Kurashiki', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki restaurants', notes:'Open — last dinner in Japan before Korea.', alert:null }
+        { time:'19:00', type:'restaurant', badge:'Requested', badgeType:'requested', title:'Hamayoshi · 浜吉', sub:'Dinner · 19:00 · four guests', loc:'Hamayoshi', addr:'Okayama', q:'浜吉 岡山', notes:'Requested for four at 19:00, awaiting the restaurant. The last dinner in Japan, closing the Setouchi leg before the crossing to Korea the next morning.', alert:'Requested · awaiting confirmation' }
       ] },
 
     { date:'2026-10-30', dayNum:9, weekday:'Friday, 30 October', theme:'Kurashiki → Busan', city:'Busan', cityClass:'', hotel:'Signiel Busan', hq:'Signiel Busan', hotelNote:'Korea programme begins', hosted:true,
-      notes:'Breakfast at YORUYA, then across to Korea by way of Fukuoka — the canvas now fixes this routing, so the Incheon alternative is off the table. Joni travels with the group to Fukuoka and returns to Tokyo separately.',
+      notes:'Breakfast at YORUYA, then across to Korea by way of Fukuoka. The flight is booked — BX506 at 11:55 — which sets an early start from Kurashiki. Joni travels with the group to Fukuoka and returns to Tokyo separately.',
       stops:[
         { time:'Morning', type:'hotel', badge:'Checkout', badgeType:'logistics', title:'Breakfast & check-out · YORUYA', sub:'Kurashiki', loc:'YORUYA Kurashiki', addr:'Kurashiki, Okayama', q:'YORUYA Kurashiki', notes:'Onward transport from here runs to Okayama for the Shinkansen.', alert:null },
-        { time:'Daytime', type:'transport', badge:'Confirmed routing', badgeType:'requested', title:'Shinkansen · Okayama → Hakata', sub:'Kurashiki → Okayama → Fukuoka', loc:'Okayama Station', addr:'Okayama Station, Okayama', q:'Okayama Station', notes:'The chosen routing. It avoids entering Korea through Seoul and then travelling back south.', alert:null },
-        { time:'Then', type:'transport', badge:'Transfer', badgeType:'requested', title:'Hakata → Fukuoka Airport', sub:'Short transfer to FUK', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'Fukuoka Airport sits unusually close to the city — only a few minutes from Hakata.', alert:null },
-        { time:'Flight', type:'flight', badge:'To book', badgeType:'pending', title:'Fukuoka → Busan', sub:'Direct flight · to be selected', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'The short cross-strait hop, booked once the Shinkansen timings are locked. The Hakata–Busan Queen Beetle ferry no longer operates, so air is the practical crossing.', alert:null },
-        { time:'~19:21', type:'hotel', badge:'Korea', badgeType:'logistics', title:'Busan · Signiel Busan', sub:'Korea programme begins', loc:'Signiel Busan', addr:'Haeundae, Busan', q:'Signiel Busan', notes:'The wider Groeninghe group arrives in Busan at around 19:21 — worth aiming to land ahead of that.', alert:null },
+        { time:'~08:30', type:'transport', badge:'Routing fixed', badgeType:'requested', title:'Shinkansen · Okayama → Hakata', sub:'Kurashiki → Okayama → Fukuoka · approx. 1h 45m', loc:'Okayama Station', addr:'Okayama Station, Okayama', q:'Okayama Station', notes:'Working back from the 11:55 flight: at Fukuoka Airport by about 10:40, Hakata by 10:30, so a Nozomi leaving Okayama around 08:30 and out of Kurashiki by 08:00. Breakfast at YORUYA then straight to the station.', alert:'Early departure — set against the 11:55 flight' },
+        { time:'~10:30', type:'transport', badge:'Transfer', badgeType:'requested', title:'Hakata → Fukuoka Airport', sub:'Short transfer to the international terminal', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'Fukuoka Airport sits unusually close to the city — only a few minutes from Hakata — but the international terminal is a shuttle ride from the domestic side, so allow for that.', alert:null },
+        { time:'11:55', type:'flight', badge:'Booked', badgeType:'self-booked', title:'BX506 · Fukuoka → Busan', sub:'Air Busan · FUK 11:55 → PUS 13:00 · direct · 1h 05m', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'Booked for all four guests, economy, ref KGLY3Q. Seats assigned at check-in. Note the baggage allowance: one cabin bag each and no checked bags, which needs resolving before the day.', alert:'Cabin bag only · no checked baggage on this fare' },
+        { time:'~14:30', type:'hotel', badge:'Korea', badgeType:'logistics', title:'Busan · Signiel Busan', sub:'Korea programme begins', loc:'Signiel Busan', addr:'Haeundae, Busan', q:'Signiel Busan', notes:'Landing at 13:00 puts the group at Haeundae by mid-afternoon — well ahead of the wider Groeninghe group, which arrives around 19:21. Time to settle before dinner.', alert:null },
         { time:'19:00', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Born & Bred', sub:'Dinner · 19:00 · four guests · Busan', loc:'Born & Bred, Busan', addr:'Busan', q:'Born and Bred Busan', notes:'The first Korean dinner, now named and timed on the canvas — 19:00 for four. A tight connection with the 19:21 arrival of the wider Groeninghe group, so worth confirming the table can flex.', alert:'Confirmed · 19:00 · 4 pax' }
       ] }
     ]
@@ -497,12 +500,13 @@ var TRANSPORT = [
   ['27–30 Oct','Private car','Takamatsu, Naoshima, Kurashiki and on to Fukuoka'],
   ['28 Oct','Ferry · Takamatsu → Naoshima','08:10 sailing'],
   ['28 Oct','Naoshima → Kurashiki','Late afternoon / evening'],
-  ['30 Oct','Shinkansen · Okayama → Hakata','Then transfer to Fukuoka Airport'],
-  ['30 Oct','Fukuoka → Busan','Direct flight · to be booked']
+  ['30 Oct','Shinkansen · Okayama → Hakata','~08:30 departure to meet the 11:55 flight'],
+  ['30 Oct','BX506 · Fukuoka → Busan','11:55 → 13:00 · Air Busan · booked · ref KGLY3Q']
 ];
 var OPEN_ITEMS = [
-  ['Fukuoka → Busan flight','The routing is settled — Shinkansen to Hakata, then FUK to Busan. Only the flight itself is still to be selected and booked.'],
-  ['Dinners on the 28th and 29th','Both Kurashiki evenings are still open on the canvas. Worth establishing first whether YORUYA includes dinner in the room rate before booking anything outside.'],
+  ['Baggage on BX506','The Busan fare carries one cabin bag per guest and no checked bags. Four people with nine days of luggage will need either paid checked baggage added to the booking or the main bags forwarded separately to Korea.'],
+  ['Shinkansen tickets for the 30th','The routing and the flight are fixed, so the Okayama–Hakata seats can now be reserved against an 08:30 departure.'],
+
   ['Korea entry','K-ETA requirements depend on each traveller\u0027s nationality — worth confirming for all four guests well before departure.'],
   ['Timed-entry museums','Chichu and the Noguchi Garden Museum both work on reserved, timed admission. These set the shape of the 27th and 28th and should be held early.']
 ];
@@ -689,7 +693,7 @@ function renderStop(stop,di,si){
   var hasLoc=!!(stop.q||stop.loc);
   var icon=ICONS[stop.type]||'📍';
   var badge=stop.badge?'<span class="stop-badge '+stop.badgeType+'">'+esc(stop.badge)+'</span>':'';
-  var dotClass=isSuggestion?'t-suggestion':('t-'+(stop.type||'activity'));
+  var dotClass=stop.badgeType==='walkin'?'t-walkin':(isSuggestion?'t-suggestion':('t-'+(stop.type||'activity')));
   var cardClass=stop.badgeType==='suggestion'?' is-suggestion':(stop.badgeType==='pending'?' is-pending':'');
   var mapHTML=hasLoc
     ?'<a href="'+gm(stop.q)+'" target="_blank" rel="noopener" class="map-btn mp">📍 Maps</a>'
@@ -726,12 +730,13 @@ function renderItinerary(){
     +'<span class="banner-chip">🎨 Chichu Art Museum</span>'
     +'<span class="banner-chip">◻️ Lee Ufan</span>'
     +'<span class="banner-chip">🖼 Ohara Museum</span>'
-    +'<span class="banner-chip confirmed">🍽 5 dinners confirmed</span>'
+    +'<span class="banner-chip confirmed">🍽 5 confirmed · 2 requested · 1 walk-in</span>'
     +'</div></div>'
     +'<div class="booking-legend">'
     +'<span class="bl-item"><span class="bl-dot confirmed"></span>In the programme</span>'
     +'<span class="bl-item"><span class="bl-dot requested"></span>Being arranged</span>'
     +'<span class="bl-item"><span class="bl-dot self-booked"></span>Self-booked</span>'
+    +'<span class="bl-item"><span class="bl-dot walkin"></span>Walk-in only</span>'
     +'<span class="bl-item"><span class="bl-dot suggestion"></span>Option / suggestion</span>'
     +'<span class="bl-item"><span class="bl-dot pending"></span>Open</span>'
     +'</div>'
@@ -870,7 +875,7 @@ function renderLogistics(){
     +'<li><span class="info-emoji">🪨</span><div class="info-text"><strong>27 Oct</strong>Ritsurin + Noguchi + Nakashima + Yakuri-ji → Ryobo 18:00 → Royal Park</div></li>'
     +'<li><span class="info-emoji">⛴️</span><div class="info-text"><strong>28 Oct</strong>Naoshima, full day → YORUYA Kurashiki</div></li>'
     +'<li><span class="info-emoji">🖼</span><div class="info-text"><strong>29 Oct</strong>Full-day Kurashiki with Joni, including the Ohara → YORUYA</div></li>'
-    +'<li><span class="info-emoji">🇰🇷</span><div class="info-text"><strong>30 Oct</strong>Kurashiki → Busan, via Fukuoka or Incheon</div></li>'
+    +'<li><span class="info-emoji">🇰🇷</span><div class="info-text"><strong>30 Oct</strong>Kurashiki → Okayama → Hakata → FUK → BX506 11:55 → Busan 13:00</div></li>'
     +'</ul></div>';
   document.getElementById('tab-logistics').innerHTML=h;
 }
