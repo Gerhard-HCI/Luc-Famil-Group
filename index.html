@@ -443,11 +443,12 @@ var TRIP = {
       ] },
 
     { date:'2026-10-30', dayNum:9, weekday:'Friday, 30 October', theme:'Kurashiki → Busan', city:'Busan', cityClass:'', hotel:'Signiel Busan', hq:'Signiel Busan', hotelNote:'Korea programme begins', hosted:true,
-      notes:'Breakfast at YORUYA, then across to Korea by way of Fukuoka. The flight is booked — BX506 at 11:55 — which sets an early start from Kurashiki. Joni travels with the group to Fukuoka and returns to Tokyo separately.',
+      notes:'Breakfast at YORUYA, then across to Korea by way of Fukuoka. Joni\u0027s plan for the day: the van to Okayama, the 08:35 Nozomi to Hakata, a limousine transfer to the airport, and BX506 at 11:55. Joni says goodbye at Okayama Station, returns the van there and makes his own way back to Tokyo.',
       stops:[
-        { time:'Morning', type:'hotel', badge:'Checkout', badgeType:'logistics', title:'Breakfast & check-out · YORUYA', sub:'Kurashiki', loc:'YORUYA Kurashiki', addr:'Kurashiki, Okayama', q:'YORUYA Kurashiki', notes:'Onward transport from here runs to Okayama for the Shinkansen.', alert:null },
-        { time:'~08:30', type:'transport', badge:'Routing fixed', badgeType:'requested', title:'Shinkansen · Okayama → Hakata', sub:'Kurashiki → Okayama → Fukuoka · approx. 1h 45m', loc:'Okayama Station', addr:'Okayama Station, Okayama', q:'Okayama Station', notes:'Working back from the 11:55 flight: at Fukuoka Airport by about 10:40, Hakata by 10:30, so a Nozomi leaving Okayama around 08:30 and out of Kurashiki by 08:00. Breakfast at YORUYA then straight to the station.', alert:'Early departure — set against the 11:55 flight' },
-        { time:'~10:30', type:'transport', badge:'Transfer', badgeType:'requested', title:'Hakata → Fukuoka Airport', sub:'Short transfer to the international terminal', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'Fukuoka Airport sits unusually close to the city — only a few minutes from Hakata — but the international terminal is a shuttle ride from the domestic side, so allow for that.', alert:null },
+        { time:'07:45', type:'transport', badge:'Confirmed', badgeType:'confirmed', title:'Pick-up at YORUYA → Okayama Station', sub:'Van · Kurashiki to Okayama', loc:'YORUYA Kurashiki', addr:'Kurashiki, Okayama', q:'YORUYA Kurashiki', notes:'Breakfast and check-out before a 07:45 departure, which gives about 50 minutes to Okayama Station for the 08:35 train. Bags out the night before.', alert:'07:45 pick-up — breakfast early' },
+        { time:'~08:25', type:'transport', badge:'Farewell', badgeType:'logistics', title:'Joni departs at Okayama Station', sub:'Van returned here · Joni returns to Tokyo', loc:'Okayama Station', addr:'Okayama Station, Okayama', q:'Okayama Station', notes:'Joni sees the group onto the Shinkansen, returns the van at Okayama and travels back to Tokyo under his own arrangements — Shinkansen or flight, his choice. The end of the Japanese art programme.', alert:null },
+        { time:'08:35', type:'transport', badge:'To book', badgeType:'pending', title:'Shinkansen · Okayama → Hakata', sub:'08:35 → 10:18 · approx. 1h 43m · four guests', loc:'Okayama Station', addr:'Okayama Station, Okayama', q:'Okayama Station', notes:'Reserved seats still to be bought. Arriving Hakata at 10:18 leaves a comfortable margin on the 11:55 departure.', alert:'Seats not yet reserved' },
+        { time:'10:18', type:'transport', badge:'Being arranged', badgeType:'requested', title:'Limousine · Hakata Station → Fukuoka Airport', sub:'Arranged by Happy Camper · international terminal', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport International Terminal', notes:'A car meets the train at Hakata and runs straight to the international terminal — worth the arrangement, since the subway reaches only the domestic side and the international terminal is a further shuttle from there.', alert:null },
         { time:'11:55', type:'flight', badge:'Booked', badgeType:'self-booked', title:'BX506 · Fukuoka → Busan', sub:'Air Busan · FUK 11:55 → PUS 13:00 · direct · 1h 05m', loc:'Fukuoka Airport', addr:'Fukuoka Airport, Hakata Ward, Fukuoka', q:'Fukuoka Airport', notes:'Booked for all four guests, economy, ref KGLY3Q. Seats assigned at check-in. Note the baggage allowance: one cabin bag each and no checked bags, which needs resolving before the day.', alert:'Cabin bag only · no checked baggage on this fare' },
         { time:'~14:30', type:'hotel', badge:'Korea', badgeType:'logistics', title:'Busan · Signiel Busan', sub:'Korea programme begins', loc:'Signiel Busan', addr:'Haeundae, Busan', q:'Signiel Busan', notes:'Landing at 13:00 puts the group at Haeundae by mid-afternoon — well ahead of the wider Groeninghe group, which arrives around 19:21. Time to settle before dinner.', alert:null },
         { time:'19:00', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Born & Bred', sub:'Dinner · 19:00 · four guests · Busan', loc:'Born & Bred, Busan', addr:'Busan', q:'Born and Bred Busan', notes:'The first Korean dinner, now named and timed on the canvas — 19:00 for four. A tight connection with the 19:21 arrival of the wider Groeninghe group, so worth confirming the table can flex.', alert:'Confirmed · 19:00 · 4 pax' }
@@ -500,12 +501,14 @@ var TRANSPORT = [
   ['27–30 Oct','Private car','Takamatsu, Naoshima, Kurashiki and on to Fukuoka'],
   ['28 Oct','Ferry · Takamatsu → Naoshima','08:10 sailing'],
   ['28 Oct','Naoshima → Kurashiki','Late afternoon / evening'],
-  ['30 Oct','Shinkansen · Okayama → Hakata','~08:30 departure to meet the 11:55 flight'],
+  ['30 Oct','Van · YORUYA → Okayama Station','07:45 pick-up · Joni leaves the group here'],
+  ['30 Oct','Shinkansen · Okayama → Hakata','08:35 → 10:18 · seats still to be reserved'],
+  ['30 Oct','Limousine · Hakata → Fukuoka Airport','Arranged by Happy Camper'],
   ['30 Oct','BX506 · Fukuoka → Busan','11:55 → 13:00 · Air Busan · booked · ref KGLY3Q']
 ];
 var OPEN_ITEMS = [
   ['Baggage on BX506','The Busan fare carries one cabin bag per guest and no checked bags. Four people with nine days of luggage will need either paid checked baggage added to the booking or the main bags forwarded separately to Korea.'],
-  ['Shinkansen tickets for the 30th','The routing and the flight are fixed, so the Okayama–Hakata seats can now be reserved against an 08:30 departure.'],
+  ['Shinkansen seats · 30 October','The 08:35 Okayama–Hakata service is now fixed, so four reserved seats can be bought. Worth doing early for luggage space on a Nozomi.'],
 
   ['Korea entry','K-ETA requirements depend on each traveller\u0027s nationality — worth confirming for all four guests well before departure.'],
   ['Timed-entry museums','Chichu and the Noguchi Garden Museum both work on reserved, timed admission. These set the shape of the 27th and 28th and should be held early.']
@@ -886,7 +889,7 @@ function renderLogistics(){
     +'<li><span class="info-emoji">🪨</span><div class="info-text"><strong>27 Oct</strong>Ritsurin + Noguchi + Nakashima + Yakuri-ji → Ryobo 18:00 → Royal Park</div></li>'
     +'<li><span class="info-emoji">⛴️</span><div class="info-text"><strong>28 Oct</strong>Naoshima, full day → YORUYA Kurashiki</div></li>'
     +'<li><span class="info-emoji">🖼</span><div class="info-text"><strong>29 Oct</strong>Full-day Kurashiki with Joni, including the Ohara → YORUYA</div></li>'
-    +'<li><span class="info-emoji">🇰🇷</span><div class="info-text"><strong>30 Oct</strong>Kurashiki → Okayama → Hakata → FUK → BX506 11:55 → Busan 13:00</div></li>'
+    +'<li><span class="info-emoji">🇰🇷</span><div class="info-text"><strong>30 Oct</strong>07:45 van → Okayama 08:35 → Hakata 10:18 → FUK → BX506 11:55 → Busan 13:00</div></li>'
     +'</ul></div>';
   document.getElementById('tab-logistics').innerHTML=h;
 }
