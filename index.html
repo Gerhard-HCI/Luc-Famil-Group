@@ -287,6 +287,75 @@
     #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(13,40,71,.92);color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;pointer-events:none;opacity:0;transition:all .22s cubic-bezier(.4,0,.2,1);z-index:999;white-space:nowrap;max-width:90vw}
     #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
+    /* JOURNAL · documentary reel — a deliberately dark, single-look panel */
+    #tab-journal.tab-panel{padding-left:0;padding-right:0}
+    .jr{--jr-bg:#0A1220;--jr-bg2:#0F1A2C;--jr-ink:#EDE6D6;--jr-ink2:rgba(237,230,214,.72);--jr-ink3:rgba(237,230,214,.45);--jr-gold:#C99A45;--jr-line:rgba(237,230,214,.12);
+      background:var(--jr-bg);color:var(--jr-ink);border-radius:var(--radius);overflow:hidden;margin:0 14px}
+    .jr-sprocket{height:14px;background:repeating-linear-gradient(90deg,transparent 0 10px,rgba(237,230,214,.13) 10px 22px,transparent 22px 30px);background-size:30px 6px;background-repeat:repeat-x;background-position:0 4px;border-bottom:1px solid var(--jr-line)}
+    .jr-sprocket.bottom{border-bottom:none;border-top:1px solid var(--jr-line)}
+    .jr-open{padding:34px 22px 30px;text-align:center}
+    .jr-reel{font-family:'SF Mono','Menlo',monospace;font-size:10.5px;letter-spacing:.32em;color:var(--jr-gold);text-transform:uppercase}
+    .jr-open h2{font-family:var(--font-serif);font-weight:300;font-size:clamp(34px,8vw,54px);line-height:1.02;letter-spacing:.01em;margin:14px 0 10px;text-wrap:balance}
+    .jr-open h2 em{font-style:italic;color:var(--jr-gold)}
+    .jr-open p{font-size:13px;color:var(--jr-ink2);max-width:46ch;margin:0 auto;line-height:1.6}
+    .jr-count{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 18px;margin-top:18px;font-family:'SF Mono','Menlo',monospace;font-size:10.5px;letter-spacing:.12em;color:var(--jr-ink3);text-transform:uppercase}
+    .jr-count b{color:var(--jr-ink);font-weight:500}
+    .jr-index{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 16px 18px;justify-content:center;flex-wrap:wrap}
+    .jr-index::-webkit-scrollbar{display:none}
+    .jr-index button{background:transparent;border:1px solid var(--jr-line);color:var(--jr-ink2);border-radius:99px;padding:7px 13px;font-size:11px;font-weight:500;letter-spacing:.06em}
+    .jr-index button:hover,.jr-index button:focus-visible{border-color:var(--jr-gold);color:var(--jr-ink);outline:none}
+
+    .jr-ch{border-top:1px solid var(--jr-line);padding:34px 0 10px}
+    .jr-ch-head{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:end;padding:0 20px 14px}
+    .jr-ch-num{font-family:var(--font-serif);font-weight:300;font-size:64px;line-height:.8;color:var(--jr-gold);grid-row:span 2}
+    .jr-ch-date{font-family:'SF Mono','Menlo',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--jr-ink3)}
+    .jr-ch-title{font-family:var(--font-serif);font-size:28px;font-weight:400;font-style:italic;line-height:1.1;text-wrap:balance}
+    .jr-ch-intro{font-size:13.5px;line-height:1.7;color:var(--jr-ink2);padding:0 20px 8px;max-width:62ch}
+    .jr-live{display:inline-block;font-family:var(--font-sans);font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:var(--jr-gold);color:var(--jr-bg);padding:3px 8px;border-radius:99px;vertical-align:middle;margin-left:8px}
+
+    .jr-scene{padding:22px 0 6px}
+    .jr-media{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+    .jr-m{position:relative;background:var(--jr-bg2);overflow:hidden;cursor:zoom-in;border:0;padding:0;display:block;width:100%;max-width:100%;aspect-ratio:4/5}
+    .jr-m.lead{grid-column:1/-1;aspect-ratio:auto}
+    .jr-m.wide{grid-column:1/-1;aspect-ratio:16/10}
+    .jr-m img,.jr-m video{width:100%;height:100%;object-fit:cover;display:block}
+    .jr-m.lead img,.jr-m.lead video{height:auto;max-height:78vh;object-fit:contain;margin:0 auto;background:var(--jr-bg2)}
+    .jr-m:focus-visible{outline:2px solid var(--jr-gold);outline-offset:-2px}
+    .jr-film-tag{position:absolute;left:10px;top:10px;font-family:'SF Mono','Menlo',monospace;font-size:9.5px;letter-spacing:.14em;background:rgba(10,18,32,.72);color:var(--jr-ink);padding:4px 7px;border-radius:4px;pointer-events:none}
+    .jr-sound{position:absolute;right:10px;bottom:10px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(237,230,214,.35);background:rgba(10,18,32,.72);color:var(--jr-ink);font-size:14px;display:flex;align-items:center;justify-content:center}
+    .jr-cap{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:12px 20px 0;align-items:baseline}
+    .jr-tc{font-family:'SF Mono','Menlo',monospace;font-size:10.5px;color:var(--jr-gold);letter-spacing:.06em;white-space:nowrap;font-variant-numeric:tabular-nums}
+    .jr-cap-text{font-family:var(--font-serif);font-size:17px;line-height:1.4;color:var(--jr-ink)}
+    .jr-by{grid-column:2;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--jr-ink3)}
+
+    .jr-quote{margin:26px 20px 8px;padding:4px 0 4px 18px;border-left:1px solid var(--jr-gold)}
+    .jr-quote q{font-family:var(--font-serif);font-style:italic;font-size:22px;line-height:1.3;color:var(--jr-ink);quotes:'\201C' '\201D'}
+    .jr-quote div{margin-top:8px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--jr-ink3)}
+    .jr-note{margin:22px 20px 6px;font-size:12.5px;line-height:1.6;color:var(--jr-ink2);display:flex;gap:12px;align-items:baseline}
+    .jr-note .jr-tc{flex-shrink:0}
+
+    .jr-end{border-top:1px solid var(--jr-line);padding:34px 22px 30px;text-align:center}
+    .jr-end h3{font-family:var(--font-serif);font-weight:300;font-style:italic;font-size:30px;margin:10px 0 12px}
+    .jr-end ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 8px;margin:14px 0 0;padding:0}
+    .jr-end li{font-size:11px;border:1px solid var(--jr-line);border-radius:99px;padding:5px 11px;color:var(--jr-ink2)}
+    .jr-end p{font-size:12px;color:var(--jr-ink3);max-width:48ch;margin:16px auto 0;line-height:1.6}
+
+    .jr-lb{position:fixed;inset:0;z-index:10000;background:rgba(4,8,14,.985);display:flex;flex-direction:column;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+    .jr-lb[hidden]{display:none}
+    .jr-lb-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:10px}
+    .jr-lb-stage img,.jr-lb-stage video{max-width:100%;max-height:100%;object-fit:contain}
+    .jr-lb-bar{display:flex;align-items:center;gap:10px;padding:10px 14px 16px;color:#EDE6D6}
+    .jr-lb-cap{flex:1;min-width:0;font-family:var(--font-serif);font-size:15px;line-height:1.35}
+    .jr-lb-cap small{display:block;font-family:'SF Mono','Menlo',monospace;font-size:10px;letter-spacing:.08em;color:#C99A45;margin-bottom:3px}
+    .jr-lb button{background:rgba(237,230,214,.08);border:1px solid rgba(237,230,214,.2);color:#EDE6D6;width:40px;height:40px;border-radius:50%;font-size:17px;flex-shrink:0}
+    .jr-lb .jr-lb-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:calc(env(safe-area-inset-right,0px) + 12px)}
+    @media(min-width:700px){
+      .jr{margin:0}
+      #tab-journal.tab-panel{padding-left:32px;padding-right:32px}
+      .jr-ch-head,.jr-ch-intro,.jr-cap{padding-left:32px;padding-right:32px}
+      .jr-quote,.jr-note{margin-left:32px;margin-right:32px}
+    }
+
     @media(min-width:700px){
       .tab-nav{padding:0 30px}
       .tab-btn{font-size:12.5px;padding:10px 18px}
@@ -324,6 +393,7 @@
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="itinerary">Itinerary</button>
     <button class="tab-btn" data-tab="art">Art Programme</button>
+    <button class="tab-btn" data-tab="journal">Journal</button>
     <button class="tab-btn" data-tab="logistics">Logistics</button>
     <button class="tab-btn" data-tab="discover">Discover</button>
     <button class="tab-btn" data-tab="diet">Diet</button>
@@ -335,6 +405,7 @@
 <div id="main-content">
   <div id="tab-itinerary" class="tab-panel active"></div>
   <div id="tab-art"       class="tab-panel"></div>
+  <div id="tab-journal"   class="tab-panel"></div>
   <div id="tab-logistics" class="tab-panel"></div>
   <div id="tab-discover"  class="tab-panel"></div>
   <div id="tab-diet"      class="tab-panel"></div>
@@ -349,7 +420,7 @@
 'use strict';
 
 /* ═══ CONFIG · Famil / Versele · 22–30 October 2026 ═══ */
-var FX_RATE = 178.65; // 1 EUR ≈ 178.65 JPY · derived from the canvas rate (159 JPY/USD)
+var FX_RATE = 177.15; // 1 EUR = 177.148 JPY · rate from the working budget
 
 var TRIP = {
   startDate:'2026-10-22',
@@ -430,7 +501,7 @@ var TRIP = {
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Valley Gallery & Naoshima New Museum', sub:'Yayoi Kusama · the island\u0027s newest space', loc:'Valley Gallery, Naoshima', addr:'Naoshima, Kagawa', q:'Valley Gallery Naoshima', notes:'Kusama at Valley Gallery, plus the new museum included in Joni\u0027s latest Naoshima routing.', alert:null },
         { time:'Late day', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Honmura · Art House Project', sub:'Village houses as installations', loc:'Art House Project Honmura', addr:'Honmura, Naoshima, Kagawa', q:'Art House Project Honmura Naoshima', notes:'Traditional village houses converted into permanent installations — the quietest and most domestic part of the island, and the best last stop before the boat.', alert:null },
         { time:'Evening', type:'transport', badge:'Transfer', badgeType:'requested', title:'Naoshima → Kurashiki', sub:'Ferry and car · late afternoon / evening', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki Okayama', notes:'Across to the mainland and on to Kurashiki for two nights at YORUYA.', alert:null },
-        { time:'19:00', type:'restaurant', badge:'Requested', badgeType:'requested', title:'Kurashiki Ichie · 一会', sub:'Dinner · 19:00 · four guests · Kurashiki', loc:'Kurashiki Ichie', addr:'Kurashiki, Okayama', q:'倉敷 一会', notes:'Requested for four at 19:00, awaiting the restaurant. A manageable hour after the ferry back from Naoshima and the drive across to the mainland.', alert:'Requested · awaiting confirmation' }
+        { time:'19:00', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Kurashiki Ichie · 一会', sub:'Dinner · 19:00 · four guests · Kurashiki', loc:'Kurashiki Ichie', addr:'Kurashiki, Okayama', q:'倉敷 一会', notes:'Confirmed for four at 19:00. A manageable hour after the ferry back from Naoshima and the drive across to the mainland.', alert:'Confirmed · 19:00 · 4 pax' }
       ] },
 
     { date:'2026-10-29', dayNum:8, weekday:'Thursday, 29 October', theme:'Historic architecture, craft & the Ohara', city:'Kurashiki', cityClass:'setouchi', hotel:'YORUYA Kurashiki', hq:'YORUYA Kurashiki', hotelNote:'Night 2 · confirmed · 2 rooms · breakfast included', hosted:true,
@@ -439,7 +510,7 @@ var TRIP = {
         { time:'Morning', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Bikan Historical District', sub:'Canals · merchant houses · white kura warehouses', loc:'Kurashiki Bikan Historical Quarter', addr:'Chuo, Kurashiki, Okayama', q:'Kurashiki Bikan Historical Quarter', notes:'Willow-lined canals, preserved merchant-town architecture, and the craft and design shops that still work out of the old warehouses.', alert:null },
         { time:'Midday', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Ohara Museum of Art', sub:'Japan\u0027s first museum of Western art', loc:'Ohara Museum of Art', addr:'1-1-15 Chuo, Kurashiki, Okayama', q:'Ohara Museum of Art Kurashiki', notes:'Founded in 1930 and historically significant as the first Western-art museum in Japan — the counterweight to everything the trip has looked at from the Japanese side.', alert:null },
         { time:'Afternoon', type:'activity', badge:'Programme', badgeType:'confirmed', title:'Masayoshi Izumi · outdoor stone work', sub:'Master stonemason · Noguchi collaborator', loc:'Kurashiki', addr:'Kurashiki, Okayama', q:'Kurashiki Bikan Historical Quarter', notes:'An outdoor stone installation by Masayoshi Izumi, Isamu Noguchi\u0027s longtime collaborator in Mure — the cleanest way to close the circle opened at the Noguchi museum two days earlier.', alert:null },
-        { time:'19:00', type:'restaurant', badge:'Requested', badgeType:'requested', title:'Hamayoshi · 浜吉', sub:'Dinner · 19:00 · four guests', loc:'Hamayoshi', addr:'Okayama', q:'浜吉 岡山', notes:'Requested for four at 19:00, awaiting the restaurant. The last dinner in Japan, closing the Setouchi leg before the crossing to Korea the next morning.', alert:'Requested · awaiting confirmation' }
+        { time:'19:00', type:'restaurant', badge:'Confirmed', badgeType:'confirmed', title:'Hamayoshi · 浜吉', sub:'Dinner · 19:00 · four guests', loc:'Hamayoshi', addr:'Okayama', q:'浜吉 岡山', notes:'Confirmed for four at 19:00 — the last dinner in Japan, closing the Setouchi leg before the crossing to Korea the next morning.', alert:'Confirmed · 19:00 · 4 pax' }
       ] },
 
     { date:'2026-10-30', dayNum:9, weekday:'Friday, 30 October', theme:'Kurashiki → Busan', city:'Busan', cityClass:'', hotel:'Signiel Busan', hq:'Signiel Busan', hotelNote:'Korea programme begins', hosted:true,
@@ -695,6 +766,7 @@ document.querySelector('.tab-nav').addEventListener('click',function(e){
   var name=btn.getAttribute('data-tab');
   document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tab')===name);});
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.toggle('active',p.id==='tab-'+name);});
+  if(name!=='journal'){document.querySelectorAll('#tab-journal video').forEach(function(v){v.pause();});}
   document.getElementById('main-content').scrollTo({top:0,behavior:'smooth'});
 });
 window.toggleDay=function(num){var c=document.getElementById('day-'+num);if(c)c.classList.toggle('open');};
@@ -743,7 +815,7 @@ function renderItinerary(){
     +'<span class="banner-chip">🎨 Chichu Art Museum</span>'
     +'<span class="banner-chip">◻️ Lee Ufan</span>'
     +'<span class="banner-chip">🖼 Ohara Museum</span>'
-    +'<span class="banner-chip confirmed">🍽 5 confirmed · 2 requested · 1 walk-in</span>'
+    +'<span class="banner-chip confirmed">🍽 7 dinners confirmed · 1 walk-in</span>'
     +'</div></div>'
     +'<div class="booking-legend">'
     +'<span class="bl-item"><span class="bl-dot confirmed"></span>In the programme</span>'
@@ -1084,9 +1156,198 @@ function renderEmergency(){
     +'<div class="util-card"><ul class="info-list"><li><span class="info-emoji">ℹ️</span><div class="info-text"><strong>In an emergency</strong>Dial 119 for an ambulance or 110 for police first — operators can route English support. Then call Happy Camper, at any hour.</div></li></ul></div>';
 }
 
+/* ═══ JOURNAL · the trip so far, from the group chat ═══
+   Times are when each dispatch reached the group chat, in Japan time (JST).
+   Media live in /journal/ next to this page: p = photograph, v = film (+ poster .jpg). */
+var JR_DIMS = {"p00000011":[1600,1200],"p00000013":[1056,1600],"p00000015":[1200,1600],"p00000016":[900,1600],"p00000024":[1200,1600],"p00000046":[1200,1600],"p00000048":[1600,1200],"p00000049":[1600,1200],"p00000050":[1200,1600],"p00000051":[1200,1600],"p00000052":[1200,1600],"p00000053":[1200,1600],"p00000054":[1600,1200],"p00000055":[1600,1200],"p00000058":[1600,1200],"p00000059":[1200,1600],"p00000062":[1600,1222],"p00000063":[1600,692],"p00000064":[821,1600],"p00000065":[1600,1200],"p00000069":[1200,1600],"p00000070":[1200,1600],"p00000071":[1200,1600],"p00000072":[1200,1600],"p00000073":[1200,1600],"p00000074":[1466,1599],"p00000077":[612,1600],"p00000078":[1200,1600],"p00000079":[1200,1600],"p00000080":[1200,1600],"p00000081":[1200,1600],"p00000082":[1200,1600],"p00000083":[1200,1600],"p00000084":[1200,1600],"p00000085":[1600,1200],"p00000093":[1600,1578],"p00000094":[1200,1600],"p00000095":[1200,1600],"p00000096":[1200,1600],"p00000098":[1200,1600],"p00000099":[1200,1600],"p00000100":[1200,1600],"p00000101":[1200,1600],"p00000103":[1200,1600],"p00000104":[1200,1600],"p00000105":[1600,1200],"p00000114":[1600,1200],"p00000115":[1600,977],"p00000116":[1200,1600],"p00000117":[1200,1600],"p00000127":[975,1600],"p00000135":[1600,1200],"p00000136":[1600,1200],"p00000137":[1600,1200],"p00000138":[1200,1600],"v00000056":[1600,900],"v00000057":[506,900],"v00000060":[506,900],"v00000075":[506,900],"v00000076":[506,900],"v00000086":[1600,900],"v00000087":[1600,900],"v00000088":[506,900],"v00000089":[506,900],"v00000090":[506,900],"v00000102":[506,900],"v00000106":[506,900],"v00000107":[506,900],"v00000118":[506,900],"v00000119":[506,900]};
+var JOURNAL = [
+  { num:'22', date:'Thursday · 22 October', title:'Departure', intro:'Two routings out of Brussels, one through Warsaw and one through Hong Kong. That evening Joni introduces himself to the group chat.',
+    blocks:[
+      { t:'scene', tc:'20:21', by:'Luc Famil', cap:'Luc and Kati, seated and on their way.', m:['p00000011'] },
+      { t:'scene', tc:'20:27', by:'Joni Waka', cap:'Joni says hello, in front of the Art Fair Tokyo posters.', m:['p00000013'] }
+    ] },
+  { num:'23', date:'Friday · 23 October', title:'Arrival', intro:'Two flights, two airports, two cars. Julio of SKY Limousine holds up the first name card at Narita late in the morning; the second goes up at Haneda just after two. By evening the group is in Ginza.',
+    blocks:[
+      { t:'scene', tc:'10:54', by:'Julio · SKY Limousine', cap:'Narita. The name card goes up for Luc and Kati.', m:['p00000015'] },
+      { t:'scene', tc:'11:08', by:'Luc Famil', cap:'Through the arrivals hall.', m:['p00000016'] },
+      { t:'scene', tc:'14:00', by:'Julio · SKY Limousine', cap:'Haneda. The second card, for Gwijde and Elke.', m:['p00000024'] },
+      { t:'quote', q:'We have to start with something. 😜', by:'Luc Famil · from Mori Bar, Ginza · 18:06' },
+      { t:'scene', tc:'09:04 +1', by:'Gwijde Versele', cap:'Yakiniku Nakahara, with the chef at the end of the night.', m:['p00000046'] },
+      { t:'quote', q:'Wonderful dinner. Luc was enlighted 😃', by:'Gwijde Versele · the next morning' }
+    ] },
+  { num:'24', date:'Saturday · 24 October', title:'Craft, design and light', intro:'The first full day with Joni, and the day his dispatches begin: lunch at a long counter, exhibitions through the afternoon, Tokyo Tower in the fog, and rooms full of light before a late kaiseki dinner.',
+    blocks:[
+      { t:'scene', tc:'13:27', by:'Joni Waka', cap:'Lunch at a long stone counter.', m:['p00000048','p00000049','p00000050'] },
+      { t:'scene', tc:'13:27', by:'Joni Waka', cap:'An exhibition under a ceiling of ice floes: layered cardboard figures and rows of white forms.', m:['p00000052','p00000051','p00000053','p00000054','p00000055'] },
+      { t:'scene', tc:'13:27', by:'Joni Waka', cap:'In a bare white gallery, hanging buckets set swinging.', m:['v00000056'] },
+      { t:'scene', tc:'15:11', by:'Joni Waka', cap:'A garden walk, and koi beneath the maples.', m:['p00000058','v00000060'] },
+      { t:'scene', tc:'16:15', by:'Joni Waka', cap:'MORE LIGHT… in neon, once in reflection and once head-on.', m:['p00000063','p00000062'] },
+      { t:'scene', tc:'16:28', by:'Joni Waka', cap:'A portrait half-hidden behind green leaves.', m:['p00000064'] },
+      { t:'quote', q:'Fidel is alive & well but camouflaged', by:'Joni Waka · 16:28' },
+      { t:'scene', tc:'16:28', by:'Joni Waka', cap:'A pause at a long table beside a living wall.', m:['p00000065'] },
+      { t:'scene', tc:'16:58', by:'Joni Waka', cap:'A field of tent-houses in red, yellow and blue, seen from the floor and from above.', m:['p00000069','p00000072','p00000070','p00000071','p00000073','p00000074','v00000075'] },
+      { t:'scene', tc:'17:22', by:'Joni Waka', cap:'Looking up through a glass grid at a façade full of colour.', m:['v00000076'] },
+      { t:'scene', tc:'19:15', by:'Joni Waka', cap:'Tokyo Tower in the evening fog, and the four of them in front of it.', m:['p00000078','p00000077','p00000079','p00000080'] },
+      { t:'scene', tc:'20:05', by:'Joni Waka', cap:'After dark, a run of immersive rooms: falling flowers, floating lanterns, red spider lilies over ink-drawn chariots.', m:['v00000090','p00000081','p00000082','p00000083','p00000084','p00000085','v00000086','v00000087','v00000088','v00000089'] },
+      { t:'note', tc:'20:30', text:'Dinner at Kaiseki Guchokuni. After the generous yakiniku the night before, the kitchen was asked to keep the ladies\u0027 portions smaller.' }
+    ] },
+  { num:'25', date:'Sunday · 25 October', title:'Old Tokyo, then Ginza', intro:'Joni is parking his car before the 09:30 pick-up. The morning goes east into shitamachi, with temples, a sculptor\u0027s quiet rooms and noodles for lunch. The afternoon turns back to contemporary work, introduced by the artist links Joni sends round mid-afternoon.',
+    blocks:[
+      { t:'scene', tc:'10:06', by:'Joni Waka', cap:'Across the Sumida: Skytree and the golden flame of the Asahi building.', m:['p00000093'] },
+      { t:'scene', tc:'12:27', by:'Joni Waka', cap:'A temple garden: a great bronze Buddha, old stone lanterns, and a praying mantis on the stone.', m:['p00000101','p00000098','p00000100','p00000099','v00000102'] },
+      { t:'scene', tc:'12:36', by:'Joni Waka', cap:'A stupa, with Skytree rising behind it.', m:['p00000103'] },
+      { t:'scene', tc:'12:52', by:'Joni Waka', cap:'A tatami room open to the garden, and water running between stepping stones.', m:['p00000105','p00000104','v00000106'] },
+      { t:'scene', tc:'13:50', by:'Joni Waka', cap:'Lunch. Noodles all round.', m:['v00000107'] },
+      { t:'note', tc:'16:14', text:'Joni shares the work of the artist Hikaru Fujii with the group, ahead of the afternoon visit.' },
+      { t:'scene', tc:'16:45', by:'Joni Waka', cap:'Behind a wall of glass block: the afternoon\u0027s exhibition, and a swing in front of the light.', m:['p00000114','p00000115','p00000116','p00000117','v00000118'] },
+      { t:'scene', tc:'17:51', by:'Joni Waka', cap:'Two in the mirror.', m:['v00000119'] },
+      { t:'scene', tc:'18:56', by:'Luc Famil', cap:'Noodles, everywhere.', m:['p00000127'] },
+      { t:'quote', q:'Fabulous!', by:'Joni Waka · 18:57' },
+      { t:'note', tc:'20:30', text:'The last Tokyo dinner, at Sushi Nakano in Minami-Aoyama. The guests make their own way back afterwards.' },
+      { t:'quote', q:'Thanks again for your flexibility & patience in making two mutually fun days in Tokyo.', by:'Joni Waka · 00:21, before the early start' }
+    ] },
+  { num:'26', date:'Monday · 26 October', title:'To the islands', live:true, intro:'The car is outside the hotel at 05:30 for the 07:40 flight to Takamatsu. Then the charter boat, and the first pictures from the Setouchi islands.',
+    blocks:[
+      { t:'scene', tc:'13:45', by:'Joni Waka', cap:'Lunch, glasses raised.', m:['p00000135'] },
+      { t:'scene', tc:'13:45', by:'Joni Waka', cap:'A timber barn, its floor given over to sculpture.', m:['p00000136','p00000137','p00000138'] }
+    ] }
+];
+
+var JR_FLAT = [];
+function jrIsVid(id){return id.charAt(0)==='v';}
+function jrSrc(id){return 'journal/'+id+(jrIsVid(id)?'.mp4':'.jpg');}
+function jrPoster(id){return 'journal/'+id+'.jpg';}
+function jrLandscape(id){var d=JR_DIMS[id];return d&&d[0]>d[1];}
+
+function jrMediaHTML(id,cls,cap,tc){
+  var i=JR_FLAT.length; JR_FLAT.push({id:id,cap:cap,tc:tc});
+  var d=JR_DIMS[id]||[4,5];
+  var ratio=cls==='lead'?' style="aspect-ratio:'+d[0]+'/'+d[1]+'"':'';
+  var inner;
+  if(jrIsVid(id)){
+    inner='<video muted loop playsinline preload="none" poster="'+jrPoster(id)+'" data-src="'+jrSrc(id)+'"></video>'
+      +'<span class="jr-film-tag">▶ FILM</span>'
+      +'<span class="jr-sound" role="button" tabindex="0" aria-label="Sound on" data-sound>🔇</span>';
+  } else {
+    inner='<img src="'+jrSrc(id)+'" alt="'+esc(cap)+'" loading="lazy" decoding="async">';
+  }
+  return '<button type="button" class="jr-m '+cls+'"'+ratio+' data-jr="'+i+'" aria-label="Open: '+esc(cap)+'">'+inner+'</button>';
+}
+
+function jrScene(b){
+  var ids=b.m.slice(), out=[];
+  var portraits=ids.filter(function(x){return !jrLandscape(x);});
+  var leadNeeded = ids.length===1 || (portraits.length%2===1);
+  var leadId = leadNeeded ? (ids.length===1 ? ids[0] : portraits[0]) : null;
+  if(leadId){ out.push(jrMediaHTML(leadId,'lead',b.cap,b.tc)); ids.splice(ids.indexOf(leadId),1); }
+  ids.forEach(function(x){ out.push(jrMediaHTML(x, jrLandscape(x)?'wide':'', b.cap, b.tc)); });
+  return '<div class="jr-scene"><div class="jr-media">'+out.join('')+'</div>'
+    +'<div class="jr-cap"><span class="jr-tc">'+esc(b.tc)+'</span><span class="jr-cap-text">'+esc(b.cap)+'</span>'
+    +'<span class="jr-by">'+(b.m.length>1?b.m.length+' frames · ':'')+esc(b.by)+'</span></div></div>';
+}
+
+function renderJournal(){
+  JR_FLAT=[];
+  var photos=0,films=0;
+  JOURNAL.forEach(function(c){c.blocks.forEach(function(b){if(b.m)b.m.forEach(function(x){if(jrIsVid(x))films++;else photos++;});});});
+  var h='<div class="jr"><div class="jr-sprocket"></div>'
+    +'<div class="jr-open"><div class="jr-reel">Reel one · Tokyo → Setouchi</div>'
+    +'<h2>The journey <em>so far</em></h2>'
+    +'<p>The trip as it happened, told through the photographs and films Joni and the group sent each other along the way. Times show when each one reached the group chat, in Japan time. Tap any frame to see it full size.</p>'
+    +'<div class="jr-count"><span><b>'+photos+'</b> photographs</span><span><b>'+films+'</b> films</span><span><b>22–26</b> October</span></div></div>'
+    +'<div class="jr-index">';
+  JOURNAL.forEach(function(c){h+='<button type="button" data-jr-go="jr-ch-'+c.num+'">'+esc(c.num)+' Oct · '+esc(c.title)+'</button>';});
+  h+='</div>';
+  JOURNAL.forEach(function(c){
+    h+='<section class="jr-ch" id="jr-ch-'+c.num+'"><div class="jr-ch-head"><div class="jr-ch-num">'+esc(c.num)+'</div>'
+      +'<div class="jr-ch-date">'+esc(c.date)+'</div>'
+      +'<div class="jr-ch-title">'+esc(c.title)+(c.live?'<span class="jr-live">In progress</span>':'')+'</div></div>'
+      +'<div class="jr-ch-intro">'+esc(c.intro)+'</div>';
+    c.blocks.forEach(function(b){
+      if(b.t==='scene')h+=jrScene(b);
+      else if(b.t==='quote')h+='<div class="jr-quote"><q>'+esc(b.q)+'</q><div>'+esc(b.by)+'</div></div>';
+      else if(b.t==='note')h+='<div class="jr-note"><span class="jr-tc">'+esc(b.tc)+'</span><span>'+esc(b.text)+'</span></div>';
+    });
+    h+='</section>';
+  });
+  h+='<div class="jr-end"><div class="jr-reel">To be continued</div><h3>Still to come</h3>'
+    +'<ul><li>27 · Noguchi &amp; Nakashima</li><li>27 · Ryobo</li><li>28 · Naoshima</li><li>29 · Kurashiki &amp; the Ohara</li><li>30 · Busan</li></ul>'
+    +'<p>New reels are added as Joni\u0027s dispatches come in. Chichu, Lee Ufan and the Teshima Art Museum do not allow photography inside, so those visits will appear from the outside only.</p></div>'
+    +'<div class="jr-sprocket bottom"></div></div>';
+  var el=document.getElementById('tab-journal');
+  el.innerHTML=h;
+  /* the viewer lives on <body>: the animated tab panel would otherwise trap position:fixed */
+  var lb=document.getElementById('jr-lb');
+  if(!lb){
+    lb=document.createElement('div');
+    lb.className='jr-lb';lb.id='jr-lb';lb.hidden=true;
+    lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label','Journal viewer');
+    lb.innerHTML='<button type="button" class="jr-lb-close" data-lb="close" aria-label="Close">✕</button>'
+      +'<div class="jr-lb-stage" id="jr-lb-stage"></div>'
+      +'<div class="jr-lb-bar"><button type="button" data-lb="prev" aria-label="Previous">‹</button><div class="jr-lb-cap" id="jr-lb-cap"></div><button type="button" data-lb="next" aria-label="Next">›</button></div>';
+    document.body.appendChild(lb);
+    lb.addEventListener('click',function(e){
+      var b=e.target.closest('[data-lb]');
+      if(b){var a=b.getAttribute('data-lb'); if(a==='close')jrClose(); else jrOpen(jrIdx+(a==='next'?1:-1)); return;}
+      if(e.target===lb||e.target.id==='jr-lb-stage')jrClose();
+    });
+  }
+  jrWire(el);
+}
+
+var jrIdx=0;
+function jrOpen(i){
+  jrIdx=(i+JR_FLAT.length)%JR_FLAT.length;
+  var it=JR_FLAT[jrIdx], st=document.getElementById('jr-lb-stage');
+  document.querySelectorAll('#tab-journal .jr-m video').forEach(function(v){v.pause();});
+  st.innerHTML = jrIsVid(it.id)
+    ? '<video src="'+jrSrc(it.id)+'" poster="'+jrPoster(it.id)+'" controls autoplay playsinline></video>'
+    : '<img src="'+jrSrc(it.id)+'" alt="'+esc(it.cap)+'">';
+  document.getElementById('jr-lb-cap').innerHTML='<small>'+esc(it.tc)+' JST · '+(jrIdx+1)+' / '+JR_FLAT.length+'</small>'+esc(it.cap);
+  document.getElementById('jr-lb').hidden=false;
+}
+function jrClose(){
+  var lb=document.getElementById('jr-lb'); if(!lb||lb.hidden)return;
+  lb.hidden=true; document.getElementById('jr-lb-stage').innerHTML='';
+}
+function jrWire(root){
+  root.addEventListener('click',function(e){
+    var s=e.target.closest('[data-sound]');
+    if(s){ e.stopPropagation(); var v=s.parentNode.querySelector('video');
+      if(v){ if(!v.getAttribute('src'))v.src=v.getAttribute('data-src'); v.muted=!v.muted; s.textContent=v.muted?'🔇':'🔊'; s.setAttribute('aria-label',v.muted?'Sound on':'Sound off'); var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+      return; }
+    var g=e.target.closest('[data-jr-go]');
+    if(g){ var t=document.getElementById(g.getAttribute('data-jr-go')); if(t)t.scrollIntoView({behavior:'smooth',block:'start'}); return; }
+    var m=e.target.closest('[data-jr]');
+    if(m){ jrOpen(parseInt(m.getAttribute('data-jr'),10)); }
+  });
+  document.addEventListener('keydown',function(e){
+    var lb=document.getElementById('jr-lb'); if(!lb||lb.hidden)return;
+    if(e.key==='Escape')jrClose(); else if(e.key==='ArrowRight')jrOpen(jrIdx+1); else if(e.key==='ArrowLeft')jrOpen(jrIdx-1);
+  });
+  var sx=null;
+  var lbEl=document.getElementById('jr-lb');
+  lbEl.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  lbEl.addEventListener('touchend',function(e){ if(sx===null)return; var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50)jrOpen(jrIdx+(dx<0?1:-1)); sx=null; });
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var v=en.target;
+        if(en.isIntersecting && document.getElementById('tab-journal').classList.contains('active')){
+          if(!v.getAttribute('src'))v.src=v.getAttribute('data-src');
+          var p=v.play(); if(p&&p.catch)p.catch(function(){});
+        } else { v.pause(); }
+      });
+    },{root:document.getElementById('main-content'),threshold:0.6});
+    root.querySelectorAll('.jr-m video').forEach(function(v){io.observe(v);});
+  }
+}
+
 function init(){
   renderItinerary();
   renderArt();
+  renderJournal();
   renderLogistics();
   renderDiscover();
   renderDiet();
