@@ -1159,7 +1159,7 @@ function renderEmergency(){
 /* ═══ JOURNAL · the trip so far, from the group chat ═══
    Times are when each dispatch reached the group chat, in Japan time (JST).
    Media live in /journal/ next to this page: p = photograph, v = film (+ poster .jpg). */
-var JR_DIMS = {"p00000011":[1600,1200],"p00000013":[1056,1600],"p00000015":[1200,1600],"p00000016":[900,1600],"p00000024":[1200,1600],"p00000046":[1200,1600],"p00000048":[1600,1200],"p00000049":[1600,1200],"p00000050":[1200,1600],"p00000051":[1200,1600],"p00000052":[1200,1600],"p00000053":[1200,1600],"p00000054":[1600,1200],"p00000055":[1600,1200],"p00000058":[1600,1200],"p00000059":[1200,1600],"p00000062":[1600,1222],"p00000063":[1600,692],"p00000064":[821,1600],"p00000065":[1600,1200],"p00000069":[1200,1600],"p00000070":[1200,1600],"p00000071":[1200,1600],"p00000072":[1200,1600],"p00000073":[1200,1600],"p00000074":[1466,1599],"p00000077":[612,1600],"p00000078":[1200,1600],"p00000079":[1200,1600],"p00000080":[1200,1600],"p00000081":[1200,1600],"p00000082":[1200,1600],"p00000083":[1200,1600],"p00000084":[1200,1600],"p00000085":[1600,1200],"p00000093":[1600,1578],"p00000094":[1200,1600],"p00000095":[1200,1600],"p00000096":[1200,1600],"p00000098":[1200,1600],"p00000099":[1200,1600],"p00000100":[1200,1600],"p00000101":[1200,1600],"p00000103":[1200,1600],"p00000104":[1200,1600],"p00000105":[1600,1200],"p00000114":[1600,1200],"p00000115":[1600,977],"p00000116":[1200,1600],"p00000117":[1200,1600],"p00000127":[975,1600],"p00000135":[1600,1200],"p00000136":[1600,1200],"p00000137":[1600,1200],"p00000138":[1200,1600],"v00000056":[1600,900],"v00000057":[506,900],"v00000060":[506,900],"v00000075":[506,900],"v00000076":[506,900],"v00000086":[1600,900],"v00000087":[1600,900],"v00000088":[506,900],"v00000089":[506,900],"v00000090":[506,900],"v00000102":[506,900],"v00000106":[506,900],"v00000107":[506,900],"v00000118":[506,900],"v00000119":[506,900]};
+var JR_DIMS = {"p00000011":[1600,1200],"p00000013":[1056,1600],"p00000015":[1200,1600],"p00000016":[900,1600],"p00000024":[1200,1600],"p00000046":[1200,1600],"p00000048":[1600,1200],"p00000049":[1600,1200],"p00000050":[1200,1600],"p00000051":[1200,1600],"p00000052":[1200,1600],"p00000053":[1200,1600],"p00000054":[1600,1200],"p00000055":[1600,1200],"p00000058":[1600,1200],"p00000059":[1200,1600],"p00000062":[1600,1222],"p00000063":[1600,692],"p00000064":[821,1600],"p00000065":[1600,1200],"p00000069":[1200,1600],"p00000070":[1200,1600],"p00000071":[1200,1600],"p00000072":[1200,1600],"p00000073":[1200,1600],"p00000074":[1466,1599],"p00000077":[612,1600],"p00000078":[1200,1600],"p00000079":[1200,1600],"p00000080":[1200,1600],"p00000081":[1200,1600],"p00000082":[1200,1600],"p00000083":[1200,1600],"p00000084":[1200,1600],"p00000085":[1600,1200],"p00000093":[1600,1578],"p00000094":[1200,1600],"p00000095":[1200,1600],"p00000096":[1200,1600],"p00000098":[1200,1600],"p00000099":[1200,1600],"p00000100":[1200,1600],"p00000101":[1200,1600],"p00000103":[1200,1600],"p00000104":[1200,1600],"p00000105":[1600,1200],"p00000114":[1600,1200],"p00000115":[1600,977],"p00000116":[1200,1600],"p00000117":[1200,1600],"p00000127":[975,1600],"p00000135":[1600,1200],"p00000136":[1600,1200],"p00000137":[1600,1200],"p00000138":[1200,1600],"v00000056":[1600,900],"v00000057":[506,900],"v00000060":[506,900],"v00000075":[506,900],"v00000076":[506,900],"v00000086":[1600,900],"v00000087":[1600,900],"v00000088":[506,900],"v00000089":[506,900],"v00000090":[506,900],"v00000102":[506,900],"v00000106":[506,900],"v00000107":[506,900],"v00000118":[506,900],"v00000119":[506,900],"p00000139":[1200,1600],"p00000144":[1200,1600],"p00000145":[1600,1200],"p00000147":[1200,1600],"p00000148":[1200,1600],"p00000149":[1600,1200],"p00000150":[1600,1200],"v00000146":[506,900],"v00000151":[1600,900]};
 var JOURNAL = [
   { num:'22', date:'Thursday · 22 October', title:'Departure', intro:'Two routings out of Brussels, one through Warsaw and one through Hong Kong. That evening Joni introduces himself to the group chat.',
     blocks:[
@@ -1206,10 +1206,18 @@ var JOURNAL = [
       { t:'note', tc:'20:30', text:'The last Tokyo dinner, at Sushi Nakano in Minami-Aoyama. The guests make their own way back afterwards.' },
       { t:'quote', q:'Thanks again for your flexibility & patience in making two mutually fun days in Tokyo.', by:'Joni Waka · 00:21, before the early start' }
     ] },
-  { num:'26', date:'Monday · 26 October', title:'To the islands', live:true, intro:'The car is outside the hotel at 05:30 for the 07:40 flight to Takamatsu. Then the charter boat, and the first pictures from the Setouchi islands.',
+  { num:'26', date:'Monday · 26 October', title:'To the islands', intro:'The car is outside the hotel at 05:30 for the 07:40 flight to Takamatsu. Then the charter boat, a day on the islands, and a charcoal-grilled dinner back in Takamatsu.',
     blocks:[
       { t:'scene', tc:'13:45', by:'Joni Waka', cap:'Lunch, glasses raised.', m:['p00000135'] },
-      { t:'scene', tc:'13:45', by:'Joni Waka', cap:'A timber barn, its floor given over to sculpture.', m:['p00000136','p00000137','p00000138'] }
+      { t:'scene', tc:'13:45', by:'Joni Waka', cap:'A timber barn, its floor given over to sculpture.', m:['p00000136','p00000137','p00000138'] },
+      { t:'scene', tc:'14:45', by:'Joni Waka', cap:'Two smiles beneath a low white shell on the hillside.', m:['p00000139'] },
+      { t:'quote', q:'We are ready joni. We come to meeting point', by:'Gwijde Versele · 16:59' },
+      { t:'scene', tc:'17:24', by:'Joni Waka', cap:'Late afternoon: a gull on the breakwater, a dark passage toward a pulsing light, and an old tree after the rain.', m:['v00000146','p00000145','p00000144','p00000147'] },
+      { t:'scene', tc:'20:25', by:'Joni Waka', cap:'Back in Takamatsu, dinner around the charcoal grill.', m:['p00000148','p00000149','p00000150','v00000151'] }
+    ] },
+  { num:'27', date:'Tuesday · 27 October', title:'Two masters', live:true, intro:'The day the programme was built around: Ritsurin Garden, then Isamu Noguchi and George Nakashima, two makers who turned Japanese stone and wood into a modern language. Pictures will follow as Joni sends them.',
+    blocks:[
+      { t:'note', tc:'18:00', text:'Dinner at Ryobo (両忘), Takamatsu: a single evening seating at Chef Nakagawa\u0027s counter. The name is a Zen phrase for letting go of both sides of every duality.' }
     ] }
 ];
 
@@ -1271,7 +1279,7 @@ function renderJournal(){
     h+='</section>';
   });
   h+='<div class="jr-end"><div class="jr-reel">To be continued</div><h3>Still to come</h3>'
-    +'<ul><li>27 · Noguchi &amp; Nakashima</li><li>27 · Ryobo</li><li>28 · Naoshima</li><li>29 · Kurashiki &amp; the Ohara</li><li>30 · Busan</li></ul>'
+    +'<ul><li>28 · Naoshima</li><li>29 · Kurashiki &amp; the Ohara</li><li>30 · Busan</li></ul>'
     +'<p>New reels are added as Joni\u0027s dispatches come in. Chichu, Lee Ufan and the Teshima Art Museum do not allow photography inside, so those visits will appear from the outside only.</p></div>'
     +'<div class="jr-sprocket bottom"></div></div>';
   var el=document.getElementById('tab-journal');
