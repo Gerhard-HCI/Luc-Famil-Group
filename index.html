@@ -256,6 +256,8 @@
     .pass-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
     .pass-btn{flex:1 1 0;min-width:68px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 6px;border-radius:var(--radius-sm);border:1px solid rgba(13,40,71,.25);background:#EEF4FF;color:#0D2847;font-size:12px;font-weight:700;letter-spacing:.03em;cursor:pointer;-webkit-tap-highlight-color:transparent}
     .pass-btn:active{transform:scale(.97)}
+    .pass-btn.locked{background:var(--border-lt);border-color:var(--border);color:var(--ink-4);cursor:not-allowed}
+    .pass-btn.locked:active{transform:none}
     .pass-btn small{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
     .pass-hint{font-size:11px;color:var(--ink-3);margin-top:7px;font-style:italic;line-height:1.45}
     #pass-overlay{position:fixed;inset:0;z-index:10000;background:rgba(7,20,40,.92);display:none;align-items:center;justify-content:center;padding:20px}
@@ -444,6 +446,10 @@
 'use strict';
 
 /* ═══ CONFIG · Famil / Versele · 22–30 October 2026 ═══ */
+// QR tickets stay locked until 08:00 JST on 30 Oct (= 23:00 UTC on 29 Oct),
+// about 25 minutes before the 08:35 departure.
+var PASS_UNLOCK_MS = Date.UTC(2026,9,29,23,0,0);
+function passesUnlocked(){ return Date.now() >= PASS_UNLOCK_MS; }
 var FX_RATE = 177.15; // 1 EUR = 177.148 JPY · rate from the working budget
 
 var TRIP = {
@@ -759,6 +765,7 @@ function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/<
 function gm(q){return(q&&q.indexOf('http')===0)?q:'https://maps.google.com/?q='+encodeURIComponent(q||'Japan');}
 function nav(q){return(q&&q.indexOf('http')===0)?q:'https://maps.google.com/maps?daddr='+encodeURIComponent(q||'Japan')+'&dirflg=d';}
 window.showPass=function(di,si,pi){
+  if(!passesUnlocked()){ showToast('Tickets unlock at 08:00 on 30 October'); return; }
   var t=TRIP.days[di].stops[si].passes[pi];
   document.getElementById('pass-title').textContent='Seat '+t.seat;
   document.getElementById('pass-meta').textContent='MIZUHO 605 · Okayama 08:35 → Hakata 10:18 · Car 6 · '+t.code;
@@ -786,6 +793,17 @@ window.copyAddr=function(di,si){
 /* ═══ CLOCK ═══ */
 function jst(){return new Date(Date.now()+9*3600000);}
 function isoToday(){return jst().toISOString().slice(0,10);}
+function refreshPassLocks(){
+  if(!passesUnlocked())return;
+  var btns=document.querySelectorAll('.pass-btn.locked');
+  btns.forEach(function(b){
+    b.classList.remove('locked');
+    b.removeAttribute('aria-disabled');
+    var sm=b.querySelector('small'); if(sm)sm.textContent='QR ticket';
+  });
+  var h=document.getElementById('pass-hint');
+  if(h&&btns.length)h.textContent='One pass per seat — tap to show the code at the gate. Works offline once the page has loaded.';
+}
 function tickClock(){
   var d=jst();
   document.getElementById('jst-clock').textContent=String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0');
@@ -835,8 +853,9 @@ function renderStop(stop,di,si){
     +(stop.alert?'<div class="stop-alert">⚠ '+esc(stop.alert)+'</div>':'')
     +'<div class="map-actions">'+mapHTML+'</div>'
     +(stop.passes?'<div class="pass-row">'+stop.passes.map(function(t,pi){
-        return '<button class="pass-btn" onclick="showPass('+di+','+si+','+pi+')"><span>'+esc(t.seat)+'</span><small>QR ticket</small></button>';
-      }).join('')+'</div><div class="pass-hint">One pass per seat — tap to show the code at the gate. Works offline once the page has loaded.</div>':'')
+        var lk=!passesUnlocked();
+        return '<button class="pass-btn'+(lk?' locked':'')+'" data-pass="'+di+'-'+si+'-'+pi+'"'+(lk?' aria-disabled="true"':'')+' onclick="showPass('+di+','+si+','+pi+')"><span>'+esc(t.seat)+'</span><small>'+(lk?'from 08:00':'QR ticket')+'</small></button>';
+      }).join('')+'</div><div class="pass-hint" id="pass-hint">'+(passesUnlocked()?'One pass per seat — tap to show the code at the gate. Works offline once the page has loaded.':'The tickets unlock at 08:00 on 30 October, shortly before the 08:35 departure. One pass per seat, and they work offline once the page has loaded.')+'</div>':'')
     +'</div></div>';
 }
 
@@ -1444,6 +1463,8 @@ function init(){
   renderEmergency();
   tickClock();
   setInterval(tickClock,1000);
+  refreshPassLocks();
+  setInterval(refreshPassLocks,20000);
 }
 function fixHeaderOffset(){
   try{
